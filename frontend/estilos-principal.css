@@ -1,0 +1,30 @@
+.clase__titulo img{
+    position: absolute; 
+    top: 150px;           
+    left: -160px;         
+    width: 200px;         
+    height: auto; 
+    filter: drop-shadow(10px 10px 40px rgba(224, 86, 86, 0.8));
+}
+.clase__titulo{
+    margin-top: 200px;
+    margin-left: 430px;
+    color: red;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 250px;
+    font-weight: bold;
+    font-style: oblique;
+    text-shadow: 10px 10px 40px rgba(224, 86, 86, 0.8);
+    opacity: 0;          
+    animation: animación_titulo 2s forwards;
+}
+@keyframes animación_titulo {
+    0% {
+        transform: translateX(75%); 
+        opacity: 0;                    
+    }
+    100% {
+        transform: translateX(0);    
+        opacity: 1;                  
+    }
+}
