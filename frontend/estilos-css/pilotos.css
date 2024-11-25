@@ -9,15 +9,19 @@
     text-align: center;
 }
 
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .tarjeta {
-    width: 31%;
-    background-color: #e1ede9;
+    width: 25%;
+    background-color: #b4c2bd;
     border-radius: 20px;
-    overflow: hidden;
     font-weight: bold;
     margin: 1% 1% 1% 1%;
     padding: 1%;
-    float: left;
 }
 
 .contenedor_posicion_puntos {
