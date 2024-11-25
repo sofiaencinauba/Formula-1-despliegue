@@ -1,76 +1,129 @@
 <!DOCTYPE html>
 <html lang="es" class="has-navbar-fixed-top">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="imagenes/logo-F1.png" type="image/png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-    <title>Pilotos</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="imagenes/logo-F1.png" type="image/png">
+	<link rel="stylesheet" href="estilos-css/pilotos.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+	<title>Pilotos</title>
 </head>
+
 <body>
-    <div class="contenedor is-fluid">
-        <nav class="navbar is-warning is-spaced" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="pagina-principal.html">
-                    <img src="imagenes/logo-F1.png" alt="Logo Fórmula 1">
-                </a>
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-            </div>
-            <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="Escuderia.html">
-                    Escuderias
-                    </a>
-                    <a class="navbar-item" href="Piloto.html">
-                        Pilotos
-                    </a>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="Carreras.html">
-                        Carreras
-                    </a>
-                    <div class="navbar-dropdown">
-                    <a class="navbar-item" href="Calendario.html">
-                        Calendario
-                    </a>
-                    <a class="navbar-item" href="Circuitos.html">
-                        Circuitos
-                    </a>
-                    </div>
-                </div>
-            </div>
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-dark">
-                                <strong>NUEVO PILOTO</strong>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <h1>Pilotos</h1>
-    </div>
-    <table class="table table-dark table-borderless">
-        <thead>
-          <tr>
-            <th>Posicion</th>
-            <th>Primer Piloto</th>
-            <th>Segundo Piloto</th>
-            <th>Primer puesto</th>
-            <th>Mejor carrera</th>
-            <th>Puntos</th>
-            <th>Borrar</th>
-          </tr>
-        </thead>
-        <tbody id="datos-Pilotos">
-        </tbody>
-      </table>
+	<div class="contenedor is-fluid">
+		<nav class="navbar is-warning is-spaced" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="pagina-principal.html">
+					<img src="imagenes/logo-F1.png" alt="Logo Fórmula 1">
+				</a>
+				<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+					data-target="navbarBasicExample">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</a>
+			</div>
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-start">
+					<a class="navbar-item" href="Escuderia.html">
+						Escuderias
+					</a>
+					<a class="navbar-item" href="Piloto.html">
+						Pilotos
+					</a>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link" href="Carreras.html">
+							Carreras
+						</a>
+						<div class="navbar-dropdown">
+							<a class="navbar-item" href="Calendario.html">
+								Calendario
+							</a>
+							<a class="navbar-item" href="Circuitos.html">
+								Circuitos
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<div class="buttons">
+							<a class="button is-dark">
+								<strong>NUEVO PILOTO</strong>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<main>
+				<h1 class="titulo_pilotos">Pilotos</h1>
+				<div class="tarjeta">
+					<div class="contenedor_posicion_puntos">
+						<p>Posicion 1</p>
+						<p>403</p>
+					</div>
+					<div class="contenedor_nombre_pais">
+						<p>Max Verstappen</p>
+						<img src="imagenes/bandera_holanda.png" class="imagen_pais">
+					</div>
+					<p class="escuderia">Red Bull</p>
+					<img src="imagenes/verstappen-red-bull.jpg" class="imagen_piloto">
+				</div>
+				<div class="tarjeta">
+					<div class="contenedor_posicion_puntos">
+						<p>Posicion 2</p>
+						<p>340</p>
+					</div>
+					<div class="contenedor_nombre_pais">
+						<p>Lando Norris</p>
+						<img src="imagenes/bandera_reino_unido.png" class="imagen_pais">
+					</div>
+					<p class="escuderia">McLaren</p>
+					<img src="imagenes/norris-mclaren.jpg" class="imagen_piloto">
+				</div>
+				<div class="tarjeta">
+					<div class="contenedor_posicion_puntos">
+						<p>Posicion 3</p>
+						<p>319</p>
+					</div>
+					<div class="contenedor_nombre_pais">
+						<p>Charles Leclerc</p>
+						<img src="imagenes/bandera_monaco.png" class="imagen_pais">
+					</div>
+					<p class="escuderia">Ferrari</p>
+					<img src="imagenes/leclerc-ferrari.jpg" class="imagen_piloto">
+				</div>
+				<div class="tarjeta">
+					<div class="contenedor_posicion_puntos">
+						<p>Posicion 4</p>
+						<p>250</p>
+					</div>
+					<div class="contenedor_nombre_pais">
+						<p>Lewis Hamilton</p>
+						<img src="imagenes/bandera_reino_unido.png" class="imagen_pais">
+					</div>
+					<p class="escuderia">Mercedes</p>
+					<img src="imagenes/hamilton-mercedes.jpg" class="imagen_piloto">
+				</div>
+				<div class="tarjeta">
+					<div class="contenedor_posicion_puntos">
+						<p>Posicion 5</p>
+						<p>100</p>
+					</div>
+					<div class="contenedor_nombre_pais">
+						<p>Franco Colapinto</p>
+						<img src="imagenes/bandera_argentina.png" class="imagen_pais">
+					</div>
+					<p class="escuderia">Williams</p>
+					<img src="imagenes/colapinto-williams.jpg" class="imagen_piloto">
+				</div>
+		</main>
+	</div>
+	
 </body>
 <script src="Piloto.js"></script>
+
 </html>
