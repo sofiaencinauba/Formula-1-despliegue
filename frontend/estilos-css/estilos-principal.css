@@ -1,3 +1,8 @@
+:root {
+    --bulma-link-h: 0deg;
+    --bulma-link-l: 40%;
+  }
+
 .contenedor__titulo{
     display: flex;
     align-items: center;
@@ -29,4 +34,21 @@
         transform: translateX(0);    
         opacity: 1;                  
     }
+}
+
+.resultados{
+    margin: 3rem;
+    margin-top: 1rem;
+    padding: 2rem;
+    font-family: ui-sans-serif,system-ui,sans-serif;
+}
+
+.resultados h2{
+    font-size: 4rem;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.table th{
+    background-color: #b4c2bd;
 }
