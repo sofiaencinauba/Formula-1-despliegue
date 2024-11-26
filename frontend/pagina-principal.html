@@ -46,10 +46,102 @@
                     </div>
             </div>
         </nav>
-        <h1 class="clase__titulo">
-            <img src="imagenes/logo-F1.png" alt="logo formula 1 con titulo">
-            Fórmula 1
-        </h1>
+        <div class="contenedor">
+          <section class="contenedor__titulo hero is-success is-warning is-halfheight">
+            <div class="hero-body has-text-centered">
+                <div class="logo">
+                    <img src="imagenes/logo-F1.png" alt="Logo F1">
+                </div>
+                <div>
+                  <h1>Fórmula 1</h1>
+                </div>
+            </div>
+          </section>
+          <div class="resultados">
+            <h2>Resultados 2024</h2>
+            <div class="box">
+              <div class="tabs">
+                <ul>
+                  <li class="is-active" data-target="tabla_carreras"><a>Carreras</a></li>
+                  <li data-target="tabla_pilotos"><a>Pilotos</a></li>
+                  <li data-target="tabla_escuderias"><a>Escuderías</a></li>
+                </ul>
+              </div>
+              <table class="table is-fullwidth is-hoverable active" id="tabla_carreras">
+                <thead>
+                  <tr>
+                    <th>Carrera</th>
+                    <th>Fecha</th>
+                    <th>Ganador</th>
+                    <th>Escuderia</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>nombre_carrera</td>
+                    <td>fecha</td>
+                    <td>nombre_ganador</td>
+                    <td>nombre_escuderia</td>
+                  </tr>
+                  <tr>
+                    <td>GP Las Vegas</td>
+                    <td>23 Nov 2024</td>
+                    <td>George Russell</td>
+                    <td>Mercedes</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table is-hoverable is-fullwidth" id="tabla_pilotos">
+                <thead>
+                  <tr>
+                    <th>Posicion</th>
+                    <th>Nº</th>
+                    <th>Piloto</th>
+                    <th>Escuderia</th>
+                    <th>Puntos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>posicion</td>
+                    <td>numero</td>
+                    <td>nombre_piloto</td>
+                    <td>nombre_escuderia</td>
+                    <td>puntos</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>23</td>
+                    <td>George Russell</td>
+                    <td>Mercedes</td>
+                    <td>54</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table is-hoverable is-fullwidth" id="tabla_escuderias">
+                <thead>
+                  <tr>
+                    <th>Posicion</th>
+                    <th>Escuderia</th>
+                    <th>Puntos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>posicion</td>
+                    <td>nombre_escuderia</td>
+                    <td>puntos</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Mercedes</td>
+                    <td>539</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
     </div>
 </body>
 </html>
