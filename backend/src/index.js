@@ -2,7 +2,13 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-let pilotos = []
+let pilotos = [{
+    "id": 1,
+    "nombre": "Lewis Hamilton",
+    "escuderia": "Mercedes",
+    "numero": 44,
+    "nacionalidad": "Reino Unido"
+}]
 
 app.use(express.json())
 
