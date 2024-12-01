@@ -54,6 +54,27 @@ app.post('/api/v1/pilotos', async(req, res) => {
 
 })
 
+app.delete('/api/v1/pilotos/:id', async (req, res) => {
+    const piloto = await prisma.piloto.findUnique({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    })
+
+    if (piloto === null) {
+        res.sendStatus(404)
+        return
+    }
+
+    await prisma.piloto.delete({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    })
+
+    res.send(piloto)
+})
+
 app.get('/api/v1/carreras', async(req, res) => {
     const carreras = await prisma.carrera.findMany()
     res.json(carreras)
