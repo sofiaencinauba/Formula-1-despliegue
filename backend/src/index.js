@@ -1,14 +1,17 @@
+const { PrismaClient } = require('@prisma/client')
 const express = require('express')
 const app = express()
 const port = 3000
 
-let pilotos = [{
-    "id": 1,
-    "nombre": "Lewis Hamilton",
-    "escuderia": "Mercedes",
-    "numero": 44,
-    "nacionalidad": "Reino Unido"
-}]
+const prisma = new PrismaClient()
+
+// let pilotos = [{
+//     "id": 1,
+//     "nombre": "Lewis Hamilton",
+//     "escuderia": "Mercedes",
+//     "numero": 44,
+//     "nacionalidad": "Reino Unido"
+// }]
 
 app.use(express.json())
 
@@ -16,8 +19,12 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.get('/api/v1/pilotos', (req, res) => {
-    let pilotos = []
+app.get('/api/v1/pilotos', async(req, res) => {
+    // let pilotos = []
+    // res.json(pilotos)
+
+    // find many es como hacer un select*
+    const pilotos = await prisma.piloto.findMany()
     res.json(pilotos)
 })
 
@@ -28,6 +35,18 @@ app.get('/api/v1/pilotos/:id', (req, res) => {
         return
     }
     res.json(piloto)
+})
+
+app.post('/api/v1/pilotos', async(req, res) => {
+    const piloto = await prisma.piloto.create({
+        data: {
+            nombre: req.body.nombre,
+            numero: req.body.numero,
+            nacionalidad: req.body.nacionalidad
+        }
+    })
+    res.status(201).send(piloto)
+
 })
 
 app.get('/api/v1/carreras', async(req, res) => {

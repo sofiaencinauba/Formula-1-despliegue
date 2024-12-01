@@ -16,8 +16,8 @@ datasource db {
 model Carrera{
   id Int @id @default (autoincrement())
   nombre String 
-  ganador Piloto  @relation(fields: [ganadorId], references: [id])
-  ganadorId Int
+  // ganador Piloto  @relation(fields: [ganadorId], references: [id])
+  // ganadorId Int
   fecha DateTime @default(now())
   circuito Circuito @relation(fields: [circuitoId], references: [id])
   circuitoId Int
@@ -26,18 +26,20 @@ model Carrera{
 
 model Piloto{
   id Int @id @default(autoincrement())
-  name String
-  escuderia Escuderia @relation(fields: [escuderiaId], references: [id])
-  escuderiaId Int
+  nombre String
+  // escuderia Escuderia @relation(fields: [escuderiaId], references: [id])
+  // escuderiaId Int
   numero Int
   nacionalidad String
-  carreras Carrera[]
-  calendario Calendario[]
+  // carreras Carrera[]
+  // calendario Calendario[]
 }
 
 model Escuderia{
   id Int @id @default(autoincrement())
-  piloto Piloto[]
+  // primer_piloto Piloto[] @relation("primerpiloto")
+  // segundo_piloto Piloto[] @relation("segundopiloto")
+
 }
 
 model Circuito{
@@ -55,6 +57,6 @@ model Calendario{
   fecha DateTime @default(now())
   carrera Carrera @relation(fields: [carreraId], references: [id])
   carreraId Int
-  participante Piloto @relation(fields: [participanteId], references: [id])
-  participanteId Int
+  // participante Piloto @relation(fields: [participanteId], references: [id])
+  // participanteId Int
 }
