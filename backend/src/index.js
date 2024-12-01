@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/v1/pilotos', (req, res) => {
+    let pilotos = []
     res.json(pilotos)
 })
 
@@ -28,6 +29,13 @@ app.get('/api/v1/pilotos/:id', (req, res) => {
     }
     res.json(piloto)
 })
+
+app.get('/api/v1/carreras', async(req, res) => {
+    const carreras = await prisma.carrera.findMany()
+    res.json(carreras)
+})
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

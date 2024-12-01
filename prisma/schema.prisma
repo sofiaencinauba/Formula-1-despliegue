@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Carrera{
+  id Int @id @default (autoincrement())
+  nombre String 
+  ganador Piloto  @relation(fields: [ganadorId], references: [id])
+  ganadorId Int
+  fecha DateTime @default(now())
+  circuito Circuito @relation(fields: [circuitoId], references: [id])
+  circuitoId Int
+  calendario Calendario[]
+}
+
+model Piloto{
+  id Int @id @default(autoincrement())
+  name String
+  escuderia Escuderia @relation(fields: [escuderiaId], references: [id])
+  escuderiaId Int
+  numero Int
+  nacionalidad String
+  carreras Carrera[]
+  calendario Calendario[]
+}
+
+model Escuderia{
+  id Int @id @default(autoincrement())
+  piloto Piloto[]
+}
+
+model Circuito{
+  id Int @id @default(autoincrement())
+  // acordarme que solo puede haber dos tipos validar en post
+  tipo String
+  cantidad_curvas Int
+  Longitud Float
+  Region String
+  carreras Carrera[]
+}
+
+model Calendario{
+  id Int @id @default(autoincrement())
+  fecha DateTime @default(now())
+  carrera Carrera @relation(fields: [carreraId], references: [id])
+  carreraId Int
+  participante Piloto @relation(fields: [participanteId], references: [id])
+  participanteId Int
+}
