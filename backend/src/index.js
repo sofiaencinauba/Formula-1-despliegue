@@ -54,6 +54,32 @@ app.post('/api/v1/pilotos', async(req, res) => {
 
 })
 
+app.put('/api/v1/pilotos/:id', async (req, res) => {
+    let piloto = await prisma.piloto.findUnique({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    })
+
+    if (piloto === null) {
+        res.sendStatus(404)
+        return
+    }
+
+    await prisma.piloto.update({
+        where: {
+            id: piloto.id
+        },
+        data: {
+            nombre: req.body.nombre,
+            numero: req.body.numero,
+            nacionalidad: req.body.nacionalidad
+        }
+    })
+
+    res.send(piloto)
+})
+
 app.delete('/api/v1/pilotos/:id', async (req, res) => {
     const piloto = await prisma.piloto.findUnique({
         where: {
