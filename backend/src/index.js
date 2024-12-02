@@ -16,7 +16,7 @@ const prisma = new PrismaClient()
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Formula1 app')
 })
 
 app.get('/api/v1/pilotos', async(req, res) => {
@@ -28,9 +28,14 @@ app.get('/api/v1/pilotos', async(req, res) => {
     res.json(pilotos)
 })
 
-app.get('/api/v1/pilotos/:id', (req, res) => {
-    const piloto = pilotos.find(piloto => piloto.id === parseInt(req.params.id))
-    if(piloto === undefined) {
+app.get('/api/v1/pilotos/:id', async (req, res) => {
+    const piloto = await prisma.piloto.fidUnique({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    })
+
+    if(piloto === null) {
         res.sendStatus(404)
         return
     }
@@ -47,6 +52,53 @@ app.post('/api/v1/pilotos', async(req, res) => {
     })
     res.status(201).send(piloto)
 
+})
+
+app.put('/api/v1/pilotos/:id', async (req, res) => {
+    let piloto = await prisma.piloto.findUnique({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    })
+
+    if (piloto === null) {
+        res.sendStatus(404)
+        return
+    }
+
+    await prisma.piloto.update({
+        where: {
+            id: piloto.id
+        },
+        data: {
+            nombre: req.body.nombre,
+            numero: req.body.numero,
+            nacionalidad: req.body.nacionalidad
+        }
+    })
+
+    res.send(piloto)
+})
+
+app.delete('/api/v1/pilotos/:id', async (req, res) => {
+    const piloto = await prisma.piloto.findUnique({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    })
+
+    if (piloto === null) {
+        res.sendStatus(404)
+        return
+    }
+
+    await prisma.piloto.delete({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    })
+
+    res.send(piloto)
 })
 
 app.get('/api/v1/carreras', async(req, res) => {
