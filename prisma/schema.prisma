@@ -5,58 +5,42 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+	provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+	provider = "postgresql"
+	url      = env("DATABASE_URL")
 }
 
-model Carrera{
-  id Int @id @default (autoincrement())
-  nombre String 
-  // ganador Piloto  @relation(fields: [ganadorId], references: [id])
-  // ganadorId Int
-  fecha DateTime @default(now())
-  circuito Circuito @relation(fields: [circuitoId], references: [id])
-  circuitoId Int
-  calendario Calendario[]
+model piloto{
+	id_piloto Int @id @default(autoincrement())
+	nombre_piloto String
+	nacionalidad_piloto String
+	edad_piloto Int
+	puntos_piloto Int
+	id_escuderia Int
+	escuderia escuderia @relation(fields: [id_escuderia], references: [id_escuderia])
+	carreras_ganadas Carreras[] @relation("piloto_ganador")
 }
 
-model Piloto{
-  id Int @id @default(autoincrement())
-  nombre String
-  // escuderia Escuderia @relation(fields: [escuderiaId], references: [id])
-  // escuderiaId Int
-  numero Int
-  nacionalidad String
-  // carreras Carrera[]
-  // calendario Calendario[]
+model escuderia{
+	id_escuderia Int @id @default(autoincrement())
+	nombre_escuderia String
+	puntos_escuderia Int
+	pais_escuderia String
+	anio_creacion_escuderia Int
+	pilotos piloto[]
+	Carreras Carreras[] @relation(name: "escuderia_ganadora")
 }
 
-model Escuderia{
-  id Int @id @default(autoincrement())
-  // primer_piloto Piloto[] @relation("primerpiloto")
-  // segundo_piloto Piloto[] @relation("segundopiloto")
-
-}
-
-model Circuito{
-  id Int @id @default(autoincrement())
-  // acordarme que solo puede haber dos tipos validar en post
-  tipo String
-  cantidad_curvas Int
-  Longitud Float
-  Region String
-  carreras Carrera[]
-}
-
-model Calendario{
-  id Int @id @default(autoincrement())
-  fecha DateTime @default(now())
-  carrera Carrera @relation(fields: [carreraId], references: [id])
-  carreraId Int
-  // participante Piloto @relation(fields: [participanteId], references: [id])
-  // participanteId Int
+model Carreras{
+	id_carrera Int @id @default(autoincrement())
+	nombre_carrera String
+	pais_carrera String
+	fecha_carrera DateTime
+	id_piloto_ganador Int
+	id_escuderia_ganadora Int
+	piloto_ganador piloto @relation(fields: [id_piloto_ganador], references: [id_piloto], name: "piloto_ganador")
+	escuderia_ganadora escuderia @relation(fields: [id_escuderia_ganadora], references: [id_escuderia], name: "escuderia_ganadora")	
 }
