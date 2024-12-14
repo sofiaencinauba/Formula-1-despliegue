@@ -105,10 +105,12 @@ app.get('/api/v1/pilotos/:id', async (req, res) => {
 })
 
 app.post('/api/v1/pilotos', async (req, res) => {
-	const { nombre, nacionalidad, edad, puntos, id_escuderia } = req.body;
+	const { nombre, nacionalidad, edad, puntos, id_escuderia } = req.body
 
 	if (!nombre || !nacionalidad || !edad || !puntos || !id_escuderia) {
-		return res.status(400).send({ error: 'Todos los campos son obligatorios.' })
+		return res.status(400).send({ 
+			error: 'Todos los campos son obligatorios.' 
+		})
 	}
 
 	try {
@@ -123,7 +125,35 @@ app.post('/api/v1/pilotos', async (req, res) => {
 		})
 		res.status(201).send(piloto)
 	} catch (error) { 
-		res.status(500).send({ error: 'Error al crear el piloto' }); 
+		res.status(500).send({ 
+			error: 'Error al crear el piloto' 
+		}) 
+	}
+})
+
+app.delete('/api/v1/pilotos/:id', async (req, res) => {
+	try { 
+		const piloto_exist = await prisma.piloto.findUnique({ 
+			where: { 
+				id_piloto: parseInt(req.params.id) 
+			} 
+		}) 
+		if (piloto_exist === null) {
+			return res.status(404).send({ 
+				error: 'Piloto no encontrado' 
+			}) 
+		}
+	
+		const piloto = await prisma.piloto.delete({
+	    	where: {
+	      		id_piloto: parseInt(req.params.id)
+	    	}
+	  	})
+	  	res.json(piloto)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al eliminar el piloto' 
+		}) 
 	}
 })
 
