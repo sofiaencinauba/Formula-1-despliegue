@@ -217,6 +217,32 @@ app.get('/api/v1/carreras/:id', async (req, res) => {
 	res.json(carrera)
 })
 
+app.delete('/api/v1/carreras/:id', async (req, res) => {
+	try { 
+		const carrera_exist = await prisma.carreras.findUnique({ 
+			where: { 
+				id_carrera: parseInt(req.params.id) 
+			} 
+		}) 
+		if (carrera_exist === null) {
+			return res.status(404).send({ 
+				error: 'Carrera no encontrada'
+			}) 
+		}
+	
+		const carrera = await prisma.carreras.delete({
+	    	where: {
+	      		id_carrera: parseInt(req.params.id)
+	    	}
+	  	})
+	  	res.json(carrera)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al eliminar la carrera'
+		}) 
+	}
+})
+
 app.listen(port, () => {
 	console.log(`Formula1 app listening on port ${port}`)
 })
