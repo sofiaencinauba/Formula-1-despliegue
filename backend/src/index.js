@@ -131,6 +131,38 @@ app.post('/api/v1/pilotos', async (req, res) => {
 	}
 })
 
+app.put('/api/v1/pilotos/:id', async (req, res) => {
+	try { 
+		let piloto = await prisma.piloto.findUnique({ 
+			where: { 
+				id_piloto: parseInt(req.params.id) 
+			} 
+		}) 
+		if (piloto === null) {
+			return res.status(404).send({ 
+				error: 'Piloto no encontrado' 
+			}) 
+		}
+	  	piloto = await prisma.piloto.update({
+	    	where: { 
+				id_piloto: parseInt(req.params.id)
+			},
+	    	data: { 
+				nombre_piloto: req.body.nombre_piloto,
+				nacionalidad_piloto: req.body.nacionalidad_piloto,
+				edad_piloto: req.body.edad_piloto,
+				puntos_piloto: req.body.puntos_piloto,
+				id_escuderia: req.body.id_escuderia
+			}
+	 	})
+	  	res.json(piloto)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al actualizar el piloto'
+		}) 
+	}
+})
+
 app.delete('/api/v1/pilotos/:id', async (req, res) => {
 	try { 
 		const piloto_exist = await prisma.piloto.findUnique({ 
