@@ -105,16 +105,26 @@ app.get('/api/v1/pilotos/:id', async (req, res) => {
 })
 
 app.post('/api/v1/pilotos', async (req, res) => {
-	const piloto = await prisma.piloto.create({
-		data: {
-			nombre_piloto: req.body.nombre,
-			nacionalidad_piloto: req.body.nacionalidad,
-			edad_piloto: req.body.edad,
-			puntos_piloto: req.body.puntos,
-			id_escuderia: req.body.escuderia_id,
-		}
-	})
-	res.status(201).send(piloto)
+	const { nombre, nacionalidad, edad, puntos, id_escuderia } = req.body;
+
+	if (!nombre || !nacionalidad || !edad || !puntos || !id_escuderia) {
+		return res.status(400).send({ error: 'Todos los campos son obligatorios.' })
+	}
+
+	try {
+		const piloto = await prisma.piloto.create({
+			data: {
+				nombre_piloto: nombre,
+				nacionalidad_piloto: nacionalidad,
+				edad_piloto: edad,
+				puntos_piloto: puntos,
+				id_escuderia: id_escuderia,
+			}
+		})
+		res.status(201).send(piloto)
+	} catch (error) { 
+		res.status(500).send({ error: 'Error al crear el piloto' }); 
+	}
 })
 
 app.get('/api/v1/carreras', async (req, res) => {
