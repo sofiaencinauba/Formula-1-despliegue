@@ -267,6 +267,32 @@ app.put('/api/v1/escuderias/:id', async (req, res) => {
 	}
 })
 
+app.delete('/api/v1/escuderias/:id', async (req, res) => {
+	try { 
+		const escuderia_exist = await prisma.escuderia.findUnique({ 
+			where: { 
+				id_escuderia: parseInt(req.params.id) 
+			} 
+		}) 
+		if (escuderia_exist === null) {
+			return res.status(404).send({ 
+				error: 'Escuderia no encontrada' 
+			}) 
+		}
+	
+		const escuderia = await prisma.escuderia.delete({
+	    	where: {
+	      		id_escuderia: parseInt(req.params.id)
+	    	}
+	  	})
+	  	res.json(escuderia)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al eliminar la escuderia' 
+		}) 
+	}
+})
+
 app.listen(port, () => {
 	console.log(`Formula1 app listening on port ${port}`)
 })
