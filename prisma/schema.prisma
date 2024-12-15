@@ -19,9 +19,9 @@ model piloto{
 	nacionalidad_piloto String
 	edad_piloto Int
 	puntos_piloto Int
+	posicion_piloto Int
 	id_escuderia Int
 	escuderia escuderia @relation(fields: [id_escuderia], references: [id_escuderia])
-	carreras_ganadas Carreras[] @relation("piloto_ganador")
 }
 
 model escuderia{
@@ -30,17 +30,6 @@ model escuderia{
 	puntos_escuderia Int
 	pais_escuderia String
 	anio_creacion_escuderia Int
+	posicion_escuderia Int
 	pilotos piloto[]
-	Carreras Carreras[] @relation(name: "escuderia_ganadora")
-}
-
-model Carreras{
-	id_carrera Int @id @default(autoincrement())
-	nombre_carrera String
-	pais_carrera String
-	fecha_carrera DateTime
-	id_piloto_ganador Int
-	id_escuderia_ganadora Int
-	piloto_ganador piloto @relation(fields: [id_piloto_ganador], references: [id_piloto], name: "piloto_ganador")
-	escuderia_ganadora escuderia @relation(fields: [id_escuderia_ganadora], references: [id_escuderia], name: "escuderia_ganadora")	
 }
