@@ -38,9 +38,9 @@ app.get('/api/v1/pilotos/:id', async (req, res) => {
 })
 
 app.post('/api/v1/pilotos', async (req, res) => {
-	const { nombre, nacionalidad, edad, puntos, id_escuderia } = req.body
+	const { nombre, nacionalidad, edad, puntos, posicion, id_escuderia } = req.body
 
-	if (!nombre || !nacionalidad || !edad || !puntos || !id_escuderia) {
+	if (!nombre || !nacionalidad || !edad || !puntos || !posicion || !id_escuderia) {
 		return res.status(400).send({ 
 			error: 'Todos los campos son obligatorios.' 
 		})
@@ -53,6 +53,7 @@ app.post('/api/v1/pilotos', async (req, res) => {
 				nacionalidad_piloto: nacionalidad,
 				edad_piloto: edad,
 				puntos_piloto: puntos,
+				posicion_piloto: posicion,
 				id_escuderia: id_escuderia,
 			}
 		})
@@ -122,7 +123,7 @@ app.delete('/api/v1/pilotos/:id', async (req, res) => {
 	}
 })
 
-app.get('/api/v1/carreras', async (req, res) => {
+/*app.get('/api/v1/carreras', async (req, res) => {
 	const carreras = await prisma.carreras.findMany({
 		include: {
 			piloto_ganador: true,
@@ -175,12 +176,12 @@ app.delete('/api/v1/carreras/:id', async (req, res) => {
 		}) 
 	}
 })
+*/
 
 app.get('/api/v1/escuderias', async (req, res) => {
 	const escuderias = await prisma.escuderia.findMany({
 		include: {
-			pilotos: true,
-			Carreras: true
+			pilotos: true
 		}
 	})
 	res.json(escuderias)
@@ -192,8 +193,7 @@ app.get('/api/v1/escuderias/:id', async (req, res) => {
 			id_escuderia: parseInt(req.params.id)
 		},
 		include: {
-			pilotos: true,
-			Carreras: true,
+			pilotos: true
 		}
 	})
 
@@ -202,6 +202,35 @@ app.get('/api/v1/escuderias/:id', async (req, res) => {
 		return
 	}
 	res.json(escuderia)
+})
+
+app.post('/api/v1/escuderias', async (req, res) => {
+	const { nombre_escuderia, puntos_escuderia, pais_escuderia, 
+			anio_creacion_escuderia, posicion_escuderia } = req.body
+
+	if (!nombre_escuderia || !puntos_escuderia || !pais_escuderia || !anio_creacion_escuderia ||
+		 !posicion_escuderia) {
+		return res.status(400).send({ 
+			error: 'Todos los campos son obligatorios.' 
+		})
+	}
+
+	try {
+		const escuderia = await prisma.escuderia.create({
+			data: {
+				nombre_escuderia,
+				puntos_escuderia,
+				pais_escuderia,
+				anio_creacion_escuderia,
+				posicion_escuderia
+			}
+		})
+		res.status(201).send(escuderia)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al crear la escuderia' 
+		}) 
+	}
 })
 
 app.listen(port, () => {
