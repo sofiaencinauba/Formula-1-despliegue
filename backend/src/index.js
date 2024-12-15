@@ -38,9 +38,11 @@ app.get('/api/v1/pilotos/:id', async (req, res) => {
 })
 
 app.post('/api/v1/pilotos', async (req, res) => {
-	const { nombre, nacionalidad, edad, puntos, posicion, id_escuderia } = req.body
+	const { nombre_piloto, nacionalidad_piloto, edad_piloto, puntos_piloto, 
+			posicion_piloto, id_escuderia } = req.body
 
-	if (!nombre || !nacionalidad || !edad || !puntos || !posicion || !id_escuderia) {
+	if (!nombre_piloto || !nacionalidad_piloto || !edad_piloto || !puntos_piloto || 
+		!posicion_piloto || !id_escuderia) {
 		return res.status(400).send({ 
 			error: 'Todos los campos son obligatorios.' 
 		})
@@ -49,12 +51,12 @@ app.post('/api/v1/pilotos', async (req, res) => {
 	try {
 		const piloto = await prisma.piloto.create({
 			data: {
-				nombre_piloto: nombre,
-				nacionalidad_piloto: nacionalidad,
-				edad_piloto: edad,
-				puntos_piloto: puntos,
-				posicion_piloto: posicion,
-				id_escuderia: id_escuderia,
+				nombre_piloto,
+				nacionalidad_piloto,
+				edad_piloto,
+				puntos_piloto,
+				posicion_piloto,
+				id_escuderia,
 			}
 		})
 		res.status(201).send(piloto)
