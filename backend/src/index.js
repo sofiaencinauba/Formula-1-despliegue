@@ -235,6 +235,38 @@ app.post('/api/v1/escuderias', async (req, res) => {
 	}
 })
 
+app.put('/api/v1/escuderias/:id', async (req, res) => {
+	try { 
+		let escuderia = await prisma.escuderia.findUnique({ 
+			where: { 
+				id_escuderia: parseInt(req.params.id) 
+			} 
+		}) 
+		if (escuderia === null) {
+			return res.status(404).send({ 
+				error: 'Escuderia no encontrada' 
+			}) 
+		}
+	  	escuderia = await prisma.escuderia.update({
+	    	where: { 
+				id_escuderia: parseInt(req.params.id)
+			},
+	    	data: { 
+				nombre_escuderia: req.body.nombre_escuderia,
+				puntos_escuderia: req.body.puntos_escuderia,
+				pais_escuderia: req.body.pais_escuderia,
+				anio_creacion_escuderia: req.body.anio_creacion_escuderia,
+				posicion_escuderia: req.body.posicion_escuderia
+			}
+	 	})
+	  	res.json(escuderia)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al actualizar la escuderia'
+		}) 
+	}
+})
+
 app.listen(port, () => {
 	console.log(`Formula1 app listening on port ${port}`)
 })
