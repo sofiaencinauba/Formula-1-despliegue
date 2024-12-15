@@ -243,6 +243,34 @@ app.delete('/api/v1/carreras/:id', async (req, res) => {
 	}
 })
 
+app.get('/api/v1/escuderias', async (req, res) => {
+	const escuderias = await prisma.escuderia.findMany({
+		include: {
+			pilotos: true,
+			Carreras: true
+		}
+	})
+	res.json(escuderias)
+})
+
+app.get('/api/v1/escuderias/:id', async (req, res) => {
+	const escuderia = await prisma.escuderia.findUnique({
+		where: {
+			id_escuderia: parseInt(req.params.id)
+		},
+		include: {
+			pilotos: true,
+			Carreras: true,
+		}
+	})
+
+	if (escuderia === null) {
+		res.sendStatus(404)
+		return
+	}
+	res.json(escuderia)
+})
+
 app.listen(port, () => {
 	console.log(`Formula1 app listening on port ${port}`)
 })
