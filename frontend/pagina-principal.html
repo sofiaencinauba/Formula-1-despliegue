@@ -1,147 +1,176 @@
 <!DOCTYPE html>
 <html lang="es" class="has-navbar-fixed-top">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="imagenes/logo-F1.png" type="image/png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-    <link rel="stylesheet" href="estilos-css/estilos-principal.css">
-    <title>Formula 1</title>
-</head>
-<body>
-    <div class="contenedor is-fluid">
-        <nav class="navbar is-warning is-spaced" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="pagina-principal.html">
-                    <img src="imagenes/logo-F1.png" alt="Logo Fórmula 1">
-                </a>
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                </a>
-            </div>
-                    <div id="navbarBasicExample" class="navbar-menu">
-                        <div class="navbar-start">
-                            <a class="navbar-item" href="Escuderia.html">
-                            Escuderias
-                            </a>
-                            <a class="navbar-item" href="Piloto.html">
-                                Pilotos
-                            </a>
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link" href="Carreras.html">
-                                Carreras
-                            </a>
-                            <div class="navbar-dropdown">
-                            <a class="navbar-item" href="Calendario.html">
-                                Calendario
-                            </a>
-                            <a class="navbar-item" href="Circuitos.html">
-                                Circuitos
-                            </a>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </nav>
-        <div class="contenedor">
-          <section class="contenedor__titulo hero is-success is-warning is-halfheight">
-            <div class="hero-body has-text-centered">
-                <div class="logo">
-                    <img src="imagenes/logo-F1.png" alt="Logo F1">
-                </div>
-                <div>
-                  <h1>Fórmula 1</h1>
-                </div>
-            </div>
-          </section>
-          <div class="resultados">
-            <h2>Resultados 2024</h2>
-            <div class="box">
-              <div class="tabs">
-                <ul>
-                  <li class="is-active" data-target="tabla_carreras"><a>Carreras</a></li>
-                  <li data-target="tabla_pilotos"><a>Pilotos</a></li>
-                  <li data-target="tabla_escuderias"><a>Escuderías</a></li>
-                </ul>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" href="imagenes/logo-F1.png" type="image/png">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+      <link rel="stylesheet" href="estilos-css/estilos-principal.css">
+      <title>Formula 1</title>
+  </head>
+  <body>
+      <div class="contenedor is-fluid">
+          <nav class="navbar is-warning is-spaced" role="navigation" aria-label="main navigation">
+              <div class="navbar-brand">
+                  <a class="navbar-item" href="pagina-principal.html">
+                      <img src="imagenes/logo-F1.png" alt="Logo Fórmula 1">
+                  </a>
+                  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  </a>
               </div>
-              <table class="table is-fullwidth is-hoverable active" id="tabla_carreras">
-                <thead>
-                  <tr>
-                    <th>Carrera</th>
-                    <th>Fecha</th>
-                    <th>Ganador</th>
-                    <th>Escuderia</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>nombre_carrera</td>
-                    <td>fecha</td>
-                    <td>nombre_ganador</td>
-                    <td>nombre_escuderia</td>
-                  </tr>
-                  <tr>
-                    <td>GP Las Vegas</td>
-                    <td>23 Nov 2024</td>
-                    <td>George Russell</td>
-                    <td>Mercedes</td>
-                  </tr>
-                </tbody>
-              </table>
-              <table class="table is-hoverable is-fullwidth" id="tabla_pilotos">
-                <thead>
-                  <tr>
-                    <th>Posicion</th>
-                    <th>Nº</th>
-                    <th>Piloto</th>
-                    <th>Escuderia</th>
-                    <th>Puntos</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>posicion</td>
-                    <td>numero</td>
-                    <td>nombre_piloto</td>
-                    <td>nombre_escuderia</td>
-                    <td>puntos</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>23</td>
-                    <td>George Russell</td>
-                    <td>Mercedes</td>
-                    <td>54</td>
-                  </tr>
-                </tbody>
-              </table>
-              <table class="table is-hoverable is-fullwidth" id="tabla_escuderias">
-                <thead>
-                  <tr>
-                    <th>Posicion</th>
-                    <th>Escuderia</th>
-                    <th>Puntos</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>posicion</td>
-                    <td>nombre_escuderia</td>
-                    <td>puntos</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Mercedes</td>
-                    <td>539</td>
-                  </tr>
-                </tbody>
-              </table>
+                      <div id="navbarBasicExample" class="navbar-menu">
+                          <div class="navbar-start">
+                              <a class="navbar-item" href="Escuderia.html">
+                              Escuderias
+                              </a>
+                              <a class="navbar-item" href="Piloto.html">
+                                  Pilotos
+                              </a>
+                          <div class="navbar-item has-dropdown is-hoverable">
+                              <a class="navbar-link" href="Carreras.html">
+                                  Carreras
+                              </a>
+                              <div class="navbar-dropdown">
+                              <a class="navbar-item" href="Calendario.html">
+                                  Calendario
+                              </a>
+                              <a class="navbar-item" href="Circuitos.html">
+                                  Circuitos
+                              </a>
+                              </div>
+                          </div>
+                      </div>
+              </div>
+          </nav>
+          <div class="contenedor">
+            <section class="contenedor__titulo hero is-success is-warning is-halfheight">
+              <div class="hero-body has-text-centered">
+                  <div class="logo">
+                      <img src="imagenes/logo-F1.png" alt="Logo F1">
+                  </div>
+                  <div>
+                    <h1>Fórmula 1</h1>
+                  </div>
+              </div>
+            </section>
+            <div class="resultados">
+              <h2>Resultados 2024</h2>
+              <div class="box">
+                <div class="tabs">
+                  <ul>
+                    <li class="is-active" data-target="tabla_carreras"><a>Carreras</a></li>
+                    <li data-target="tabla_pilotos"><a>Pilotos</a></li>
+                    <li data-target="tabla_escuderias"><a>Escuderías</a></li>
+                  </ul>
+                </div>
+                <table class="table is-fullwidth is-hoverable active" id="tabla_carreras">
+                  <thead>
+                    <tr>
+                      <th>Carrera</th>
+                      <th>Fecha</th>
+                      <th>Ganador</th>
+                      <th>Escuderia</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>GP Las Vegas</td>
+                      <td>23 Nov 2024</td>
+                      <td>George Russell</td>
+                      <td>Mercedes</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="table is-hoverable is-fullwidth" id="tabla_pilotos">
+                  <thead>
+                    <tr>
+                      <th>Posicion</th>
+                      <th>Nº</th>
+                      <th>Piloto</th>
+                      <th>Nacionalidad</th>
+                      <th>Escuderia</th>
+                      <th>Puntos</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pilotos-data">
+                  </tbody>
+                </table>
+                <table class="table is-hoverable is-fullwidth" id="tabla_escuderias">
+                  <thead>
+                    <tr>
+                      <th>Posicion</th>
+                      <th>Escuderia</th>
+                      <th>Pais</th>
+                      <th>Puntos</th>
+                    </tr>
+                  </thead>
+                  <tbody id="escuderias-data">
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-    </div>
-</body>
+      </div>
+  </body>
+  <script>
+    fetch('http://127.0.0.1:3000/api/v1/pilotos')
+    .then(response => response.json())
+    .then(pilotos => {
+      console.log(pilotos);
+
+      let table = document.getElementById('pilotos-data');
+
+      pilotos.forEach(piloto => {
+        let tr = document.createElement('tr');
+        let posicion = document.createElement('td');
+        posicion.textContent = piloto.posicion_piloto;
+        let id = document.createElement('td');
+        id.textContent = piloto.id_piloto;
+        let nombre = document.createElement('td');
+        nombre.textContent = piloto.nombre_piloto;
+        let nacionalidad = document.createElement('td');
+        nacionalidad.textContent = piloto.nacionalidad_piloto;
+        let escuderia = document.createElement('td');
+        escuderia.textContent = piloto.escuderia.nombre_escuderia;
+        let puntos = document.createElement('td');
+        puntos.textContent = piloto.puntos_piloto;
+        tr.appendChild(posicion);
+        tr.appendChild(id);
+        tr.appendChild(nombre);
+        tr.appendChild(nacionalidad);
+        tr.appendChild(escuderia);
+        tr.appendChild(puntos);
+        table.appendChild(tr);
+      })
+    })
+
+    fetch('http://127.0.0.1:3000/api/v1/escuderias')
+    .then(response => response.json())
+    .then(escuderias => {
+      console.log(escuderias);
+
+      let table = document.getElementById('escuderias-data');
+
+      escuderias.forEach(escuderia => {
+        let tr = document.createElement('tr');
+        let posicion = document.createElement('td');
+        posicion.textContent = escuderia.posicion_escuderia;
+        let nombre = document.createElement('td');
+        nombre.textContent = escuderia.nombre_escuderia;
+        let pais = document.createElement('td');
+        pais.textContent = escuderia.pais_escuderia;
+        let puntos = document.createElement('td');
+        puntos.textContent = escuderia.puntos_escuderia;
+        tr.appendChild(posicion);
+        tr.appendChild(nombre);
+        tr.appendChild(pais);
+        tr.appendChild(puntos);
+        table.appendChild(tr);
+      })
+    })
+  </script>
 </html>
