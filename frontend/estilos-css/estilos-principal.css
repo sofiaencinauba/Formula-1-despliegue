@@ -13,7 +13,6 @@
     margin-right: 1rem;   
     width: 8rem;         
     height: auto; 
-    filter: drop-shadow(10px 10px 40px rgba(224, 86, 86, 0.8));
 }
 .contenedor__titulo h1{
     color: red;
@@ -21,7 +20,6 @@
     font-size: 150px;
     font-weight: bold;
     font-style: oblique;
-    text-shadow: 10px 10px 40px rgba(224, 86, 86, 0.8);
     opacity: 0;          
     animation: animación_titulo 2s forwards;
 }
@@ -50,5 +48,5 @@
 }
 
 .table th{
-    background-color: #b4c2bd;
+    background-color: var(--bulma-border);
 }
