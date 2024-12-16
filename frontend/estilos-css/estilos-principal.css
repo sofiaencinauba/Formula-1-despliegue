@@ -50,3 +50,11 @@
 .table th{
     background-color: var(--bulma-border);
 }
+
+.hidden { 
+    display: none; 
+} 
+
+.tabs ul li.is-active { 
+    font-weight: bold; 
+}
