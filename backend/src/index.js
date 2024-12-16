@@ -1,11 +1,13 @@
 const { PrismaClient } = require('@prisma/client')
 const express = require('express')
+var cors = require('cors')
 const app = express()
 const port = 3000
 
 const prisma = new PrismaClient()
 
 app.use(express.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
 	res.send('Formula1 app')
