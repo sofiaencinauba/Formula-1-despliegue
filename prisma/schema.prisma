@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+	provider = "prisma-client-js"
+}
+
+datasource db {
+	provider = "postgresql"
+	url      = env("DATABASE_URL")
+}
+
+model piloto{
+	id_piloto Int @id @default(autoincrement())
+	nombre_piloto String
+	nacionalidad_piloto String
+	edad_piloto Int
+	puntos_piloto Int
+	posicion_piloto Int
+	id_escuderia Int
+	escuderia escuderia @relation(fields: [id_escuderia], references: [id_escuderia])
+}
+
+model escuderia{
+	id_escuderia Int @id @default(autoincrement())
+	nombre_escuderia String
+	puntos_escuderia Int
+	pais_escuderia String
+	anio_creacion_escuderia Int
+	posicion_escuderia Int
+	pilotos piloto[]
+}

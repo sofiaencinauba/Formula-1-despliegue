@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres:17
+    container_name: database_f1
+    environment:
+      - POSTGRES_USER=escudero
+      - POSTGRES_PASSWORD=formula1
+      - POSTGRES_DB=formula1
+    ports:
+      - 5432:5432
+    volumes:
+      - ./psql_data:/var/lib/postgresql/data
