@@ -295,6 +295,92 @@ app.delete('/api/v1/escuderias/:id', async (req, res) => {
 	}
 })
 
+app.get('/api/v1/carreras', async (req, res) => {
+	const carreras = await prisma.carrera.findMany({
+		include: {
+			piloto: true,
+            circuito: true
+		}
+	})
+	res.json(carreras)
+})
+
+app.get('/api/v1/carreras/:id', async (req, res) => {
+	const carrera = await prisma.carrera.findUnique({
+		where: {
+			id_carrera: parseInt(req.params.id)
+		},
+		include: {
+			pilotos: true,
+            circuito: true
+		}
+	})
+
+	if (carrera === null) {
+		res.sendStatus(404)
+		return
+	}
+	res.json(carrera)
+})
+
+app.delete('/api/v1/carreras/:id', async (req, res) => {
+	try { 
+		const carrera_exist = await prisma.carrera.findUnique({ 
+			where: { 
+				id_carrera: parseInt(req.params.id) 
+			} 
+		}) 
+		if (carrera_exist === null) {
+			return res.status(404).send({ 
+				error: 'Carrera no encontrada' 
+			}) 
+		}
+	
+		const carrera = await prisma.carrera.delete({
+	    	where: {
+	      		id_carrera: parseInt(req.params.id)
+	    	}
+	  	})
+	  	res.json(carrera)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al eliminar la carrera' 
+		}) 
+	}
+})
+
+app.post('/api/v1/carreras', async (req, res) => {
+	const { nombre_carrera, pais_sede, anio, id_primer_puesto, 
+			id_circuito_asociado } = req.body
+
+	if (!nombre_carrera || !pais_sede || !anio || !id_primer_puesto || 
+		!id_circuito_asociado ) {
+		return res.status(400).send({ 
+			error: 'Todos los campos son obligatorios.' 
+		})
+	}
+
+	try {
+		const carrera = await prisma.carrera.create({
+			data: {
+				nombre_carrera, 
+                pais_sede, 
+                anio, 
+                id_primer_puesto, 
+			    id_circuito_asociado
+			}
+		})
+		res.status(201).send(carrera)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al crear la carrera' 
+		}) 
+	}
+})
+
+
+
+
 app.listen(port, () => {
 	console.log(`Formula1 app listening on port ${port}`)
 })

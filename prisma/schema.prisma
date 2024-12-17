@@ -22,6 +22,7 @@ model piloto{
 	posicion_piloto Int
 	id_escuderia Int
 	escuderia escuderia @relation(fields: [id_escuderia], references: [id_escuderia])
+  carreras carrera[]
 }
 
 model escuderia{
@@ -32,4 +33,31 @@ model escuderia{
 	anio_creacion_escuderia Int
 	posicion_escuderia Int
 	pilotos piloto[]
+}
+
+        // <h2 class="subtitle">id</h2>
+        // <h2 class="subtitle">Nombre Carrera</h2>
+        // <h2 class="subtitle">Primer Puesto</h2>
+        // <h2 class="subtitle">Segundo puesto</h2>
+        // <h2 class="subtitle">tercer Puesto</h2>
+        // <h2 class="subtitle">circuito asociado</h2>
+
+model carrera{
+  id_carrera Int @id @default(autoincrement())
+  nombre_carrera String
+  pais_sede String
+  anio Int
+  id_primer_puesto Int
+  id_circuito_asociado Int
+  piloto piloto @relation(fields: [id_primer_puesto], references: [id_piloto])
+  circuito circuito @relation(fields: [id_circuito_asociado], references: [id_circuito])
+}
+
+model circuito{
+  id_circuito Int @id @default(autoincrement())
+  carreras carrera[]
+  nombre String
+  tipo String
+  longitud_total Int
+  cantidad_curvas Int
 }
