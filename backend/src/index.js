@@ -17,6 +17,7 @@ app.get('/api/v1/pilotos', async (req, res) => {
 	const pilotos = await prisma.piloto.findMany({
 		include: {
 			escuderia: true,
+			carreras: true
 		}
 	})
 	res.json(pilotos)
@@ -29,6 +30,7 @@ app.get('/api/v1/pilotos/:id', async (req, res) => {
 		},
 		include: {
 			escuderia: true,
+			carreras: true
 		}
 	})
 
@@ -353,8 +355,7 @@ app.post('/api/v1/carreras', async (req, res) => {
 	const { nombre_carrera, pais_sede, anio, id_primer_puesto, 
 			id_circuito_asociado } = req.body
 
-	if (!nombre_carrera || !pais_sede || !anio || !id_primer_puesto || 
-		!id_circuito_asociado ) {
+	if (!nombre_carrera || !pais_sede || !anio || !id_primer_puesto || !id_circuito_asociado ) {
 		return res.status(400).send({ 
 			error: 'Todos los campos son obligatorios.' 
 		})
@@ -365,9 +366,9 @@ app.post('/api/v1/carreras', async (req, res) => {
 			data: {
 				nombre_carrera, 
                 pais_sede, 
-                anio, 
-                id_primer_puesto, 
-			    id_circuito_asociado
+                anio: parseInt(anio), 
+				id_primer_puesto: parseInt(id_primer_puesto),
+				id_circuito_asociado: parseInt(id_circuito_asociado)
 			}
 		})
 		res.status(201).send(carrera)
@@ -378,7 +379,84 @@ app.post('/api/v1/carreras', async (req, res) => {
 	}
 })
 
+app.get('/api/v1/circuitos', async (req, res) => {
+	const circuitos = await prisma.circuito.findMany({
+		include: {
+			carreras: true
+		}
+	})
+	res.json(circuitos)
+})
 
+app.get('/api/v1/circuitos/:id', async (req, res) => {
+	const circuito = await prisma.circuito.findUnique({
+		where: {
+			id_circuito: parseInt(req.params.id)
+		},
+		include: {
+			carreras: true
+		}
+	})
+
+	if (circuito === null) {
+		res.sendStatus(404)
+		return
+	}
+	res.json(circuito)
+})
+
+app.delete('/api/v1/circuitos/:id', async (req, res) => {
+	try { 
+		const circuito_exist = await prisma.circuito.findUnique({ 
+			where: { 
+				id_circuito: parseInt(req.params.id) 
+			} 
+		}) 
+		if (circuito_exist === null) {
+			return res.status(404).send({ 
+				error: 'Circuito no encontrado' 
+			}) 
+		}
+	
+		const circuito = await prisma.circuito.delete({
+	    	where: {
+	      		id_circuito: parseInt(req.params.id)
+	    	}
+	  	})
+	  	res.json(circuito)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al eliminar el circuito' 
+		}) 
+	}
+})
+
+app.post('/api/v1/circuitos', async (req, res) => {
+	const { nombre, tipo, longitud_total, 
+			cantidad_curvas } = req.body
+
+	if ( !nombre || !tipo || !longitud_total || !cantidad_curvas ) {
+		return res.status(400).send({ 
+			error: 'Todos los campos son obligatorios.' 
+		})
+	}
+
+	try {
+		const circuito = await prisma.circuito.create({
+			data: {
+				nombre, 
+                tipo, 
+                longitud_total: parseInt(longitud_total), 
+				cantidad_curvas: parseInt(cantidad_curvas)
+			}
+		})
+		res.status(201).send(circuito)
+	} catch (error) { 
+		res.status(500).send({ 
+			error: 'Error al crear el circuito' 
+		}) 
+	}
+})
 
 
 app.listen(port, () => {
