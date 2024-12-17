@@ -17,7 +17,7 @@ fetch('http://127.0.0.1:3000/api/v1/carreras')
 
     carreras.forEach(carrera => {
         let div = document.createElement('div');
-        div.className = "cell box has-background-warning is-col-min-10";
+        div.className = "cell box has-background-warning ";
         
         let id = document.createElement('h2');
         id.className = "subtitle has-text-black";
