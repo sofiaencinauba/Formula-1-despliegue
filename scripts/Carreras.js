@@ -43,12 +43,19 @@ fetch('http://127.0.0.1:3000/api/v1/carreras')
         circuito_asociado.className = "subtitle has-text-black";
         circuito_asociado.textContent = `Circuito: ${carrera.circuito ? carrera.circuito.nombre : 'Desconocido'}`;
 
+        // <button class="button is-danger is-inverted">Inverted</button>
+        let borrar = document.createElement('button')
+        borrar.className = "button is-danger is-inverted"
+        borrar.textContent = "Borrar"
+        borrar.onclick = function() { eliminar_carrera(id_carrera) }
+
         div.appendChild(id);
         div.appendChild(nombre);
         div.appendChild(pais_sede)
         div.appendChild(anio)
         div.appendChild(primer_puesto);
         div.appendChild(circuito_asociado);
+        div.appendChild(borrar)
 
         padre.appendChild(div);
 
@@ -56,4 +63,7 @@ fetch('http://127.0.0.1:3000/api/v1/carreras')
     });
 })
 
+eliminar_carrera = function(id_carrera) {
+    alert("eliminar carrera")
+}
 
