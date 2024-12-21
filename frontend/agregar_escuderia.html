@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="imagenes/logo-F1.png" type="image/png">
 	<link rel="stylesheet" href="estilos-css/escuderia.css">
+	<link rel="stylesheet" href="estilos-css/estilo_agregar_escuderia.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 	<title>Escuderias</title>
 </head>
@@ -46,22 +47,32 @@
 							</a>
 						</div>
 					</div>
-				</div>
-				<div class="navbar-end">
-					<div class="navbar-item">
-						<div class="buttons">
-							<a class="button is-dark" href="agregar_escuderia.html">
-								<strong>AGREGAR ESCUDERIA</strong>
-							</a>
-						</div>
-					</div>
-				</div>
+				</div>                
 			</div>
 		</nav>
-		<h1 class="titulo_escuderia">Escuderías</h1>
+		<h1 class="titulo_escuderia">Agrega tu escuderia</h1>
 	</div>
-
-	<div id="contenedor-tarjetas" class="tarjetas"></div>
+<div class="agregar_escuderia">
+		<label class="label">Nombre</label>
+		<input id="nombre" class="input" type="text">
+	<div class="field">
+		<label class="label">Puntos</label>
+		<input id="puntos" class="input" type="number">
+	</div>
+	<div class="field">
+		<label class="label">Pais</label>
+		<input id="pais" class="input" type="text">
+	</div>
+	<div class="field">
+		<label class="label">Año creacion</label>
+		<input id="anio" class="input" type="number">
+	</div>
+	<div class="field">
+		<label class="label">Posicion</label>
+		<input id="posicion" class="input" type="number">
+	</div>
+		<button class="boton_agregar" onclick="agregar_escuderia()">Confirmar</button>
+</div>
 
 </body>
 <script src="../scripts/Escuderias.js"></script>
