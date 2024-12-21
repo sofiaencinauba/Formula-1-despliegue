@@ -125,7 +125,6 @@ function limpiar_formulario() {
 	document.getElementById('pais').value = '';
 	document.getElementById('anio').value = '';
 	document.getElementById('posicion').value = '';
-	alert('Se cancelo agregar las escuderias');
 }
 
 mostrar_escuderias();
