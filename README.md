@@ -13,6 +13,10 @@ npx prisma migrate dev
 
 ## Start
 
+```sh
+docker compose up -d
+```
+
 ### Local
 
 ```sh
