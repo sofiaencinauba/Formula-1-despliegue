@@ -1,66 +1,60 @@
 mostrar_escuderias = function () {
 	fetch('http://127.0.0.1:3000/api/v1/escuderias')
-	.then(response => response.json())
-	.then(escuderias => {console.log(escuderias);
-	
-		let tabla = document.getElementById('datos-Escuderia');
-		tabla.innerHTML = '';
-	
-		if (!tabla) {
-			console.error("No se encontró un elemento con ese ID");
-			return;
-		}
-	
-		escuderias.forEach(escuderia => {
-			let fila = document.createElement('tr');
-	
-			let id = document.createElement('th');
-			id.textContent = escuderia.id_escuderia;
-			fila.appendChild(id);
-	
-			let nombre = document.createElement('td');
-			nombre.textContent = escuderia.nombre_escuderia;
-			fila.appendChild(nombre);
-	
-			let puntos = document.createElement('td');
-			puntos.textContent = escuderia.puntos_escuderia || '0';
-			fila.appendChild(puntos);
-	
-			let pais = document.createElement('td');
-			pais.textContent = escuderia.pais_escuderia;
-			fila.appendChild(pais);
-	
-			let anio = document.createElement('td');
-			anio.textContent = escuderia.anio_creacion_escuderia;
-			fila.appendChild(anio);
-	
-			let posicion = document.createElement('td');
-			posicion.textContent = escuderia.posicion_escuderia;
-			fila.appendChild(posicion);
-	
-			let pilotos = document.createElement('td');
-			pilotos.textContent = escuderia.pilotos;
-			fila.appendChild(pilotos);
-	
-			let boton = document.createElement('td');
-			let borrar = document.createElement('button');
-			borrar.className = "button is-danger is-inverted";
-			borrar.textContent = "Borrar";
-			borrar.onclick = function () {
-				eliminar_escuderia(escuderia.id_escuderia);
-			};
-			boton.appendChild(borrar);
-			fila.appendChild(boton);
-	
-			tabla.appendChild(fila);
+		.then(response => response.json())
+		.then(escuderias => {
+			console.log(escuderias);
+
+			let contenedor_tarjetas = document.getElementById('contenedor-tarjetas');
+			contenedor_tarjetas.innerHTML = '';
+
+			if (!contenedor_tarjetas) {
+				console.error("No se encontró un elemento con ese ID");
+				return;
+			}
+
+			escuderias.forEach(escuderia => {
+				let tarjeta = document.createElement('div');
+				tarjeta.className = 'tarjeta';
+
+				let titulo = document.createElement('h2');
+				titulo.textContent = escuderia.nombre_escuderia;
+				tarjeta.appendChild(titulo);
+
+				let id = document.createElement('p');
+				id.textContent = `ID: ${escuderia.id_escuderia}`;
+				tarjeta.appendChild(id);
+
+				let puntos = document.createElement('p');
+				puntos.textContent = `Puntos: ${escuderia.puntos_escuderia || '0'}`;
+				tarjeta.appendChild(puntos);
+
+				let pais = document.createElement('p');
+				pais.textContent = `País: ${escuderia.pais_escuderia}`;
+				tarjeta.appendChild(pais);
+
+				let anio = document.createElement('p');
+				anio.textContent = `Año: ${escuderia.anio_creacion_escuderia}`;
+				tarjeta.appendChild(anio);
+
+				let posicion = document.createElement('p');
+				posicion.textContent = `Posición: ${escuderia.posicion_escuderia}`;
+				tarjeta.appendChild(posicion);
+
+				let boton = document.createElement('button');
+				boton.className = 'boton-borrar';
+				boton.textContent = 'Borrar';
+				boton.onclick = function () {
+					eliminar_escuderia(escuderia.id_escuderia);
+				};
+				tarjeta.appendChild(boton);
+
+				contenedor_tarjetas.appendChild(tarjeta);
+			});
+		})
+
+		.catch(error => {
+			console.error('Error al obtener las escuderías:', error);
 		});
-	})
-	
-	.catch(error => {
-		console.error('Error al obtener las escuderías:', error);
-	});
-
-
 
 };
 
@@ -69,11 +63,14 @@ eliminar_escuderia = function (id) {
 	fetch('http://127.0.0.1:3000/api/v1/escuderias/' + id, {
 		method: 'DELETE'
 	})
-	.then(response => response.json())
-	.then(response => {
-		console.log(response);
-		mostrar_escuderias();
-	})
+		.then(response => response.json())
+		.then(response => {
+			console.log(response);
+			mostrar_escuderias();
+		})
+		.catch(error => {
+			console.error('Error al eliminar la escudería:', error);
+		});
 };
 
 agregar_escuderia = function () {
@@ -107,15 +104,16 @@ agregar_escuderia = function () {
 			if (response.ok) {
 				alert('Escudería agregada correctamente.');
 				limpiar_formulario();
+				mostrar_escuderias();
 			} else {
 				return response.json().then(error => {
-					throw new Error(error.message || 'Error al agregar la escudería.');
+					alert('Ocurrió un error: al agregar la escudería:');
 				});
 			}
 		})
 		.catch(error => {
 			console.error('Error:', error);
-			alert('Ocurrió un error: ' + error.message);
+			alert('Ocurrió un error: al agregar la escudería:');
 		});
 };
 
