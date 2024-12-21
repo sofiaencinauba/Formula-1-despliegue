@@ -88,3 +88,51 @@ eliminar_carrera = function(id_carrera) {
     })
 }
 
+function crearCarrera(event) {
+    event.preventDefault()
+
+    const nombre = document.getElementById('nombre').value
+    const sede = document.getElementById('sede').value
+    const anio = document.getElementById('anio').value
+    const piloto_ganador = document.getElementById('piloto_ganador').value
+    const circuito_asociado = document.getElementById('circuito_asociado').value
+
+    if (!nombre || !sede || !anio || !piloto_ganador || !circuito_asociado) {
+        alert('Error: Algún campo no existe en el DOM.')
+        return
+    }
+
+    let body = {
+        nombre_carrera: nombre,
+        pais_sede: sede,
+        anio: parseInt(anio),
+        id_primer_puesto: parseInt(piloto_ganador),
+        id_circuito_asociado: parseInt(circuito_asociado)
+    }
+
+    console.log(body)
+
+    fetch('http://127.0.0.1:3000/api/v1/carreras', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    }).then(response => {
+        if(response.status === 201){
+            alert("carrera creada con exito")
+            limpiarFormulario()
+        } else{
+            alert("error al crear la carrera")
+        }
+    })
+
+}
+
+function limpiarFormulario(){
+    document.getElementById('nombre').value = ''
+    document.getElementById('sede').value = ''
+    document.getElementById('anio').value = ''
+    document.getElementById('piloto_ganador').value = ''
+    document.getElementById('circuito_asociado').value = ''
+}
