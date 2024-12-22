@@ -13,6 +13,18 @@ document.querySelectorAll('.tabs ul li').forEach(tab => {
 
 function llenar_tabla_carreras(carreras) {
   let tabla = document.getElementById('carreras-data');
+  tabla.innerHTML = '';
+
+  if (carreras.length === 0) { 
+    let fila = document.createElement('tr'); 
+    let mensaje = document.createElement('td'); 
+    mensaje.colSpan = 5; 
+    mensaje.textContent = 'Aún no añadiste carreras'; 
+    mensaje.classList.add('mensaje');
+    fila.appendChild(mensaje); 
+    tabla.appendChild(fila); 
+    return; 
+  }
 
   carreras.forEach(carrera => {
       let fila = document.createElement('tr');
@@ -43,6 +55,18 @@ function llenar_tabla_carreras(carreras) {
 
 function llenar_tabla_pilotos(pilotos) {
   let tabla = document.getElementById('pilotos-data');
+  tabla.innerHTML = '';
+
+  if (pilotos.length === 0) { 
+    let fila = document.createElement('tr'); 
+    let mensaje = document.createElement('td'); 
+    mensaje.colSpan = 6; 
+    mensaje.textContent = 'Aún no añadiste pilotos'; 
+    mensaje.classList.add('mensaje');
+    fila.appendChild(mensaje); 
+    tabla.appendChild(fila); 
+    return; 
+  }
 
   pilotos.forEach(piloto => {
       let fila = document.createElement('tr');
@@ -77,6 +101,18 @@ function llenar_tabla_pilotos(pilotos) {
 
 function llenar_tabla_escuderias(escuderias) {
   let tabla = document.getElementById('escuderias-data');
+  tabla.innerHTML = '';
+
+  if (escuderias.length === 0) { 
+    let fila = document.createElement('tr'); 
+    let mensaje = document.createElement('td'); 
+    mensaje.colSpan = 4; 
+    mensaje.textContent = 'Aún no añadiste escuderias'; 
+    mensaje.classList.add('mensaje');
+    fila.appendChild(mensaje); 
+    tabla.appendChild(fila); 
+    return; 
+  }
 
   escuderias.forEach(escuderia => {
       let fila = document.createElement('tr');
