@@ -34,7 +34,12 @@
 	text-align: center;
 }
 
-.boton-borrar {
+.letras_formulario {
+	color: #000000;
+	font-weight: bold;
+}
+
+.boton_borrar {
 	display: block;
 	width: 100%;
 	padding: 3%;
@@ -55,15 +60,15 @@
 	margin: 1% auto;
 	padding: 2%;
 	border-radius: 30px;
-	background-color: #ff0000;
+	background-color: #ffffffc9;
 }
 
 .boton_agregar {
 	width: 40%;
 	padding: 1%;
 	border-radius: 10px;
-	background-color: #ffffff;
-	color: rgb(0, 0, 0);
+	background-color: #000000;
+	color: white;
 	font-size: 20px;
 	font-weight: bold;
 }
