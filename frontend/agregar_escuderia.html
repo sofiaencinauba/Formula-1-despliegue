@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="es" class="has-navbar-fixed-top">
+<html lang="es" class="has-navbar">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="imagenes/logo-F1.png" type="image/png">
-	<link rel="stylesheet" href="estilos-css/escuderia.css">
-	<link rel="stylesheet" href="estilos-css/estilo_agregar_escuderia.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-	<title>Escuderias</title>
+	<link rel="stylesheet" href="estilos-css/estilos-principal.css">
+	<link rel="stylesheet" href="estilos-css/escuderia.css">
+	<title>Formula 1</title>
 </head>
 
 <body>
+	<div class="contenedor__titulo">
+		<h3>Simulador de temporada de fórmula 1</h3>
+	</div>
 	<div class="contenedor is-fluid">
-		<nav class="navbar is-warning is-spaced" role="navigation" aria-label="main navigation">
+		<nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
 				<a class="navbar-item" href="pagina-principal.html">
 					<img src="imagenes/logo-F1.png" alt="Logo Fórmula 1">
@@ -29,7 +32,7 @@
 			<div id="navbarBasicExample" class="navbar-menu">
 				<div class="navbar-start">
 					<a class="navbar-item" href="Escuderia.html">
-						Escuderias
+						Escuderías
 					</a>
 					<a class="navbar-item" href="Piloto.html">
 						Pilotos
@@ -47,33 +50,34 @@
 							</a>
 						</div>
 					</div>
-				</div>                
+				</div>
 			</div>
 		</nav>
-		<h1 class="titulo_escuderia">Agrega tu escuderia</h1>
+		<h1 class="titulo_escuderia">Agrega tu escudería</h1>
 	</div>
-<div class="agregar_escuderia">
-		<label class="label">Nombre</label>
-		<input id="nombre" class="input" type="text">
-	<div class="field">
-		<label class="label">Puntos</label>
-		<input id="puntos" class="input" type="number">
-	</div>
-	<div class="field">
-		<label class="label">Pais</label>
-		<input id="pais" class="input" type="text">
-	</div>
-	<div class="field">
-		<label class="label">Año creacion</label>
-		<input id="anio" class="input" type="number">
-	</div>
-	<div class="field">
-		<label class="label">Posicion</label>
-		<input id="posicion" class="input" type="number">
-	</div>
+	<div class="agregar_escuderia">
+		<div class="field">
+			<label class="label"><span class="letras_formulario">Nombre</span></label>
+			<input id="nombre" class="input" type="text">
+		</div>
+		<div class="field">
+			<label class="label"><span class="letras_formulario">Puntos</span></label>
+			<input id="puntos" class="input" type="number">
+		</div>
+		<div class="field">
+			<label class="label"><span class="letras_formulario">País</span></label>
+			<input id="pais" class="input" type="text">
+		</div>
+		<div class="field">
+			<label class="label"><span class="letras_formulario">Año creación</span></label>
+			<input id="anio" class="input" type="number">
+		</div>
+		<div class="field">
+			<label class="label"><span class="letras_formulario">Posición</span></label>
+			<input id="posicion" class="input" type="number">
+		</div>
 		<button class="boton_agregar" onclick="agregar_escuderia()">Confirmar</button>
-</div>
-
+	</div>
 </body>
 <script src="../scripts/Escuderias.js"></script>
 

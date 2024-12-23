@@ -41,7 +41,7 @@ mostrar_escuderias = function () {
 				tarjeta.appendChild(posicion);
 
 				let boton = document.createElement('button');
-				boton.className = 'boton-borrar';
+				boton.className = 'boton_borrar';
 				boton.textContent = 'Borrar';
 				boton.onclick = function () {
 					eliminar_escuderia(escuderia.id_escuderia);
