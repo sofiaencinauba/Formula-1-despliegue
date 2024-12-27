@@ -116,7 +116,34 @@ mostrar_Pilotos = function() {
                 alert('Error al obtener el piloto');
             }
         });
-        
+        fetch("http://127.0.0.1:3000/api/v1/pilotos",{
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        }).then(response =>{
+            if (response.status == 200){
+                alert('Piloto eliminado correctamente');
+                borrarPiloto();
+            }else{
+                alert('Error al eliminar el piloto');
+            }
+        });
+        fetch("http://127.0.0.1:3000/api/v1/pilotos",{
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        }).then(response =>{
+            if (response.status == 200){
+                alert('Piloto actualizado correctamente');
+                borrarPiloto();
+            }else{
+                alert('Error al actualizar el piloto');
+            }
+        });
     }
 
 
