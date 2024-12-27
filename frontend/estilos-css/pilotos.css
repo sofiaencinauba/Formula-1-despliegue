@@ -8,67 +8,68 @@
     margin-bottom: 30px;
     text-align: center;
 }
-
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.agregar_piloto{
+    width: 25%;
+	margin: 1% auto;
+	padding: 2%;
+	border-radius: 30px;
+	background-color: #ffffffc9;
+}
+.tarjetas {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	margin: 20px;
 }
 
 .tarjeta {
-    width: 25%;
-    background-color: #b4c2bd;
-    border-radius: 20px;
-    font-weight: bold;
-    margin: 1% 1% 1% 1%;
-    padding: 1%;
+	width: 300px;
+	background-color: #ffffffc9;
+	border-radius: 10px;
+	color: #474343;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	font-family: Arial, sans-serif;
 }
 
-.contenedor_posicion_puntos {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: black;
-    color: white;
-    padding: 10px;
+.tarjeta h2 {
+	font-size: 24px;
+	color: #000000;
+	margin-bottom: 10px;
+	text-align: center;
 }
 
-.posicion {
-    font-size: 24px;
-    font-weight: bold;
+.letras_formulario {
+	color: #000000;
+	font-weight: bold;
 }
 
-.puntos {
-    font-size: 18px;
+.boton_borrar {
+	display: block;
+	width: 100%;
+	padding: 3%;
+	margin-top: 1%;
+	text-align: center;
+	background-color: hsl(0, 100%, 50%);
+	color: #fff;
+	border-radius: 55px;
 }
 
-.contenedor_nombre_pais {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: black;
-    padding: 10px;
-    border-bottom: 1px solid white;
+.agregar_piloto {
+	width: 25%;
+	margin: 1% auto;
+	padding: 2%;
+	border-radius: 30px;
+	background-color: #ffffffc9;
 }
 
-.escuderia{
-    text-align: center;
-    color: black;
-}
-
-.nombre {
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.imagen_pais {
-    height: 30px;
-    border-radius: 5px;
-}
-
-.imagen_piloto {
-    width: 100%;
-    height: auto;
-    border-top: 1px solid #ddd;
+.boton_agregar {
+	width: 40%;
+	padding: 1%;
+	border-radius: 10px;
+	background-color: #000000;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
 }
