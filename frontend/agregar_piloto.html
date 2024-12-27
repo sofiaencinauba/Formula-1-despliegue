@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="imagenes/logo-F1.png" type="image/png">
+	<link rel="stylesheet" href="estilos-css/pilotos.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+	<title>Agregar Pilotos</title>
+</head>
+<body>
+        <div class="contenedor is-fluid"></div>
+            <nav class="navbar is-warning is-spaced" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="pagina-principal.html">
+                        <img src="imagenes/logo-F1.png" alt="Logo Fórmula 1">
+                    </a>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                        data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="Escuderia.html">
+                            Escuderias
+                        </a>
+                        <a class="navbar-item" href="Piloto.html">
+                            Pilotos
+                        </a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link" href="Carreras.html">
+                                Carreras
+                            </a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="Calendario.html">
+                                    Calendario
+                                </a>
+                                <a class="navbar-item" href="Circuitos.html">
+                                    Circuitos
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-dark">
+                                    <strong>NUEVO PILOTO</strong>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <h1 class="titulo_pilotos">Agrega un Piloto</h1>
+        <div class="container is-max-desktop">
+            <form>
+                <div class="agregar_piloto">
+                    <div class="field">
+                        <label class="label"><span class="letras_formulario">Nombre</span></label>
+                        <input id="nombre" class="input" type="text" placeholder="Nombre">
+                    </div>
+                    <div class="field">
+                        <label class="label"><span class="letras_formulario">Nacionalidad</span></label>
+                        <input id="nacionalidad" class="input" type="text" placeholder="Nacionalidad">
+                    </div>
+                    <div class="field">
+                        <label class="label"><span class="letras_formulario">Edad</span></label>
+                        <input id="edad" class="input" type="number" placeholder="Edad">
+                    </div>
+                    <div class="field">
+                        <label class="label"><span class="letras_formulario">Puntos</span></label>
+                        <input id="puntos" class="input" type="number" placeholder="Puntos">
+                    </div>
+                    <div class="field">
+                        <label class="label"><span class="letras_formulario">Posición</span></label>
+                        <input id="posicion" class="input" type="number" placeholder="Posicion">
+                    </div>
+                    <div class="field"></div>
+                        <label class="label"><span class="letras_formulario">Id escuderia</span></label>
+                        <input id="escuderia" class="input" type="text" placeholder="id_escuderia">
+                    </div>
+                <div class="field is-grouped is-grouped-centered">
+                    <p class="control">
+                    <button class="button is-primary" onclick="crearPiloto()">
+                        Agregar
+                    </button>
+                    </p>
+                    <p class="control">
+                    <a class="button is-light" onclick="borrarPiloto()">
+                        Borrar
+                    </a>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script></script>
+</html>
