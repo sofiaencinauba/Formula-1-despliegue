@@ -102,6 +102,20 @@ mostrar_Pilotos = function() {
                 alert('Error al crear el piloto');
             }
         });
+        fetch("http://127.0.0.1:3000/api/v1/pilotos",{
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        }).then(response =>{
+            if (response.status == 200){
+                alert('Piloto obtenido correctamente');
+                borrarPiloto();
+            }else{
+                alert('Error al obtener el piloto');
+            }
+        });
         
     }
 
