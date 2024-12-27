@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="imagenes/logo-F1.png" type="image/png">
 	<link rel="stylesheet" href="estilos-css/pilotos.css">
+	<link rel="stylesheet" href="estilos-css/estilos-principal.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 	<title>Pilotos</title>
 </head>
@@ -50,7 +51,7 @@
 				<div class="navbar-end">
 					<div class="navbar-item">
 						<div class="buttons">
-							<a class="button is-dark">
+							<a class="button is-dark" href="agregar_piloto.html">
 								<strong>NUEVO PILOTO</strong>
 							</a>
 						</div>
@@ -59,69 +60,8 @@
 			</div>
 		</nav>
 		<h1 class="titulo_pilotos">Pilotos</h1>
-		<main>
-				<div class="tarjeta">
-					<div class="contenedor_posicion_puntos">
-						<p>Posicion 1</p>
-						<p>403</p>
-					</div>
-					<div class="contenedor_nombre_pais">
-						<p>Max Verstappen</p>
-						<img src="imagenes/bandera_holanda.png" class="imagen_pais">
-					</div>
-					<p class="escuderia">Red Bull</p>
-					<img src="imagenes/verstappen-red-bull.jpg" class="imagen_piloto">
-				</div>
-				<div class="tarjeta">
-					<div class="contenedor_posicion_puntos">
-						<p>Posicion 2</p>
-						<p>340</p>
-					</div>
-					<div class="contenedor_nombre_pais">
-						<p>Lando Norris</p>
-						<img src="imagenes/bandera_reino_unido.png" class="imagen_pais">
-					</div>
-					<p class="escuderia">McLaren</p>
-					<img src="imagenes/norris-mclaren.jpg" class="imagen_piloto">
-				</div>
-				<div class="tarjeta">
-					<div class="contenedor_posicion_puntos">
-						<p>Posicion 3</p>
-						<p>319</p>
-					</div>
-					<div class="contenedor_nombre_pais">
-						<p>Charles Leclerc</p>
-						<img src="imagenes/bandera_monaco.png" class="imagen_pais">
-					</div>
-					<p class="escuderia">Ferrari</p>
-					<img src="imagenes/leclerc-ferrari.jpg" class="imagen_piloto">
-				</div>
-				<div class="tarjeta">
-					<div class="contenedor_posicion_puntos">
-						<p>Posicion 4</p>
-						<p>250</p>
-					</div>
-					<div class="contenedor_nombre_pais">
-						<p>Lewis Hamilton</p>
-						<img src="imagenes/bandera_reino_unido.png" class="imagen_pais">
-					</div>
-					<p class="escuderia">Mercedes</p>
-					<img src="imagenes/hamilton-mercedes.jpg" class="imagen_piloto">
-				</div>
-				<div class="tarjeta">
-					<div class="contenedor_posicion_puntos">
-						<p>Posicion 5</p>
-						<p>100</p>
-					</div>
-					<div class="contenedor_nombre_pais">
-						<p>Franco Colapinto</p>
-						<img src="imagenes/bandera_argentina.png" class="imagen_pais">
-					</div>
-					<p class="escuderia">Williams</p>
-					<img src="imagenes/colapinto-williams.jpg" class="imagen_piloto">
-				</div>
-		</main>
 	</div>
+	<div id="pilotos" class="tarjetas"></div>
 	
 </body>
 <script src="../scripts/Pilotos.js"></script>

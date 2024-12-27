@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="imagenes/logo-F1.png" type="image/png">
 	<link rel="stylesheet" href="estilos-css/pilotos.css">
+    <link rel="stylesheet" href="estilos-css/estilos-principal.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 	<title>Agregar Pilotos</title>
 </head>
@@ -57,48 +58,40 @@
                 </div>
             </nav>
             <h1 class="titulo_pilotos">Agrega un Piloto</h1>
-        <div class="container is-max-desktop">
-            <form>
-                <div class="agregar_piloto">
-                    <div class="field">
-                        <label class="label"><span class="letras_formulario">Nombre</span></label>
-                        <input id="nombre" class="input" type="text" placeholder="Nombre">
-                    </div>
-                    <div class="field">
-                        <label class="label"><span class="letras_formulario">Nacionalidad</span></label>
-                        <input id="nacionalidad" class="input" type="text" placeholder="Nacionalidad">
-                    </div>
-                    <div class="field">
-                        <label class="label"><span class="letras_formulario">Edad</span></label>
-                        <input id="edad" class="input" type="number" placeholder="Edad">
-                    </div>
-                    <div class="field">
-                        <label class="label"><span class="letras_formulario">Puntos</span></label>
-                        <input id="puntos" class="input" type="number" placeholder="Puntos">
-                    </div>
-                    <div class="field">
-                        <label class="label"><span class="letras_formulario">Posición</span></label>
-                        <input id="posicion" class="input" type="number" placeholder="Posicion">
-                    </div>
-                    <div class="field"></div>
-                        <label class="label"><span class="letras_formulario">Id escuderia</span></label>
-                        <input id="escuderia" class="input" type="text" placeholder="id_escuderia">
-                    </div>
-                <div class="field is-grouped is-grouped-centered">
-                    <p class="control">
-                    <button class="button is-primary" onclick="crearPiloto()">
-                        Agregar
-                    </button>
-                    </p>
-                    <p class="control">
-                    <a class="button is-light" onclick="borrarPiloto()">
-                        Borrar
-                    </a>
-                    </p>
-                </div>
+        </div>
+        <div class="agregar_piloto">
+            <div class="field">
+                <label class="label"><span class="letras_formulario">Nombre</span></label>
+                <input id="nombre_piloto" class="input" type="text" placeholder="Nombre">
             </div>
-        </form>
-    </div>
+            <div class="field">
+                <label class="label"><span class="letras_formulario">Nacionalidad</span></label>
+                <input id="nacionalidad_piloto" class="input" type="text" placeholder="Nacionalidad">
+            </div>
+            <div class="field">
+                <label class="label"><span class="letras_formulario">Edad</span></label>
+                <input id="edad_piloto" class="input" type="number" placeholder="Edad">
+            </div>
+            <div class="field">
+                <label class="label"><span class="letras_formulario">Puntos</span></label>
+                <input id="puntos_piloto" class="input" type="number" placeholder="Puntos">
+            </div>
+            <div class="field">
+                <label class="label"><span class="letras_formulario">Posición</span></label>
+                <input id="posicion_piloto" class="input" type="number" placeholder="Posicion">
+            </div>
+            <div class="field">
+                <label class="label"><span class="letras_formulario">Id escuderia</span></label>
+                <input id="id_escuderia" class="input" type="text" placeholder="id_escuderia">
+            </div>
+            <div class="field is-grouped is-grouped-centered">
+                <p class="control">
+                <button class="button is-primary" onclick="crearPiloto(event)">
+                    Agregar
+                </button>
+                </p>
+            </div>
+        </div>
 </body>
 <script src="../scripts/Pilotos.js"></script>
 </html>
