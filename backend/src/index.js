@@ -129,61 +129,6 @@ app.delete('/api/v1/pilotos/:id', async (req, res) => {
 	}
 })
 
-/*app.get('/api/v1/carreras', async (req, res) => {
-	const carreras = await prisma.carreras.findMany({
-		include: {
-			piloto_ganador: true,
-			escuderia_ganadora: true,
-		}
-	})
-	res.json(carreras)
-})
-
-app.get('/api/v1/carreras/:id', async (req, res) => {
-	const carrera = await prisma.carreras.findUnique({
-		where: {
-			id_carrera: parseInt(req.params.id)
-		},
-		include: {
-			piloto_ganador: true,
-			escuderia_ganadora: true,
-		}
-	})
-
-	if (carrera === null) {
-		res.sendStatus(404)
-		return
-	}
-	res.json(carrera)
-})
-
-app.delete('/api/v1/carreras/:id', async (req, res) => {
-	try { 
-		const carrera_exist = await prisma.carreras.findUnique({ 
-			where: { 
-				id_carrera: parseInt(req.params.id) 
-			} 
-		}) 
-		if (carrera_exist === null) {
-			return res.status(404).send({ 
-				error: 'Carrera no encontrada'
-			}) 
-		}
-	
-		const carrera = await prisma.carreras.delete({
-	    	where: {
-	      		id_carrera: parseInt(req.params.id)
-	    	}
-	  	})
-	  	res.json(carrera)
-	} catch (error) { 
-		res.status(500).send({ 
-			error: 'Error al eliminar la carrera'
-		}) 
-	}
-})
-*/
-
 app.get('/api/v1/escuderias', async (req, res) => {
 	const escuderias = await prisma.escuderia.findMany({
 		include: {
