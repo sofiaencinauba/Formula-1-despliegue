@@ -4,7 +4,7 @@ mostrar_Pilotos = function() {
 		.then(pilotos => {
 			console.log(pilotos)
 
-			let padre = document.getElementById('pilotos')
+			let padre = document.getElementById('contenedor-pilotos')
 			padre.innerHTML = '';
 
             if (!padre) {
@@ -14,35 +14,36 @@ mostrar_Pilotos = function() {
 
 			pilotos.forEach(piloto => {
 				let div = document.createElement('div');
-				div.className = 'piloto';
-				div.id = 'piloto' + piloto.id_piloto;
+				div.className = 'tarjeta';
 
-				let id = document.createElement('h2');
+                let nombre = document.createElement('h2');
+				nombre.textContent = piloto.nombre_piloto;
+
+				let id = document.createElement('p');
 				id.textContent = `ID: ${piloto.id_piloto}`;
 
-				let nombre = document.createElement('h2');
-				nombre.textContent = `Nombre: ${piloto.nombre_piloto}`;
-
-				let nacionalidad = document.createElement('h2');
+				let nacionalidad = document.createElement('p');
 				nacionalidad.textContent = `Nacionalidad: ${piloto.nacionalidad_piloto}`;
 
-				let edad = document.createElement('h2');
+				let edad = document.createElement('p');
 				edad.textContent = `Edad: ${piloto.edad_piloto}`;
 
-				let puntos = document.createElement('h2');
+				let puntos = document.createElement('p');
 				puntos.textContent = `Puntos: ${piloto.puntos_piloto}`;
 
-				let posicion = document.createElement('h2');
+				let posicion = document.createElement('p');
 				posicion.textContent = `Posicion: ${piloto.posicion_piloto}`;
 
 				let boton = document.createElement('button');
-				boton.className = "button is-danger is-inverted";
-				boton.textContent = "Borrar";
-				boton.onclick = function() { borrar_Piloto(piloto.id_piloto) };
+				boton.className = 'boton_borrar';
+				boton.textContent = 'Borrar';
+				boton.onclick = function () {
+					borrar_Piloto(piloto.id_piloto);
+				};
 
 
+                div.appendChild(nombre);
 				div.appendChild(id);
-				div.appendChild(nombre);
 				div.appendChild(nacionalidad);
 				div.appendChild(edad);
 				div.appendChild(puntos);
@@ -52,23 +53,22 @@ mostrar_Pilotos = function() {
 				padre.appendChild(div);
 
 			});
-			});
-	}
-
-borrar_Piloto = function(id_piloto) {
-    alert('Piloto eliminado' + id);
-    fetch(`http://127.0.0.1:3000/api/v1/pilotos/` + id, {
-        method: 'DELETE'
-    })
-    .then(response => response.json())
-    .then(response => { 
-        console.log(response);
-        mostrar_Pilotos();
-    });
+		});
 }
 
-function crearPiloto(event) {
-        event.preventDefault();
+borrar_Piloto = function(id) {
+    alert(`Piloto eliminado' ${id}`);
+    fetch('http://127.0.0.1:3000/api/v1/pilotos/' + id, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+        .then(response => { 
+            console.log(response);
+            mostrar_Pilotos();
+        });
+}
+
+agregar_piloto = function() {
 
         const nombre = document.getElementById('nombre_piloto').value;
         const nacionalidad = document.getElementById('nacionalidad_piloto').value;
@@ -95,7 +95,7 @@ function crearPiloto(event) {
             if(response.status == 201){
                 alert('Piloto creado correctamente');
                 mostrar_Pilotos();
-                borrarPiloto();
+                limpiar_formulario();
             }else{
                 alert('Error al crear el piloto');
             }
@@ -144,10 +144,10 @@ function crearPiloto(event) {
     }
 
 
-function borrarPiloto() {
+function limpiar_formulario() {
     document.getElementById('nombre_piloto').value = '';
     document.getElementById('nacionalidad_piloto').value = '';
-    document.getElementById('edad_pilot').value = '';
+    document.getElementById('edad_piloto').value = '';
     document.getElementById('puntos_piloto').value = '';
     document.getElementById('posicion_piloto').value = '';
     document.getElementById('id_escuderia').value = '';
