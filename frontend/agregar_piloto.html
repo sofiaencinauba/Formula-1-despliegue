@@ -37,9 +37,6 @@
                                 Carreras
                             </a>
                             <div class="navbar-dropdown">
-                                <a class="navbar-item" href="Calendario.html">
-                                    Calendario
-                                </a>
                                 <a class="navbar-item" href="Circuitos.html">
                                     Circuitos
                                 </a>
@@ -60,31 +57,47 @@
             <h1 class="titulo_pilotos">Agrega un Piloto</h1>
         </div>
         <div class="agregar_piloto">
-            <div class="field">
-                <label class="label"><span class="letras_formulario">Nombre</span></label>
-                <input id="nombre_piloto" class="input" type="text" placeholder="Nombre">
-            </div>
-            <div class="field">
-                <label class="label"><span class="letras_formulario">Nacionalidad</span></label>
-                <input id="nacionalidad_piloto" class="input" type="text" placeholder="Nacionalidad">
-            </div>
-            <div class="field">
-                <label class="label"><span class="letras_formulario">Edad</span></label>
-                <input id="edad_piloto" class="input" type="number" placeholder="Edad">
-            </div>
-            <div class="field">
-                <label class="label"><span class="letras_formulario">Puntos</span></label>
-                <input id="puntos_piloto" class="input" type="number" placeholder="Puntos">
-            </div>
-            <div class="field">
-                <label class="label"><span class="letras_formulario">Posición</span></label>
-                <input id="posicion_piloto" class="input" type="number" placeholder="Posicion">
-            </div>
-            <div class="field">
-                <label class="label"><span class="letras_formulario">Id escuderia</span></label>
-                <input id="id_escuderia" class="input" type="number" placeholder="id_escuderia">
-            </div>
-            <button class="boton_agregar" onclick="agregar_piloto()">Agregar</button>
+            <form id="formulario-escuderia"> 
+                <input type="hidden" id="id_piloto"> 
+                <div class="field"> 
+                    <label class="label">
+                        <span class="letras_formulario">Nombre</span>
+                        <input id="nombre_piloto" class="input" type="text"> 
+                    </label> 
+                </div> 
+                <div class="field"> 
+                    <label class="label">
+                        <span class="letras_formulario">Nacionalidad</span>
+                        <input id="nacionalidad_piloto" class="input" type="text"> 
+                    </label> 
+                </div> 
+                <div class="field"> 
+                    <label class="label">
+                        <span class="letras_formulario">Edad</span>
+                        <input id="edad_piloto" class="input" type="number"> 
+                    </label> 
+                </div> 
+                <div class="field"> 
+                    <label class="label">
+                        <span class="letras_formulario">Puntos</span>
+                        <input id="puntos_piloto" class="input" type="number"> 
+                    </label> 
+                </div> 
+                <div class="field"> 
+                    <label class="label">
+                        <span class="letras_formulario">Posición</span>
+                        <input id="posicion_piloto" class="input" type="number"> 
+                    </label> 
+                </div> 
+                <div class="field"> 
+                    <label class="label">
+                        <span class="letras_formulario">ID escuderia</span>
+                        <input id="id_escuderia" class="input" type="number"> 
+                    </label> 
+                </div> 
+                <button type="button" class="boton_agregar" onclick="agregar_piloto()">Confirmar</button> 
+                <button type="button" class="boton_modificar" onclick="modificar_piloto()" style="display: none;">Modificar</button> 
+            </form> 
         </div>
 </body>
 <script src="../scripts/Pilotos.js"></script>
