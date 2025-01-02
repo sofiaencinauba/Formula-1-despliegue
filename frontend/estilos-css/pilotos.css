@@ -1,20 +1,14 @@
 .titulo_pilotos {
-    font-size: 90px;
-    color: red;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    font-style: oblique;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    text-align: center;
+	font-size: 90px;
+	color: red;
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: bold;
+	font-style: oblique;
+	margin-top: 40px;
+	margin-bottom: 30px;
+	text-align: center;
 }
-.agregar_piloto{
-    width: 25%;
-	margin: 1% auto;
-	padding: 2%;
-	border-radius: 30px;
-	background-color: #ffffffc9;
-}
+
 .tarjetas {
 	display: flex;
 	flex-wrap: wrap;
@@ -54,6 +48,11 @@
 	background-color: hsl(0, 100%, 50%);
 	color: #fff;
 	border-radius: 55px;
+}
+
+.encabezado_piloto th {
+	font-size: 20px;
+	text-align: center;
 }
 
 .agregar_piloto {
