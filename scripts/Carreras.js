@@ -11,9 +11,24 @@
     </div> 
 */
 
-window.onload = function() {
-    mostrar_carreras()
-}
+document.addEventListener('DOMContentLoaded', () => { 
+	const urlParams = new URLSearchParams(window.location.search);
+    const carreraId = urlParams.get('id');
+
+    if (carreraId) {
+        fetch(`http://127.0.0.1:3000/api/v1/carreras/${carreraId}`)
+            .then(response => response.json())
+            .then(carrera => {
+                rellenar_formulario(carrera);
+                document.querySelector('.boton_modificar').style.display = 'inline-block'; 
+            })
+            .catch(error => {
+                console.error('Error al obtener la carrera:', error);
+            });
+    }
+
+	mostrar_carreras();
+});
 
 mostrar_carreras = function() {
     fetch('http://127.0.0.1:3000/api/v1/carreras')
@@ -60,13 +75,22 @@ mostrar_carreras = function() {
             borrar.textContent = "Borrar"
             borrar.onclick = function() { eliminar_carrera(id_carrera) }
 
+            let boton_modificar = document.createElement('button');
+			boton_modificar.className = 'boton_modificar';
+			boton_modificar.textContent = 'Modificar';
+			boton_modificar.onclick = function () {
+				const carreraId = carrera.id_carrera; 
+    			window.location.href = `post/Carreras_agregar.html?id=${carreraId}`;
+			};
+
             div.appendChild(id);
             div.appendChild(nombre);
             div.appendChild(pais_sede)
             div.appendChild(anio)
             div.appendChild(primer_puesto);
             div.appendChild(circuito_asociado);
-            div.appendChild(borrar)
+            div.appendChild(borrar);
+            div.appendChild(boton_modificar);
 
             padre.appendChild(div);
 
@@ -135,4 +159,68 @@ function limpiarFormulario(){
     document.getElementById('anio').value = ''
     document.getElementById('piloto_ganador').value = ''
     document.getElementById('circuito_asociado').value = ''
+
+    document.querySelector('.boton_agregar').style.display = 'inline-block'; 
+	document.querySelector('.boton_modificar').style.display = 'none';
+}
+
+rellenar_formulario = function (carrera) {
+	document.getElementById('id_carrera').value =   carrera.id_carrera;
+	document.getElementById('nombre').value = carrera.nombre_carrera;
+	document.getElementById('sede').value = carrera.pais_sede;
+	document.getElementById('anio').value = carrera.anio;
+	document.getElementById('piloto_ganador').value = carrera.id_primer_puesto;
+	document.getElementById('circuito_asociado').value = carrera.id_circuito_asociado;
+
+	document.querySelector('.boton_agregar').style.display = 'none';
+	document.querySelector('.boton_modificar').style.display = 'inline-block';
+}
+
+modificar_carrera = function () {
+    const id = document.getElementById('id_carrera').value.trim();
+    const nombre = document.getElementById('nombre').value.trim();
+    const sede = document.getElementById('sede').value.trim();
+    const anio = document.getElementById('anio').value.trim();
+    const piloto_ganador = document.getElementById('piloto_ganador').value.trim();
+    const circuito_asociado = document.getElementById('circuito_asociado').value.trim();
+
+    if (!id || !nombre || !sede || !anio || !piloto_ganador || !circuito_asociado) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
+
+    let carrera = {
+        nombre_carrera: nombre,
+        pais_sede: sede,
+        anio: parseInt(anio, 10),
+        id_primer_puesto: parseInt(piloto_ganador, 10),
+        id_circuito_asociado: parseInt(circuito_asociado, 10),
+    };
+
+    fetch(`http://127.0.0.1:3000/api/v1/carreras/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(carrera),
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            return response.json().then(error => {
+                throw new Error(error.error);
+            });
+        }
+    })
+    .then(updatedCarrera => {
+        console.log('Carrera actualizada:', updatedCarrera);
+        alert('Carrera actualizada correctamente.');
+        limpiarFormulario();
+        mostrar_carreras();
+    })
+    .catch(error => {
+        console.error('Error al modificar la carrera:', error);
+        alert('Ocurrió un error al actualizar la carrera: ' + error.message);
+    });
 }
