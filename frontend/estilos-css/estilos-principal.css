@@ -1,27 +1,32 @@
 :root {
     --bulma-link-h: 0deg;
     --bulma-link-l: 40%;
-  }
+}
+
+.contenedor__titulo h3{
+    margin: 5px;
+    font-size: 17px;
+    text-align: right;
+}
 
 .contenedor__titulo{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--bulma-border);
 }
 
 .contenedor__titulo img{
     margin-right: 1rem;   
     width: 8rem;         
     height: auto; 
-    filter: drop-shadow(10px 10px 40px rgba(224, 86, 86, 0.8));
 }
 .contenedor__titulo h1{
     color: red;
-    font-family: Inter,SF Pro,Segoe UI,Roboto,Oxygen,Ubuntu,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 150px;
     font-weight: bold;
     font-style: oblique;
-    text-shadow: 10px 10px 40px rgba(224, 86, 86, 0.8);
     opacity: 0;          
     animation: animación_titulo 2s forwards;
 }
@@ -36,19 +41,89 @@
     }
 }
 
+.steps{
+    color: white;
+}
+
+.steps h2{
+    font-size: 3rem;
+    font-style: oblique;
+    font-weight: bold;
+    margin: 1rem;
+    padding-left: 3rem;
+}
+
+.steps__container{
+    display: flex;
+    flex-direction: row;
+    padding: 0 1rem 0 1rem;
+    margin: 0 1rem 0 2rem;
+}
+
+.step{
+    margin: 0.5rem;
+    position: relative;
+    min-height: 1px;
+    padding: 10px;
+    display: block;
+    float: left;
+    align-items: center;
+}
+
+.steps__circle {
+    float: left;
+    border: 1px solid red;
+    border-radius: 50%;
+    margin-right: 20px;
+    width: 45px;
+    height: 45px;
+    line-height: 42px;
+    text-align: center;
+    color: white;
+    background-color: red;
+    font-weight: bold;
+}
+
+.steps__text {
+    display:table-cell;
+    vertical-align: middle;
+    height: 45px;
+    padding: 0;
+    color: white;
+}
+
 .resultados{
-    margin: 3rem;
-    margin-top: 1rem;
+    margin: 2rem;
+    margin-top: 0;
     padding: 2rem;
+    color: white;
     font-family: ui-sans-serif,system-ui,sans-serif;
 }
 
+.tabs{
+    font-size: 18px;
+}
+
 .resultados h2{
-    font-size: 4rem;
+    font-size: 3rem;
     font-style: oblique;
     font-weight: bold;
 }
 
 .table th{
-    background-color: #b4c2bd;
+    background-color: var(--bulma-border);
+    font-size: 18px;
+}
+
+.hidden { 
+    display: none; 
+} 
+
+.tabs ul li.is-active { 
+    font-weight: bold; 
+}
+
+.mensaje {
+    font-weight: bold;
+    padding: 20px 0;
 }
