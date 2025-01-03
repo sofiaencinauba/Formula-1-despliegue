@@ -42,8 +42,8 @@ model carrera{
   anio Int
   id_primer_puesto Int
   id_circuito_asociado Int
-  piloto piloto @relation(fields: [id_primer_puesto], references: [id_piloto])
-  circuito circuito @relation(fields: [id_circuito_asociado], references: [id_circuito])
+  piloto piloto @relation(fields: [id_primer_puesto], references: [id_piloto], onDelete: Cascade)
+  circuito circuito @relation(fields: [id_circuito_asociado], references: [id_circuito], onDelete: Cascade)
 }
 
 model circuito{
