@@ -72,3 +72,16 @@
 	font-size: 20px;
 	font-weight: bold;
 }
+
+.boton_modificar {
+	display: block;
+	width: 100%;
+	padding: 3%;
+	margin-top: 1%;
+	text-align: center;
+	background-color: hsl(0, 100%, 50%);
+	color: #fff;
+	border-radius: 55px;
+	max-width: 300px;
+	max-height: 50px;
+}

@@ -258,7 +258,7 @@ app.get('/api/v1/carreras/:id', async (req, res) => {
 			id_carrera: parseInt(req.params.id)
 		},
 		include: {
-			pilotos: true,
+			piloto: true,
             circuito: true
 		}
 	})
@@ -323,6 +323,35 @@ app.post('/api/v1/carreras', async (req, res) => {
 		}) 
 	}
 })
+
+app.put('/api/v1/carreras/:id', async (req, res) => {
+    try {
+        const carreraId = parseInt(req.params.id);
+        const carrera = await prisma.carrera.findUnique({
+            where: { id_carrera: carreraId }
+        });
+
+        if (!carrera) {
+            return res.status(404).json({ error: 'Carrera no encontrada' });
+        }
+
+        const updatedCarrera = await prisma.carrera.update({
+            where: { id_carrera: carreraId },
+            data: {
+                nombre_carrera: req.body.nombre_carrera,
+                pais_sede: req.body.pais_sede,
+                anio: req.body.anio,
+                id_primer_puesto: req.body.id_primer_puesto,
+                id_circuito_asociado: req.body.id_circuito_asociado
+            }
+        });
+		console.log('Datos recibidos para actualizar:', req.body);
+        res.json(updatedCarrera);
+    } catch (error) {
+        console.error('Error al actualizar la carrera:', error);
+        res.status(500).json({ error: 'Error al actualizar la carrera' });
+    }
+});
 
 app.get('/api/v1/circuitos', async (req, res) => {
 	const circuitos = await prisma.circuito.findMany({

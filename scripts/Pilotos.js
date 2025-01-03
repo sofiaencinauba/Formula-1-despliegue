@@ -1,3 +1,22 @@
+document.addEventListener('DOMContentLoaded', () => { 
+	const urlParams = new URLSearchParams(window.location.search);
+    const pilotoId = urlParams.get('id');
+
+    if (pilotoId) {
+        fetch(`http://127.0.0.1:3000/api/v1/pilotos/${pilotoId}`)
+            .then(response => response.json())
+            .then(piloto => {
+                rellenar_formulario(piloto);
+                document.querySelector('.boton_modificar').style.display = 'inline-block'; 
+            })
+            .catch(error => {
+                console.error('Error al obtener el piloto:', error);
+            });
+    }
+
+	mostrar_Pilotos();
+});
+
 mostrar_Pilotos = function() {
 	fetch('http://127.0.0.1:3000/api/v1/pilotos')
 		.then(response => response.json())
@@ -44,6 +63,13 @@ mostrar_Pilotos = function() {
 					borrar_Piloto(piloto.id_piloto);
 				};
 
+                let boton_modificar = document.createElement('button');
+				boton_modificar.className = 'boton_modificar';
+				boton_modificar.textContent = 'Modificar';
+				boton_modificar.onclick = function () {
+					const pilotoId = piloto.id_piloto; 
+    				window.location.href = `agregar_piloto.html?id=${pilotoId}`;
+				};
 
                 div.appendChild(nombre);
 				div.appendChild(id);
@@ -53,6 +79,7 @@ mostrar_Pilotos = function() {
 				div.appendChild(posicion);
 				div.appendChild(escuderia_nombre);
 				div.appendChild(boton);
+				div.appendChild(boton_modificar);
 
 				padre.appendChild(div);
 
@@ -73,7 +100,6 @@ borrar_Piloto = function(id) {
 }
 
 agregar_piloto = function() {
-
         const nombre = document.getElementById('nombre_piloto').value;
         const nacionalidad = document.getElementById('nacionalidad_piloto').value;
         const edad = document.getElementById('edad_piloto').value;
@@ -103,48 +129,7 @@ agregar_piloto = function() {
             }else{
                 alert('Error al crear el piloto');
             }
-        });/*
-        fetch("http://127.0.0.1:3000/api/v1/pilotos",{
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json'
-            },
-        }).then(response =>{
-            if (response.status == 200){
-                alert('Piloto obtenido correctamente');
-                mostrar_Pilotos();
-            }else{
-                alert('Error al obtener el piloto');
-            }
-        });
-        fetch("http://127.0.0.1:3000/api/v1/pilotos",{
-            method: 'DELETE',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        }).then(response =>{
-            if (response.status == 200){
-                alert('Piloto eliminado correctamente');
-                borrarPiloto();
-            }else{
-                alert('Error al eliminar el piloto');
-            }
-        });
-        fetch("http://127.0.0.1:3000/api/v1/pilotos/" + id_piloto,{
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        }).then(response =>{
-            if (response.status == 200){
-                alert('Piloto actualizado correctamente');
-                mostrar_Pilotos();
-            }else{
-                alert('Error al actualizar el piloto');
-            }
-        });*/
+        })
     }
 
 
@@ -157,4 +142,62 @@ function limpiar_formulario() {
     document.getElementById('id_escuderia').value = '';
 }
 
-mostrar_Pilotos();
+rellenar_formulario = function (piloto) {
+	document.getElementById('id_piloto').value = piloto.id_piloto;
+	document.getElementById('nombre_piloto').value = piloto.nombre_piloto;
+	document.getElementById('nacionalidad_piloto').value = piloto.nacionalidad_piloto;
+	document.getElementById('edad_piloto').value = piloto.edad_piloto;
+	document.getElementById('puntos_piloto').value = piloto.puntos_piloto;
+	document.getElementById('posicion_piloto').value = piloto.posicion_piloto;
+	document.getElementById('id_escuderia').value = piloto.id_escuderia;
+
+	document.querySelector('.boton_agregar').style.display = 'none';
+	document.querySelector('.boton_modificar').style.display = 'inline-block';
+}
+
+modificar_piloto = function () {
+	const id = document.getElementById('id_piloto').value;
+	const nombre = document.getElementById('nombre_piloto').value;
+    const nacionalidad = document.getElementById('nacionalidad_piloto').value;
+    const edad = document.getElementById('edad_piloto').value;
+    const puntos = document.getElementById('puntos_piloto').value;
+    const posicion = document.getElementById('posicion_piloto').value;
+    const escuderia = document.getElementById('id_escuderia').value;
+
+	if (!id || !nombre || !nacionalidad || !edad || !puntos || !posicion || !escuderia) {
+		alert('Todos los campos son obligatorios.');
+		return;
+	}
+
+	let piloto = {
+		nombre_piloto: nombre,
+		nacionalidad_piloto: nacionalidad,
+		edad_piloto: parseInt(edad, 10),
+		puntos_piloto: parseInt(puntos, 10),
+		posicion_piloto: parseInt(posicion, 10),
+		id_escuderia: parseInt(escuderia, 10),
+	};
+
+	fetch('http://127.0.0.1:3000/api/v1/pilotos/' + id, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(piloto),
+	})
+		.then(response => {
+			if (response.ok) {
+				alert('Piloto actualizada correctamente.');
+				limpiar_formulario();
+				mostrar_Pilotos();
+			} else {
+				return response.json().then(error => {
+					alert('Ocurrió un error al actualizar el piloto');
+				});
+			}
+		})
+		.catch(error => {
+			console.error('Error:', error);
+			alert('Ocurrió un error al actualizar el piloto');
+		});
+}
