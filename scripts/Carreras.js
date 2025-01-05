@@ -41,33 +41,33 @@ mostrar_carreras = function() {
 
         carreras.forEach(carrera => {
             let div = document.createElement('div');
-            div.className = "cell box has-background-warning ";
+            div.className = "cell box  ";
             div.id = "carrera-" + carrera.id_carrera
             
             let id = document.createElement('h2');
-            id.className = "subtitle has-text-black";
+            id.className = "subtitle has-text-white";
             id.textContent = carrera.id_carrera;
             let id_carrera = carrera.id_carrera
 
             let nombre = document.createElement('h2');
-            nombre.className = "subtitle has-text-black";
+            nombre.className = "subtitle has-text-white";
             nombre.textContent = `Nombre: ${carrera.nombre_carrera}`;
 
             let pais_sede = document.createElement('h2');
-            pais_sede.className = "subtitle has-text-black";
+            pais_sede.className = "subtitle has-text-white";
             pais_sede.textContent = `Sede: ${carrera.pais_sede}`;
 
             let anio = document.createElement('h2');
-            anio.className = "subtitle has-text-black";
+            anio.className = "subtitle has-text-white";
             anio.textContent = `Año: ${carrera.anio}`;
 
             let primer_puesto = document.createElement('h2');
-            primer_puesto.className = "subtitle has-text-black";
-            primer_puesto.textContent = `Piloto ganador: ${carrera.piloto ? carrera.piloto.nombre_piloto : 'desconocido'}`;
+            primer_puesto.className = "subtitle has-text-white";
+            primer_puesto.textContent = `Piloto ganador: ${carrera.piloto.nombre_piloto}`;
 
             let circuito_asociado = document.createElement('h2');
-            circuito_asociado.className = "subtitle has-text-black";
-            circuito_asociado.textContent = `Circuito: ${carrera.circuito ? carrera.circuito.nombre : 'Desconocido'}`;
+            circuito_asociado.className = "subtitle has-text-white";
+            circuito_asociado.textContent = `Circuito: ${carrera.circuito.nombre}`;
 
             // <button class="button is-danger is-inverted">Inverted</button>
             let borrar = document.createElement('button')
@@ -76,7 +76,7 @@ mostrar_carreras = function() {
             borrar.onclick = function() { eliminar_carrera(id_carrera) }
 
             let boton_modificar = document.createElement('button');
-			boton_modificar.className = 'boton_modificar';
+			boton_modificar.className = 'button is-danger is-inverted';
 			boton_modificar.textContent = 'Modificar';
 			boton_modificar.onclick = function () {
 				const carreraId = carrera.id_carrera; 
