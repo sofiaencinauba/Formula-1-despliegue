@@ -40,10 +40,10 @@ model carrera{
   nombre_carrera String
   pais_sede String
   anio Int
-  id_primer_puesto Int
-  id_circuito_asociado Int
-  piloto piloto @relation(fields: [id_primer_puesto], references: [id_piloto], onDelete: Cascade)
-  circuito circuito @relation(fields: [id_circuito_asociado], references: [id_circuito], onDelete: Cascade)
+  id_primer_puesto Int?
+  id_circuito_asociado Int?
+  piloto piloto? @relation(fields: [id_primer_puesto], references: [id_piloto], onDelete: SetNull)
+  circuito circuito? @relation(fields: [id_circuito_asociado], references: [id_circuito], onDelete: SetNull)
 }
 
 model circuito{

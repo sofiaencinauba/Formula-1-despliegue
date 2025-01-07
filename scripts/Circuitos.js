@@ -74,7 +74,7 @@ mostrar_circuitos = function() {
             let boton_borrar = document.createElement('button')
             boton_borrar.className = "button is-danger is-inverted"
             boton_borrar.textContent = "Borrar"
-            boton_borrar.onclick = function() { eliminar_circuito(circuitoId) }
+            boton_borrar.onclick = function() { eliminar_circuito(circuito.id_circuito) }
             borrado.appendChild(boton_borrar)
 
             let modificar = document.createElement('td')
@@ -106,14 +106,14 @@ mostrar_circuitos = function() {
 
 eliminar_circuito = function(circuitoId) {
     alert("eliminando circuito " + circuitoId)
-    fetch('http://127.0.0.1:3000/api/v1/carreras/' + circuitoId, {
+    fetch('http://127.0.0.1:3000/api/v1/circuitos/' + circuitoId, {
         method: 'DELETE'
     })
     .then(response => response.json())
     .then(circuito => {
         console.log(circuito)
-        let div = document.getElementById("circuito-" + circuitoId)
-        div.remove()
+        let fila = document.getElementById("circuito-" + circuitoId)
+        fila.remove()
     })
 }
 

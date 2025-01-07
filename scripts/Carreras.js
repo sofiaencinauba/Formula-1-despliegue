@@ -63,11 +63,11 @@ mostrar_carreras = function() {
 
             let primer_puesto = document.createElement('h2');
             primer_puesto.className = "subtitle has-text-white";
-            primer_puesto.textContent = `Piloto ganador: ${carrera.piloto.nombre_piloto}`;
+            primer_puesto.textContent = carrera.piloto ? `Piloto ganador: ${carrera.piloto.nombre_piloto}` : "Piloto ganador: No disponible";
 
             let circuito_asociado = document.createElement('h2');
             circuito_asociado.className = "subtitle has-text-white";
-            circuito_asociado.textContent = `Circuito: ${carrera.circuito.nombre}`;
+            circuito_asociado.textContent = carrera.circuito ? `Circuito: ${carrera.circuito.nombre}` : "Circuito asociado: No disponible"
 
             // <button class="button is-danger is-inverted">Inverted</button>
             let borrar = document.createElement('button')
