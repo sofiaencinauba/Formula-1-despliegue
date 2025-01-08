@@ -82,7 +82,7 @@ mostrar_circuitos = function() {
 			boton_modificar.textContent = 'Modificar';
 			boton_modificar.onclick = function () {
 				const circuitoId = circuito.id_circuito; 
-    			window.location.href = `post/agregar_circuito.html?id=${circuitoId}`;
+    			window.location.href = `agregar_circuito.html?id=${circuitoId}`;
 			};
             modificar.appendChild(boton_modificar)
 
@@ -160,7 +160,7 @@ function crearCircuito(event) {
 
 function limpiarFormulario(){
     document.getElementById('nombre').value = ''
-    document.getElementById('tipo').value = ''
+    document.getElementById('select').value = ''
     document.getElementById('longitud').value = ''
     document.getElementById('cantidad_curvas').value = ''
 
@@ -168,43 +168,41 @@ function limpiarFormulario(){
 
 rellenar_formulario = function (circuito) {
 	document.getElementById('id_circuito').value = circuito.id_circuito;
-	document.getElementById('nombre').value = carrera.nombre_carrera;
-	document.getElementById('sede').value = carrera.pais_sede;
-	document.getElementById('anio').value = carrera.anio;
-	document.getElementById('piloto_ganador').value = carrera.id_primer_puesto;
-	document.getElementById('circuito_asociado').value = carrera.id_circuito_asociado;
+	document.getElementById('nombre').value = circuito.nombre;
+	document.getElementById('select').value = circuito.tipo;
+	document.getElementById('longitud').value = circuito.longitud_total;
+	document.getElementById('cantidad_curvas').value = circuito.cantidad_curvas;
 
 	document.querySelector('#boton_crear').style.display = 'none';
+    document.querySelector('#boton_limpiar').style.display = 'none';
 	document.querySelector('#boton_modificar').style.display = 'inline-block';
 }
 
-modificar_carrera = function () {
-    const id = document.getElementById('id_carrera').value.trim();
+modificar_circuito = function () {
+    const id = document.getElementById('id_circuito').value.trim();
     const nombre = document.getElementById('nombre').value.trim();
-    const sede = document.getElementById('sede').value.trim();
-    const anio = document.getElementById('anio').value.trim();
-    const piloto_ganador = document.getElementById('piloto_ganador').value.trim();
-    const circuito_asociado = document.getElementById('circuito_asociado').value.trim();
+    const tipo = document.getElementById('select').value.trim();
+    const longitud = document.getElementById('longitud').value.trim();
+    const cantidad_curvas = document.getElementById('cantidad_curvas').value.trim();
 
-    if (!id || !nombre || !sede || !anio || !piloto_ganador || !circuito_asociado) {
+    if (!id || !nombre || !tipo || !longitud || !cantidad_curvas) {
         alert('Todos los campos son obligatorios.');
         return;
     }
 
-    let carrera = {
-        nombre_carrera: nombre,
-        pais_sede: sede,
-        anio: parseInt(anio, 10),
-        id_primer_puesto: parseInt(piloto_ganador, 10),
-        id_circuito_asociado: parseInt(circuito_asociado, 10),
+    let circuito = {
+        nombre: nombre,
+        tipo: tipo,
+        longitud_total: parseInt(longitud, 10),
+        cantidad_curvas: parseInt(cantidad_curvas, 10)
     };
 
-    fetch(`http://127.0.0.1:3000/api/v1/carreras/${id}`, {
+    fetch(`http://127.0.0.1:3000/api/v1/circuitos/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(carrera),
+        body: JSON.stringify(circuito),
     })
     .then(response => {
         if (response.ok) {
@@ -215,14 +213,14 @@ modificar_carrera = function () {
             });
         }
     })
-    .then(updatedCarrera => {
-        console.log('Carrera actualizada:', updatedCarrera);
-        alert('Carrera actualizada correctamente.');
+    .then(updatedCircuito => {
+        console.log('Circuito actualizado:', updatedCircuito);
+        alert('Circuito actualizado correctamente.');
         limpiarFormulario();
-        mostrar_carreras();
+        window.location.href = 'Circuitos.html';
     })
     .catch(error => {
-        console.error('Error al modificar la carrera:', error);
-        alert('Ocurrió un error al actualizar la carrera: ' + error.message);
+        console.error('Error al modificar el circuito:', error);
+        alert('Ocurrió un error al actualizar el circuito: ' + error.message);
     });
 }

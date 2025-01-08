@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const urlParams = new URLSearchParams(window.location.search);
     const carreraId = urlParams.get('id');
 
+    const urlActual = window.location.href;
+
     if (carreraId) {
         fetch(`http://127.0.0.1:3000/api/v1/carreras/${carreraId}`)
             .then(response => response.json())
@@ -27,8 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+    if (urlActual.includes('/home/sofia/formula_1_proyect/frontend/post/Carreras_agregar.html')) {
+        cargar_pilotos_y_circuitos()
+    }
+
 	mostrar_carreras();
 });
+
 
 mostrar_carreras = function() {
     fetch('http://127.0.0.1:3000/api/v1/carreras')
@@ -41,7 +48,7 @@ mostrar_carreras = function() {
 
         carreras.forEach(carrera => {
             let div = document.createElement('div');
-            div.className = "cell box  ";
+            div.className = "cell box mx-6";
             div.id = "carrera-" + carrera.id_carrera
             
             let id = document.createElement('h2');
@@ -124,8 +131,8 @@ function crearCarrera(event) {
     const nombre = document.getElementById('nombre').value
     const sede = document.getElementById('sede').value
     const anio = document.getElementById('anio').value
-    const piloto_ganador = document.getElementById('piloto_ganador').value
-    const circuito_asociado = document.getElementById('circuito_asociado').value
+    const piloto_ganador = document.getElementById('select_pilotos').value
+    const circuito_asociado = document.getElementById('select_circuitos').value
 
     if (!nombre || !sede || !anio || !piloto_ganador || !circuito_asociado) {
         alert('Error: Algún campo no existe en el DOM.')
@@ -164,8 +171,8 @@ function limpiarFormulario(){
     document.getElementById('nombre').value = ''
     document.getElementById('sede').value = ''
     document.getElementById('anio').value = ''
-    document.getElementById('piloto_ganador').value = ''
-    document.getElementById('circuito_asociado').value = ''
+    document.getElementById('select_pilotos').value = ''
+    document.getElementById('select_circuitos').value = ''
 
     document.querySelector('#boton_crear').style.display = 'inline-block'; 
     document.querySelector('#boton_limpiar').style.display = 'inline-block'; 
@@ -190,8 +197,8 @@ modificar_carrera = function () {
     const nombre = document.getElementById('nombre').value.trim();
     const sede = document.getElementById('sede').value.trim();
     const anio = document.getElementById('anio').value.trim();
-    const piloto_ganador = document.getElementById('piloto_ganador').value.trim();
-    const circuito_asociado = document.getElementById('circuito_asociado').value.trim();
+    const piloto_ganador = document.getElementById('select_pilotos').value.trim();
+    const circuito_asociado = document.getElementById('select_circuitos').value.trim();
 
     if (!id || !nombre || !sede || !anio || !piloto_ganador || !circuito_asociado) {
         alert('Todos los campos son obligatorios.');
@@ -235,4 +242,49 @@ modificar_carrera = function () {
         console.error('Error al modificar la carrera:', error);
         alert('Ocurrió un error al actualizar la carrera: ' + error.message);
     });
+}
+
+cargar_pilotos_y_circuitos = function(){
+    fetch('http://127.0.0.1:3000/api/v1/pilotos')
+    .then(response => response.json())
+    .then(pilotos => {
+
+        let padre = document.getElementById('select_pilotos')
+        padre.innerHTML = ''
+        const opcionVacia = document.createElement('option');
+        opcionVacia.value = '';
+        opcionVacia.innerText = 'Selecciona una opción';
+        padre.appendChild(opcionVacia);
+
+        pilotos.forEach(piloto => {
+            let option = document.createElement('option');
+            option.value = piloto.id_piloto
+            option.innerText = `Piloto ${piloto.id_piloto} -> nombre: ${piloto.nombre_piloto}, nacionalidad: ${piloto.nacionalidad_piloto}, edad: ${piloto.edad_piloto}, puntos: ${piloto.puntos_piloto}, posicion: ${piloto.posicion_piloto}`
+            
+            padre.appendChild(option);
+
+
+        });
+    })
+    fetch('http://127.0.0.1:3000/api/v1/circuitos')
+    .then(response => response.json())
+    .then(circuitos => {
+
+        let padre = document.getElementById('select_circuitos')
+        padre.innerHTML = ''
+        const opcionVacia = document.createElement('option');
+        opcionVacia.value = '';
+        opcionVacia.innerText = 'Selecciona una opción';
+        padre.appendChild(opcionVacia);
+
+        circuitos.forEach(circuito => {
+            let option = document.createElement('option');
+            option.value = circuito.id_circuito
+            option.innerText = option.innerText = `Circuito ${circuito.id_circuito} -> nombre: ${circuito.nombre}, tipo: ${circuito.tipo}, longitud: ${circuito.longitud_total}, cantidad de curvas: ${circuito.cantidad_curvas}`
+            
+            padre.appendChild(option);
+
+
+        });
+    })
 }
