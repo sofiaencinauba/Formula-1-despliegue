@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(carrera => {
                 rellenar_formulario(carrera);
-                document.querySelector('.boton_modificar').style.display = 'inline-block'; 
+                document.querySelector('#boton_modificar').style.display = 'inline-block'; 
             })
             .catch(error => {
                 console.error('Error al obtener la carrera:', error);
@@ -48,28 +48,33 @@ mostrar_carreras = function() {
             id.className = "subtitle has-text-white";
             id.textContent = carrera.id_carrera;
             let id_carrera = carrera.id_carrera
+            id.id = "id_" + carrera.id_carrera
 
             let nombre = document.createElement('h2');
             nombre.className = "subtitle has-text-white";
             nombre.textContent = `Nombre: ${carrera.nombre_carrera}`;
+            nombre.id = "nombre"
 
             let pais_sede = document.createElement('h2');
             pais_sede.className = "subtitle has-text-white";
             pais_sede.textContent = `Sede: ${carrera.pais_sede}`;
+            pais_sede.id = "sede"
 
             let anio = document.createElement('h2');
             anio.className = "subtitle has-text-white";
             anio.textContent = `Año: ${carrera.anio}`;
+            anio.id = "anio"
 
             let primer_puesto = document.createElement('h2');
             primer_puesto.className = "subtitle has-text-white";
             primer_puesto.textContent = carrera.piloto ? `Piloto ganador: ${carrera.piloto.nombre_piloto}` : "Piloto ganador: No disponible";
+            primer_puesto.id = "piloto_ganador"
 
             let circuito_asociado = document.createElement('h2');
             circuito_asociado.className = "subtitle has-text-white";
             circuito_asociado.textContent = carrera.circuito ? `Circuito: ${carrera.circuito.nombre}` : "Circuito asociado: No disponible"
+            circuito_asociado.id = "circuito_asociado"
 
-            // <button class="button is-danger is-inverted">Inverted</button>
             let borrar = document.createElement('button')
             borrar.className = "button is-danger is-inverted"
             borrar.textContent = "Borrar"
@@ -81,6 +86,7 @@ mostrar_carreras = function() {
 			boton_modificar.onclick = function () {
 				const carreraId = carrera.id_carrera; 
     			window.location.href = `post/Carreras_agregar.html?id=${carreraId}`;
+                
 			};
 
             div.appendChild(id);
@@ -150,6 +156,7 @@ function crearCarrera(event) {
             alert("error al crear la carrera")
         }
     })
+    window.location.href = '../Carreras.html';
 
 }
 
@@ -160,20 +167,22 @@ function limpiarFormulario(){
     document.getElementById('piloto_ganador').value = ''
     document.getElementById('circuito_asociado').value = ''
 
-    document.querySelector('.boton_agregar').style.display = 'inline-block'; 
-	document.querySelector('.boton_modificar').style.display = 'none';
+    document.querySelector('#boton_crear').style.display = 'inline-block'; 
+    document.querySelector('#boton_limpiar').style.display = 'inline-block'; 
+	document.querySelector('#boton_modificar').style.display = 'none';
 }
 
 rellenar_formulario = function (carrera) {
-	document.getElementById('id_carrera').value =   carrera.id_carrera;
+	document.getElementById('id_carrera').value = carrera.id_carrera;
 	document.getElementById('nombre').value = carrera.nombre_carrera;
 	document.getElementById('sede').value = carrera.pais_sede;
 	document.getElementById('anio').value = carrera.anio;
 	document.getElementById('piloto_ganador').value = carrera.id_primer_puesto;
 	document.getElementById('circuito_asociado').value = carrera.id_circuito_asociado;
 
-	document.querySelector('.boton_agregar').style.display = 'none';
-	document.querySelector('.boton_modificar').style.display = 'inline-block';
+	document.querySelector('#boton_crear').style.display = 'none';
+    document.querySelector('#boton_limpiar').style.display = 'none';
+	document.querySelector('#boton_modificar').style.display = 'inline-block';
 }
 
 modificar_carrera = function () {
@@ -197,6 +206,8 @@ modificar_carrera = function () {
         id_circuito_asociado: parseInt(circuito_asociado, 10),
     };
 
+    console.log(carrera)
+
     fetch(`http://127.0.0.1:3000/api/v1/carreras/${id}`, {
         method: 'PUT',
         headers: {
@@ -217,7 +228,8 @@ modificar_carrera = function () {
         console.log('Carrera actualizada:', updatedCarrera);
         alert('Carrera actualizada correctamente.');
         limpiarFormulario();
-        mostrar_carreras();
+        window.location.href = '../Carreras.html';
+        
     })
     .catch(error => {
         console.error('Error al modificar la carrera:', error);

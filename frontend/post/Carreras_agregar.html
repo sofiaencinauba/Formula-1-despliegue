@@ -6,11 +6,15 @@
     <link rel="icon" href="../imagenes/logo-F1.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <link rel="stylesheet" href="../estilos-css/escuderia.css">
+    <link rel="stylesheet" href="../estilos-css/estilos-principal.css">
     <title>Carreras</title>
 </head>
 <body>
+    <div class="contenedor__titulo">
+      <h3>Simulador de temporada de formula 1</h3>
+    </div>
     <div class="contenedor is-fluid">
-        <nav class="navbar is-warning is-spaced" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="../pagina-principal.html">
                     <img src="../imagenes/logo-F1.png" alt="Logo Fórmula 1">
@@ -97,13 +101,16 @@
               
               <div class="field is-grouped">
                 <div class="control">
-                  <button type="button" class="button-is-link boton_agregar" onclick="crearCarrera(event)">Guardar</button>
+                  <button type="button" id="boton_crear" class="button is-link is-light" onclick="crearCarrera(event)">Guardar</button>
                 </div>
                 <div class="control">
-                  <button type="button" class="boton_modificar" onclick="modificar_carrera()" style="display: none;">Modificar</button> 
+                  <button type="button" id="boton_modificar" class="button is-link is-light" onclick="modificar_carrera()" style="display: none;">Modificar</button>
                 </div>
                 <div class="control">
-                  <button class="button is-link is-light" onclick="limpiarFormulario()">Cancelar</button>
+                  <button type="button" id="boton_limpiar" class="button is-link is-dark" onclick="limpiarFormulario()">Limpiar</button> 
+                </div>
+                <div class="control">
+                  <a type="button" class="button is-link" href="../Carreras.html">Cancelar</a>
                 </div>
               </div>
             </div>

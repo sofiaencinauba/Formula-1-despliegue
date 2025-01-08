@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(circuito => {
                 rellenar_formulario(circuito);
-                document.querySelector('.boton_modificar').style.display = 'inline-block'; 
+                document.querySelector('#boton_modificar').style.display = 'inline-block'; 
             })
             .catch(error => {
                 console.error('Error al obtener el circuito:', error);
@@ -69,7 +69,6 @@ mostrar_circuitos = function() {
             )
             carreras.appendChild(nombres_carreras)
 
-            // <button class="button is-danger is-inverted">Inverted</button>
             let borrado = document.createElement('td')
             let boton_borrar = document.createElement('button')
             boton_borrar.className = "button is-danger is-inverted"
@@ -117,115 +116,113 @@ eliminar_circuito = function(circuitoId) {
     })
 }
 
-// function crearCarrera(event) {
-//     event.preventDefault()
+function crearCircuito(event) {
+    event.preventDefault()
 
-//     const nombre = document.getElementById('nombre').value
-//     const sede = document.getElementById('sede').value
-//     const anio = document.getElementById('anio').value
-//     const piloto_ganador = document.getElementById('piloto_ganador').value
-//     const circuito_asociado = document.getElementById('circuito_asociado').value
+   
 
-//     if (!nombre || !sede || !anio || !piloto_ganador || !circuito_asociado) {
-//         alert('Error: Algún campo no existe en el DOM.')
-//         return
-//     }
+    const nombre = document.getElementById('nombre').value
+    const tipo = document.getElementById('select').value
+    const longitud_total = document.getElementById('longitud').value
+    const cantidad_curvas = document.getElementById('cantidad_curvas').value
 
-//     let body = {
-//         nombre_carrera: nombre,
-//         pais_sede: sede,
-//         anio: parseInt(anio),
-//         id_primer_puesto: parseInt(piloto_ganador),
-//         id_circuito_asociado: parseInt(circuito_asociado)
-//     }
+    if (!nombre || !tipo || !longitud_total || !cantidad_curvas) {
+        alert('Error: Algún campo no existe en el DOM.')
+        return
+    }
 
-//     console.log(body)
+    let body = {
+        nombre: nombre,
+        tipo: tipo,
+        longitud_total: parseInt(longitud_total),
+        cantidad_curvas: parseInt(cantidad_curvas)
+    }
 
-//     fetch('http://127.0.0.1:3000/api/v1/carreras', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(body)
-//     }).then(response => {
-//         if(response.status === 201){
-//             alert("carrera creada con exito")
-//             limpiarFormulario()
-//         } else{
-//             alert("error al crear la carrera")
-//         }
-//     })
+    console.log(body)
 
-// }
+    fetch('http://127.0.0.1:3000/api/v1/circuitos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    }).then(response => {
+        if(response.status === 201){
+            alert("circuito creado con exito")
+            limpiarFormulario()
+        } else{
+            alert("error al crear el circuito")
+        }
+    })
+    
+    window.location.href = 'Circuitos.html';
+}
 
-// function limpiarFormulario(){
-//     document.getElementById('nombre').value = ''
-//     document.getElementById('sede').value = ''
-//     document.getElementById('anio').value = ''
-//     document.getElementById('piloto_ganador').value = ''
-//     document.getElementById('circuito_asociado').value = ''
+function limpiarFormulario(){
+    document.getElementById('nombre').value = ''
+    document.getElementById('tipo').value = ''
+    document.getElementById('longitud').value = ''
+    document.getElementById('cantidad_curvas').value = ''
 
-//     document.querySelector('.boton_agregar').style.display = 'inline-block'; 
-// 	document.querySelector('.boton_modificar').style.display = 'none';
-// }
+}
 
-// rellenar_formulario = function (carrera) {
-// 	document.getElementById('id_carrera').value =   carrera.id_carrera;
-// 	document.getElementById('nombre').value = carrera.nombre_carrera;
-// 	document.getElementById('sede').value = carrera.pais_sede;
-// 	document.getElementById('anio').value = carrera.anio;
-// 	document.getElementById('piloto_ganador').value = carrera.id_primer_puesto;
-// 	document.getElementById('circuito_asociado').value = carrera.id_circuito_asociado;
+rellenar_formulario = function (circuito) {
+	document.getElementById('id_circuito').value = circuito.id_circuito;
+	document.getElementById('nombre').value = carrera.nombre_carrera;
+	document.getElementById('sede').value = carrera.pais_sede;
+	document.getElementById('anio').value = carrera.anio;
+	document.getElementById('piloto_ganador').value = carrera.id_primer_puesto;
+	document.getElementById('circuito_asociado').value = carrera.id_circuito_asociado;
 
-// 	document.querySelector('.boton_agregar').style.display = 'none';
-// 	document.querySelector('.boton_modificar').style.display = 'inline-block';
-// }
+	document.querySelector('#boton_crear').style.display = 'none';
+	document.querySelector('#boton_modificar').style.display = 'inline-block';
+}
 
-// modificar_carrera = function () {
-//     const id = document.getElementById('id_carrera').value.trim();
-//     const nombre = document.getElementById('nombre').value.trim();
-//     const sede = document.getElementById('sede').value.trim();
-//     const anio = document.getElementById('anio').value.trim();
-//     const piloto_ganador = document.getElementById('piloto_ganador').value.trim();
-//     const circuito_asociado = document.getElementById('circuito_asociado').value.trim();
+modificar_carrera = function () {
+    const id = document.getElementById('id_carrera').value.trim();
+    const nombre = document.getElementById('nombre').value.trim();
+    const sede = document.getElementById('sede').value.trim();
+    const anio = document.getElementById('anio').value.trim();
+    const piloto_ganador = document.getElementById('piloto_ganador').value.trim();
+    const circuito_asociado = document.getElementById('circuito_asociado').value.trim();
 
-//     if (!id || !nombre || !sede || !anio || !piloto_ganador || !circuito_asociado) {
-//         alert('Todos los campos son obligatorios.');
-//         return;
-//     }
+    if (!id || !nombre || !sede || !anio || !piloto_ganador || !circuito_asociado) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
 
-//     let carrera = {
-//         nombre_carrera: nombre,
-//         pais_sede: sede,
-//         anio: parseInt(anio, 10),
-//         id_primer_puesto: parseInt(piloto_ganador, 10),
-//         id_circuito_asociado: parseInt(circuito_asociado, 10),
-//     };
+    let carrera = {
+        nombre_carrera: nombre,
+        pais_sede: sede,
+        anio: parseInt(anio, 10),
+        id_primer_puesto: parseInt(piloto_ganador, 10),
+        id_circuito_asociado: parseInt(circuito_asociado, 10),
+    };
 
-//     fetch(`http://127.0.0.1:3000/api/v1/carreras/${id}`, {
-//         method: 'PUT',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(carrera),
-//     })
-//     .then(response => {
-//         if (response.ok) {
-//             return response.json();
-//         } else {
-//             return response.json().then(error => {
-//                 throw new Error(error.error);
-//             });
-//         }
-//     })
-//     .then(updatedCarrera => {
-//         console.log('Carrera actualizada:', updatedCarrera);
-//         alert('Carrera actualizada correctamente.');
-//         limpiarFormulario();
-//         mostrar_carreras();
-//     })
-//     .catch(error => {
-//         console.error('Error al modificar la carrera:', error);
-//         alert('Ocurrió un error al actualizar la carrera: ' + error.message);
-//     });
-// }
+    fetch(`http://127.0.0.1:3000/api/v1/carreras/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(carrera),
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            return response.json().then(error => {
+                throw new Error(error.error);
+            });
+        }
+    })
+    .then(updatedCarrera => {
+        console.log('Carrera actualizada:', updatedCarrera);
+        alert('Carrera actualizada correctamente.');
+        limpiarFormulario();
+        mostrar_carreras();
+    })
+    .catch(error => {
+        console.error('Error al modificar la carrera:', error);
+        alert('Ocurrió un error al actualizar la carrera: ' + error.message);
+    });
+}
