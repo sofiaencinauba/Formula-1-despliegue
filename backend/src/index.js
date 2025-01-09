@@ -300,7 +300,7 @@ app.post('/api/v1/carreras', async (req, res) => {
 	const { nombre_carrera, pais_sede, anio, id_primer_puesto, 
 			id_circuito_asociado } = req.body
 
-	if (!nombre_carrera || !pais_sede || !anio || !id_primer_puesto || !id_circuito_asociado ) {
+	if (!nombre_carrera || !pais_sede || !anio ) {
 		return res.status(400).send({ 
 			error: 'Todos los campos son obligatorios.' 
 		})
@@ -312,12 +312,14 @@ app.post('/api/v1/carreras', async (req, res) => {
 				nombre_carrera, 
                 pais_sede, 
                 anio: parseInt(anio), 
-				id_primer_puesto: parseInt(id_primer_puesto),
-				id_circuito_asociado: parseInt(id_circuito_asociado)
+				id_primer_puesto: id_primer_puesto ? parseInt(id_primer_puesto) : null,
+				id_circuito_asociado: id_circuito_asociado ? parseInt(id_circuito_asociado) : null
 			}
+			
 		})
 		res.status(201).send(carrera)
 	} catch (error) { 
+		console.log(error)
 		res.status(500).send({ 
 			error: 'Error al crear la carrera' 
 		}) 
@@ -432,6 +434,33 @@ app.post('/api/v1/circuitos', async (req, res) => {
 	}
 })
 
+app.put('/api/v1/circuitos/:id', async (req, res) => {
+    try {
+        const circuitoId = parseInt(req.params.id);
+        const circuito = await prisma.circuito.findUnique({
+            where: { id_circuito: circuitoId }
+        });
+
+        if (!circuito) {
+            return res.status(404).json({ error: 'Circuito no encontrado' });
+        }
+
+        const updatedCircuito = await prisma.circuito.update({
+            where: { id_circuito: circuitoId },
+            data: {
+                nombre: req.body.nombre,
+                tipo: req.body.tipo,
+                longitud_total: req.body.longitud_total,
+                cantidad_curvas: req.body.cantidad_curvas
+            }
+        });
+		console.log('Datos recibidos para actualizar:', req.body);
+        res.json(updatedCircuito);
+    } catch (error) {
+        console.error('Error al actualizar el circuito:', error);
+        res.status(500).json({ error: 'Error al actualizar el circuito' });
+    }
+});
 
 app.listen(port, () => {
 	console.log(`Formula1 app listening on port ${port}`)

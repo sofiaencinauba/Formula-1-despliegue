@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="es" class="has-navbar-fixed-top">
+<html lang="es" class="has-navbar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../imagenes/logo-F1.png" type="image/png">
+    <link rel="icon" href="imagenes/logo-F1.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-    <link rel="stylesheet" href="../estilos-css/escuderia.css">
-    <link rel="stylesheet" href="../estilos-css/estilos-principal.css">
-    <title>Carreras</title>
+    <link rel="stylesheet" href="estilos-css/escuderia.css">
+    <link rel="stylesheet" href="estilos-css/estilos-principal.css">
+    <title>Circuitos</title>
 </head>
 <body>
     <div class="contenedor__titulo">
-      <h3>Simulador de temporada de formula 1</h3>
-    </div>
+		<h3>Simulador de temporada de formula 1</h3>
+	</div>
     <div class="contenedor is-fluid">
         <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="navbar-item" href="../pagina-principal.html">
-                    <img src="../imagenes/logo-F1.png" alt="Logo Fórmula 1">
+                <a class="navbar-item" href="pagina-principal.html">
+                    <img src="imagenes/logo-F1.png" alt="Logo Fórmula 1">
                 </a>
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
@@ -28,18 +28,18 @@
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="../Escuderia.html">
+                    <a class="navbar-item" href="Escuderia.html">
                     Escuderias
                     </a>
-                    <a class="navbar-item" href="../Piloto.html">
+                    <a class="navbar-item" href="Piloto.html">
                         Pilotos
                     </a>
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="../Carreras.html">
+                    <a class="navbar-link" href="Carreras.html">
                         Carreras
                     </a>
                     <div class="navbar-dropdown">
-                    <a class="navbar-item" href="../Circuitos.html">
+                    <a class="navbar-item" href="Circuitos.html">
                         Circuitos
                     </a>
                     </div>
@@ -48,8 +48,8 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-dark" href="./post/Carreras_agregar.html">
-                                <strong>NUEVA CARRERA</strong>
+                            <a class="button is-dark" href="post/Carreras_agregar.html">
+                                <strong>NUEVO CIRCUITO</strong>
                             </a>
                         </div>
                     </div>
@@ -59,62 +59,56 @@
         
     </div>
     
-    <h1 class="titulo_escuderia">Nueva carrera
+    <h1 class="titulo_escuderia">Nuevo circuito
         <div class="container is-max-desktop">
         <form class="m-6">
-            <input type="hidden" id="id_carrera"> 
+            <input type="hidden" id="id_circuito"> 
             <div class="field">
                 <label class="label">Nombre</label>
                 <div class="control">
-                  <input id="nombre" class="input is-warning" type="text" placeholder="Nombre de la carrera">
+                  <input id="nombre" class="input is-warning" type="text" placeholder="Nombre">
                 </div>
               </div>
             
               <div class="field">
-                <label class="label">Sede</label>
+                <label class="label">Tipo</label>
                 <div class="control">
-                  <input id="sede" class="input is-warning" type="text" placeholder="Pais sede ">
-                </div>
-              </div>
-              
-              <div class="field">
-                <label class="label">Anio</label>
-                <div class="control">
-                  <input id="anio" class="input is-warning" type="text" placeholder="Anio de realizacion">
-                </div>
-              </div>
-              
-              <div class="field">
-                <label class="label">Piloto ganador</label>
-                <div class="control">
-                  <div class="select is-warning ">
-                  <select id="select_pilotos" >
+                <div class="select is-warning is-medium">
+                  <select id="select">
+                    <option value="">Seleccione una opción:</option>
+                    <option value="permanente">Permanente</option>
+                    <option value="urbano">Urbano</option>
+                    <option value="mixto">Mixto</option>
                   </select></div>
                 </div>
               </div>
               
               <div class="field">
-                <label class="label">Circuito</label>
+                <label class="label">Longitud total</label>
                 <div class="control">
-                  <div class="select is-warning">
-                  <select id="select_circuitos">
-                  </select></div>
+                  <input id="longitud" class="input is-warning" type="text" placeholder="Longitud total en metros">
                 </div>
               </div>
-            
+              
+              <div class="field">
+                <label class="label">Cantidad de curvas</label>
+                <div class="control">
+                  <input id="cantidad_curvas" class="input is-warning" type="text" placeholder="Cantidad total de curvas">
+                </div>
+              </div>
               
               <div class="field is-grouped">
                 <div class="control">
-                  <button type="button" id="boton_crear" class="button is-link is-light" onclick="crearCarrera(event)">Guardar</button>
+                  <button type="button" id="boton_crear" class="button is-link is-light" onclick="crearCircuito(event)">Guardar</button>
                 </div>
                 <div class="control">
-                  <button type="button" id="boton_modificar" class="button is-link is-light" onclick="modificar_carrera()" style="display: none;">Modificar</button>
+                    <button type="button" id="boton_modificar" class="button is-link is-light" onclick="modificar_circuito()" style="display: none;">Modificar</button>
+                  </div>
+                <div class="control">
+                  <button type="button" id="boton_limpiar" class="button is-link is-dark" onclick="limpiarFormulario()" >Limpiar</button> 
                 </div>
                 <div class="control">
-                  <button type="button" id="boton_limpiar" class="button is-link is-dark" onclick="limpiarFormulario()">Limpiar</button> 
-                </div>
-                <div class="control">
-                  <a type="button" class="button is-link" href="../Carreras.html">Cancelar</a>
+                  <a type="button" class="button is-link" href="Circuitos.html">Cancelar</a>
                 </div>
               </div>
             </div>
@@ -126,5 +120,5 @@
 
     
 </body>
-    <script src="../../scripts/Carreras.js"></script>
+    <script src="../scripts/Circuitos.js"></script>
 </html>
