@@ -17,6 +17,30 @@ document.addEventListener('DOMContentLoaded', () => {
 	mostrar_escuderias();
 });
 
+/* 
+En esta funcion me encargo de asociar los pilotos a las escuderias, primero tengo que agregar un piloto con ese id, si no este mismo se va a mostrar como ningun piloto asociado.
+*/
+function asociar_escuderia_con_piloto(pilotos) {
+
+	let pilotos_asociados = document.createElement('p');
+
+	if (pilotos.length > 0) {
+		let nombres_pilotos = '';
+		pilotos.forEach(piloto => {
+			if (nombres_pilotos !== '') {
+				nombres_pilotos += ', ';
+			}
+			nombres_pilotos += piloto.nombre_piloto;
+		});
+		pilotos_asociados.textContent = `Pilotos Asociados: ${nombres_pilotos}.`;
+	} else {
+		pilotos_asociados.textContent = 'Pilotos Asociados: Ninguno';
+	}
+
+	return pilotos_asociados;
+}
+
+
 mostrar_escuderias = function () {
 	fetch('http://127.0.0.1:3000/api/v1/escuderias')
 		.then(response => response.json())
@@ -58,6 +82,9 @@ mostrar_escuderias = function () {
 				let posicion = document.createElement('p');
 				posicion.textContent = `Posición: ${escuderia.posicion_escuderia}`;
 				tarjeta.appendChild(posicion);
+
+				let pilotos_mostrados = asociar_escuderia_con_piloto(escuderia.pilotos);
+				tarjeta.appendChild(pilotos_mostrados);
 
 				let boton = document.createElement('button');
 				boton.className = 'boton_borrar';
