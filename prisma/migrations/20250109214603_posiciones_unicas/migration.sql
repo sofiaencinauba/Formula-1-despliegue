@@ -46,11 +46,17 @@ CREATE TABLE "circuito" (
     CONSTRAINT "circuito_pkey" PRIMARY KEY ("id_circuito")
 );
 
+-- CreateIndex
+CREATE UNIQUE INDEX "piloto_posicion_piloto_key" ON "piloto"("posicion_piloto");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "escuderia_posicion_escuderia_key" ON "escuderia"("posicion_escuderia");
+
 -- AddForeignKey
 ALTER TABLE "piloto" ADD CONSTRAINT "piloto_id_escuderia_fkey" FOREIGN KEY ("id_escuderia") REFERENCES "escuderia"("id_escuderia") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "carrera" ADD CONSTRAINT "carrera_id_primer_puesto_fkey" FOREIGN KEY ("id_primer_puesto") REFERENCES "piloto"("id_piloto") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "carrera" ADD CONSTRAINT "carrera_id_circuito_asociado_fkey" FOREIGN KEY ("id_circuito_asociado") REFERENCES "circuito"("id_circuito") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "carrera" ADD CONSTRAINT "carrera_id_circuito_asociado_fkey" FOREIGN KEY ("id_circuito_asociado") REFERENCES "circuito"("id_circuito") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "carrera" ADD CONSTRAINT "carrera_id_primer_puesto_fkey" FOREIGN KEY ("id_primer_puesto") REFERENCES "piloto"("id_piloto") ON DELETE CASCADE ON UPDATE CASCADE;

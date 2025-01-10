@@ -1,56 +1,50 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-	provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-	provider = "postgresql"
-	url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-model piloto{
-	id_piloto Int @id @default(autoincrement())
-	nombre_piloto String
-	nacionalidad_piloto String
-	edad_piloto Int
-	puntos_piloto Int
-	posicion_piloto Int
-	id_escuderia Int
-	escuderia escuderia @relation(fields: [id_escuderia], references: [id_escuderia])
-  carreras carrera[]
+model piloto {
+  id_piloto           Int       @id @default(autoincrement())
+  nombre_piloto       String
+  nacionalidad_piloto String
+  edad_piloto         Int
+  puntos_piloto       Int
+  posicion_piloto     Int       @unique
+  id_escuderia        Int
+  carreras            carrera[]
+  escuderia           escuderia @relation(fields: [id_escuderia], references: [id_escuderia])
 }
 
-model escuderia{
-	id_escuderia Int @id @default(autoincrement())
-	nombre_escuderia String
-	puntos_escuderia Int
-	pais_escuderia String
-	anio_creacion_escuderia Int
-	posicion_escuderia Int
-	pilotos piloto[]
+model escuderia {
+  id_escuderia            Int      @id @default(autoincrement())
+  nombre_escuderia        String
+  puntos_escuderia        Int
+  pais_escuderia          String
+  anio_creacion_escuderia Int
+  posicion_escuderia      Int      @unique
+  pilotos                 piloto[]
 }
 
-model carrera{
-  id_carrera Int @id @default(autoincrement())
-  nombre_carrera String
-  pais_sede String
-  anio Int
-  id_primer_puesto Int
+model carrera {
+  id_carrera           Int      @id @default(autoincrement())
+  nombre_carrera       String
+  pais_sede            String
+  anio                 Int
+  id_primer_puesto     Int
   id_circuito_asociado Int
-  piloto piloto @relation(fields: [id_primer_puesto], references: [id_piloto], onDelete: Cascade)
-  circuito circuito @relation(fields: [id_circuito_asociado], references: [id_circuito], onDelete: Cascade)
+  circuito             circuito @relation(fields: [id_circuito_asociado], references: [id_circuito], onDelete: Cascade)
+  piloto               piloto   @relation(fields: [id_primer_puesto], references: [id_piloto], onDelete: Cascade)
 }
 
-model circuito{
-  id_circuito Int @id @default(autoincrement())
-  carreras carrera[]
-  nombre String
-  tipo String
-  longitud_total Int
+model circuito {
+  id_circuito     Int       @id @default(autoincrement())
+  nombre          String
+  tipo            String
+  longitud_total  Int
   cantidad_curvas Int
+  carreras        carrera[]
 }
