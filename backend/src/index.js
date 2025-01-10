@@ -92,6 +92,7 @@ app.put('/api/v1/pilotos/:id', async (req, res) => {
 				nacionalidad_piloto: req.body.nacionalidad_piloto,
 				edad_piloto: req.body.edad_piloto,
 				puntos_piloto: req.body.puntos_piloto,
+				posicion_piloto: req.body.posicion_piloto,
 				id_escuderia: req.body.id_escuderia
 			}
 	 	})
