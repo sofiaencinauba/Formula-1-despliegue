@@ -92,16 +92,18 @@
                         <input id="posicion_piloto" class="input" type="number"> 
                     </label> 
                 </div> 
-                <div class="field"> 
-                    <label class="label">
-                        <span class="letras_formulario">ID escuderia</span>
-                        <input id="id_escuderia" class="input" type="number"> 
-                    </label> 
-                </div> 
+                <div class="field">
+                    <label class=" letras_formulario">
+                        <span class="letras_formulario">Escuderia</span>
+                        <div class="select custom-select">
+                            <select id="select_escuderias"></select>
+                        </div>
+                    </label>
+                </div>
                 <button type="button" class="boton_agregar" onclick="agregar_piloto()">Confirmar</button> 
                 <button type="button" class="boton_modificar" onclick="modificar_piloto()" style="display: none;">Modificar</button> 
             </form> 
         </div>
+    <script src="../scripts/Pilotos.js"></script>
 </body>
-<script src="../scripts/Pilotos.js"></script>
 </html>

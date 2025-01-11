@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const urlParams = new URLSearchParams(window.location.search);
     const pilotoId = urlParams.get('id');
 
+	const urlActual = window.location.href;
+
     if (pilotoId) {
         fetch(`http://127.0.0.1:3000/api/v1/pilotos/${pilotoId}`)
             .then(response => response.json())
@@ -12,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 console.error('Error al obtener el piloto:', error);
             });
+    }
+
+	if (urlActual.includes('/frontend/agregar_piloto.html')) {
+        cargar_escuderias();
     }
 
 	mostrar_Pilotos();
@@ -88,7 +94,7 @@ mostrar_Pilotos = function() {
 }
 
 borrar_Piloto = function(id) {
-    alert(`Piloto eliminado' ${id}`);
+    alert(`Piloto eliminado ${id}`);
     fetch('http://127.0.0.1:3000/api/v1/pilotos/' + id, {
         method: 'DELETE'
     })
@@ -105,7 +111,7 @@ agregar_piloto = function() {
         const edad = document.getElementById('edad_piloto').value;
         const puntos = document.getElementById('puntos_piloto').value;
         const posicion = document.getElementById('posicion_piloto').value;
-        const escuderia = document.getElementById('id_escuderia').value;
+        const escuderia = document.getElementById('select_escuderias').value;
 
         let body = {
             nombre_piloto: nombre,
@@ -130,6 +136,7 @@ agregar_piloto = function() {
                 alert('Error al crear el piloto');
             }
         })
+		window.location.href = '../frontend/Piloto.html';
     }
 
 
@@ -139,7 +146,7 @@ function limpiar_formulario() {
     document.getElementById('edad_piloto').value = '';
     document.getElementById('puntos_piloto').value = '';
     document.getElementById('posicion_piloto').value = '';
-    document.getElementById('id_escuderia').value = '';
+    document.getElementById('select_escuderias').value = '';
 }
 
 rellenar_formulario = function (piloto) {
@@ -149,7 +156,7 @@ rellenar_formulario = function (piloto) {
 	document.getElementById('edad_piloto').value = piloto.edad_piloto;
 	document.getElementById('puntos_piloto').value = piloto.puntos_piloto;
 	document.getElementById('posicion_piloto').value = piloto.posicion_piloto;
-	document.getElementById('id_escuderia').value = piloto.id_escuderia;
+	document.getElementById('select_escuderia').value = piloto.id_escuderia;
 
 	document.querySelector('.boton_agregar').style.display = 'none';
 	document.querySelector('.boton_modificar').style.display = 'inline-block';
@@ -162,7 +169,7 @@ modificar_piloto = function () {
     const edad = document.getElementById('edad_piloto').value;
     const puntos = document.getElementById('puntos_piloto').value;
     const posicion = document.getElementById('posicion_piloto').value;
-    const escuderia = document.getElementById('id_escuderia').value;
+    const escuderia = document.getElementById('select_escuderias').value;
 
 	if (!id || !nombre || !nacionalidad || !edad || !puntos || !posicion || !escuderia) {
 		alert('Todos los campos son obligatorios.');
@@ -187,7 +194,7 @@ modificar_piloto = function () {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Piloto actualizada correctamente.');
+				alert('Piloto actualizado correctamente.');
 				limpiar_formulario();
 				mostrar_Pilotos();
 			} else {
@@ -200,4 +207,26 @@ modificar_piloto = function () {
 			console.error('Error:', error);
 			alert('Ocurrió un error al actualizar el piloto');
 		});
+}
+
+cargar_escuderias = function(){
+    fetch('http://127.0.0.1:3000/api/v1/escuderias')
+    .then(response => response.json())
+    .then(escuderias => {
+
+        let padre = document.getElementById('select_escuderias')
+        padre.innerHTML = ''
+        const opcionVacia = document.createElement('option');
+        opcionVacia.value = '';
+        opcionVacia.innerText = 'Selecciona una opción';
+        padre.appendChild(opcionVacia);
+
+        escuderias.forEach(escuderia => {
+            let option = document.createElement('option');
+            option.value = escuderia.id_escuderia;
+            option.innerText = `${escuderia.nombre_escuderia}`; 
+            
+            padre.appendChild(option);
+        });
+    })
 }
