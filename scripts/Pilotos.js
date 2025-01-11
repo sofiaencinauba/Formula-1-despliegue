@@ -156,7 +156,7 @@ rellenar_formulario = function (piloto) {
 	document.getElementById('edad_piloto').value = piloto.edad_piloto;
 	document.getElementById('puntos_piloto').value = piloto.puntos_piloto;
 	document.getElementById('posicion_piloto').value = piloto.posicion_piloto;
-	document.getElementById('select_escuderia').value = piloto.id_escuderia;
+	document.getElementById('select_escuderias').value = piloto.id_escuderia;
 
 	document.querySelector('.boton_agregar').style.display = 'none';
 	document.querySelector('.boton_modificar').style.display = 'inline-block';
