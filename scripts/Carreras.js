@@ -11,8 +11,8 @@
     </div> 
 */
 
-document.addEventListener('DOMContentLoaded', () => { 
-	const urlParams = new URLSearchParams(window.location.search);
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
     const carreraId = urlParams.get('id');
 
     const urlActual = window.location.href;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(carrera => {
                 rellenar_formulario(carrera);
-                document.querySelector('#boton_modificar').style.display = 'inline-block'; 
+                document.querySelector('#boton_modificar').style.display = 'inline-block';
             })
             .catch(error => {
                 console.error('Error al obtener la carrera:', error);
@@ -33,96 +33,89 @@ document.addEventListener('DOMContentLoaded', () => {
         cargar_pilotos_y_circuitos()
     }
 
-	mostrar_carreras();
+    mostrar_carreras();
 });
 
 
-mostrar_carreras = function() {
+mostrar_carreras = function () {
     fetch('http://127.0.0.1:3000/api/v1/carreras')
-    .then(response => response.json())
-    .then(carreras => {
-        console.log(carreras)
+        .then(response => response.json())
+        .then(carreras => {
+            console.log(carreras)
 
-        let padre = document.getElementById('carreras')
-        padre.innerHTML = ''
+            let contenedor_tarjetas = document.getElementById('contenedor-tarjetas');
+            contenedor_tarjetas.innerHTML = '';
 
-        carreras.forEach(carrera => {
-            let div = document.createElement('div');
-            div.className = "cell box mx-6";
-            div.id = "carrera-" + carrera.id_carrera
-            
-            let id = document.createElement('h2');
-            id.className = "subtitle has-text-white";
-            id.textContent = carrera.id_carrera;
-            let id_carrera = carrera.id_carrera
-            id.id = "id_" + carrera.id_carrera
+            if (!contenedor_tarjetas) {
+                console.error("No se encontró un elemento con ese ID");
+                return;
+            }
+            carreras.forEach(carrera => {
 
-            let nombre = document.createElement('h2');
-            nombre.className = "subtitle has-text-white";
-            nombre.textContent = `Nombre: ${carrera.nombre_carrera}`;
-            nombre.id = "nombre"
+                let tarjeta = document.createElement('div');
+                tarjeta.className = 'tarjeta';
+                tarjeta.id = `carrera-${carrera.id_carrera}`;
 
-            let pais_sede = document.createElement('h2');
-            pais_sede.className = "subtitle has-text-white";
-            pais_sede.textContent = `Sede: ${carrera.pais_sede}`;
-            pais_sede.id = "sede"
+                let nombre = document.createElement('h2');
+                nombre.textContent = `${carrera.nombre_carrera}`;
+                tarjeta.appendChild(nombre);
 
-            let anio = document.createElement('h2');
-            anio.className = "subtitle has-text-white";
-            anio.textContent = `Año: ${carrera.anio}`;
-            anio.id = "anio"
+                let id = document.createElement('p');
+                id.textContent = `ID: ${carrera.id_carrera}`;
+                tarjeta.appendChild(id);
 
-            let primer_puesto = document.createElement('h2');
-            primer_puesto.className = "subtitle has-text-white";
-            primer_puesto.textContent = carrera.piloto ? `Piloto ganador: ${carrera.piloto.nombre_piloto}` : "Piloto ganador: No disponible";
-            primer_puesto.id = "piloto_ganador"
+                let pais_sede = document.createElement('p');
+                pais_sede.textContent = `Sede: ${carrera.pais_sede}`;
+                tarjeta.appendChild(pais_sede);
 
-            let circuito_asociado = document.createElement('h2');
-            circuito_asociado.className = "subtitle has-text-white";
-            circuito_asociado.textContent = carrera.circuito ? `Circuito: ${carrera.circuito.nombre}` : "Circuito asociado: No disponible"
-            circuito_asociado.id = "circuito_asociado"
+                let anio = document.createElement('p');
+                anio.textContent = `Año: ${carrera.anio}`;
+                tarjeta.appendChild(anio);
 
-            let borrar = document.createElement('button')
-            borrar.className = "button is-danger is-inverted"
-            borrar.textContent = "Borrar"
-            borrar.onclick = function() { eliminar_carrera(id_carrera) }
+                let primer_puesto = document.createElement('p');
+                primer_puesto.textContent = carrera.piloto ? `Piloto ganador: ${carrera.piloto.nombre_piloto}` : "Piloto ganador: No disponible";
+                tarjeta.appendChild(primer_puesto);
 
-            let boton_modificar = document.createElement('button');
-			boton_modificar.className = 'button is-danger is-inverted';
-			boton_modificar.textContent = 'Modificar';
-			boton_modificar.onclick = function () {
-				const carreraId = carrera.id_carrera; 
-    			window.location.href = `post/Carreras_agregar.html?id=${carreraId}`;
-                
-			};
+                let circuito_asociado = document.createElement('p');
+                circuito_asociado.textContent = carrera.circuito ? `Circuito: ${carrera.circuito.nombre}` : "Circuito asociado: No disponible"
+                tarjeta.appendChild(circuito_asociado);
 
-            div.appendChild(id);
-            div.appendChild(nombre);
-            div.appendChild(pais_sede)
-            div.appendChild(anio)
-            div.appendChild(primer_puesto);
-            div.appendChild(circuito_asociado);
-            div.appendChild(borrar);
-            div.appendChild(boton_modificar);
+                let borrar = document.createElement('button')
+                borrar.className = "boton_borrar"
+                borrar.textContent = "Borrar"
+                borrar.onclick = function () {
+                    eliminar_carrera(carrera.id_carrera);
+                }
+                tarjeta.appendChild(borrar)
 
-            padre.appendChild(div);
+                let boton_modificar = document.createElement('button');
+                boton_modificar.className = 'boton_modificar';
+                boton_modificar.textContent = 'Modificar';
+                boton_modificar.onclick = function () {
+                    const carreraId = carrera.id_carrera;
+                    window.location.href = `post/Carreras_agregar.html?id=${carreraId}`;
+
+                };
+                tarjeta.appendChild(boton_modificar);
+
+                contenedor_tarjetas.appendChild(tarjeta);
 
 
-        });
-    })
+            });
+        })
 }
 
-eliminar_carrera = function(id_carrera) {
+eliminar_carrera = function (id_carrera) {
     alert("eliminando carrera " + id_carrera)
     fetch('http://127.0.0.1:3000/api/v1/carreras/' + id_carrera, {
         method: 'DELETE'
     })
-    .then(response => response.json())
-    .then(carrera => {
-        console.log(carrera)
-        let div = document.getElementById("carrera-" + id_carrera)
-        div.remove()
-    })
+        .then(response => response.json())
+        .then(carrera => {
+            console.log(carrera)
+            let div = document.getElementById("carrera-" + id_carrera)
+            div.remove()
+        })
 }
 
 function crearCarrera(event) {
@@ -156,9 +149,9 @@ function crearCarrera(event) {
         },
         body: JSON.stringify(body)
     }).then(response => {
-        if(response.status === 201){
+        if (response.status === 201) {
             alert("carrera creada con exito")
-        } else{
+        } else {
             alert("error al crear la carrera")
         }
     })
@@ -166,30 +159,30 @@ function crearCarrera(event) {
 
 }
 
-function limpiarFormulario(){
+function limpiarFormulario() {
     document.getElementById('nombre').value = ''
     document.getElementById('sede').value = ''
     document.getElementById('anio').value = ''
     document.getElementById('select_pilotos').value = ''
     document.getElementById('select_circuitos').value = ''
 
-    document.querySelector('#boton_crear').style.display = 'inline-block'; 
-    document.querySelector('#boton_limpiar').style.display = 'inline-block'; 
-	document.querySelector('#boton_modificar').style.display = 'none';
+    document.querySelector('#boton_crear').style.display = 'inline-block';
+    document.querySelector('#boton_limpiar').style.display = 'inline-block';
+    document.querySelector('#boton_modificar').style.display = 'none';
 }
 
 rellenar_formulario = function (carrera) {
-    
-	document.getElementById('id_carrera').value = carrera.id_carrera;
-	document.getElementById('nombre').value = carrera.nombre_carrera;
-	document.getElementById('sede').value = carrera.pais_sede;
-	document.getElementById('anio').value = carrera.anio;
 
-	
+    document.getElementById('id_carrera').value = carrera.id_carrera;
+    document.getElementById('nombre').value = carrera.nombre_carrera;
+    document.getElementById('sede').value = carrera.pais_sede;
+    document.getElementById('anio').value = carrera.anio;
 
-	document.querySelector('#boton_crear').style.display = 'none';
+
+
+    document.querySelector('#boton_crear').style.display = 'none';
     document.querySelector('#boton_limpiar').style.display = 'none';
-	document.querySelector('#boton_modificar').style.display = 'inline-block';
+    document.querySelector('#boton_modificar').style.display = 'inline-block';
 
     setTimeout(() => {
         document.getElementById('select_pilotos').value = String(carrera.id_primer_puesto);
@@ -228,69 +221,69 @@ modificar_carrera = function () {
         },
         body: JSON.stringify(carrera),
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            return response.json().then(error => {
-                throw new Error(error.error);
-            });
-        }
-    })
-    .then(updatedCarrera => {
-        console.log('Carrera actualizada:', updatedCarrera);
-        alert('Carrera actualizada correctamente.');
-        limpiarFormulario();
-        window.location.href = '../Carreras.html';
-        
-    })
-    .catch(error => {
-        console.error('Error al modificar la carrera:', error);
-        alert('Ocurrió un error al actualizar la carrera: ' + error.message);
-    });
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return response.json().then(error => {
+                    throw new Error(error.error);
+                });
+            }
+        })
+        .then(updatedCarrera => {
+            console.log('Carrera actualizada:', updatedCarrera);
+            alert('Carrera actualizada correctamente.');
+            limpiarFormulario();
+            window.location.href = '../Carreras.html';
+
+        })
+        .catch(error => {
+            console.error('Error al modificar la carrera:', error);
+            alert('Ocurrió un error al actualizar la carrera: ' + error.message);
+        });
 }
 
-cargar_pilotos_y_circuitos = function(){
+cargar_pilotos_y_circuitos = function () {
     fetch('http://127.0.0.1:3000/api/v1/pilotos')
-    .then(response => response.json())
-    .then(pilotos => {
+        .then(response => response.json())
+        .then(pilotos => {
 
-        let padre = document.getElementById('select_pilotos')
-        padre.innerHTML = ''
-        const opcionVacia = document.createElement('option');
-        opcionVacia.value = '';
-        opcionVacia.innerText = 'Selecciona una opción';
-        padre.appendChild(opcionVacia);
+            let padre = document.getElementById('select_pilotos')
+            padre.innerHTML = ''
+            const opcionVacia = document.createElement('option');
+            opcionVacia.value = '';
+            opcionVacia.innerText = 'Selecciona una opción';
+            padre.appendChild(opcionVacia);
 
-        pilotos.forEach(piloto => {
-            let option = document.createElement('option');
-            option.value = piloto.id_piloto
-            option.innerText = `Piloto ${piloto.id_piloto} -> nombre: ${piloto.nombre_piloto}, nacionalidad: ${piloto.nacionalidad_piloto}, edad: ${piloto.edad_piloto}, puntos: ${piloto.puntos_piloto}, posicion: ${piloto.posicion_piloto}`
-            
-            padre.appendChild(option);
+            pilotos.forEach(piloto => {
+                let option = document.createElement('option');
+                option.value = piloto.id_piloto
+                option.innerText = `Piloto ${piloto.id_piloto} -> nombre: ${piloto.nombre_piloto}, nacionalidad: ${piloto.nacionalidad_piloto}, edad: ${piloto.edad_piloto}, puntos: ${piloto.puntos_piloto}, posicion: ${piloto.posicion_piloto}`
+
+                padre.appendChild(option);
 
 
-        });
-    })
+            });
+        })
     fetch('http://127.0.0.1:3000/api/v1/circuitos')
-    .then(response => response.json())
-    .then(circuitos => {
+        .then(response => response.json())
+        .then(circuitos => {
 
-        let padre = document.getElementById('select_circuitos')
-        padre.innerHTML = ''
-        const opcionVacia = document.createElement('option');
-        opcionVacia.value = '';
-        opcionVacia.innerText = 'Selecciona una opción';
-        padre.appendChild(opcionVacia);
+            let padre = document.getElementById('select_circuitos')
+            padre.innerHTML = ''
+            const opcionVacia = document.createElement('option');
+            opcionVacia.value = '';
+            opcionVacia.innerText = 'Selecciona una opción';
+            padre.appendChild(opcionVacia);
 
-        circuitos.forEach(circuito => {
-            let option = document.createElement('option');
-            option.value = circuito.id_circuito
-            option.innerText = option.innerText = `Circuito ${circuito.id_circuito} -> nombre: ${circuito.nombre}, tipo: ${circuito.tipo}, longitud: ${circuito.longitud_total}, cantidad de curvas: ${circuito.cantidad_curvas}`
-            
-            padre.appendChild(option);
+            circuitos.forEach(circuito => {
+                let option = document.createElement('option');
+                option.value = circuito.id_circuito
+                option.innerText = option.innerText = `Circuito ${circuito.id_circuito} -> nombre: ${circuito.nombre}, tipo: ${circuito.tipo}, longitud: ${circuito.longitud_total}, cantidad de curvas: ${circuito.cantidad_curvas}`
+
+                padre.appendChild(option);
 
 
-        });
-    })
+            });
+        })
 }
