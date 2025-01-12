@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    if (urlActual.includes('/home/sofia/formula_1_proyect/frontend/post/Carreras_agregar.html')) {
+    if (urlActual.includes('Carreras_agregar.html')) {
         cargar_pilotos_y_circuitos()
     }
 
@@ -158,7 +158,6 @@ function crearCarrera(event) {
     }).then(response => {
         if(response.status === 201){
             alert("carrera creada con exito")
-            limpiarFormulario()
         } else{
             alert("error al crear la carrera")
         }
@@ -180,16 +179,23 @@ function limpiarFormulario(){
 }
 
 rellenar_formulario = function (carrera) {
+    
 	document.getElementById('id_carrera').value = carrera.id_carrera;
 	document.getElementById('nombre').value = carrera.nombre_carrera;
 	document.getElementById('sede').value = carrera.pais_sede;
 	document.getElementById('anio').value = carrera.anio;
-	document.getElementById('piloto_ganador').value = carrera.id_primer_puesto;
-	document.getElementById('circuito_asociado').value = carrera.id_circuito_asociado;
+
+	
 
 	document.querySelector('#boton_crear').style.display = 'none';
     document.querySelector('#boton_limpiar').style.display = 'none';
 	document.querySelector('#boton_modificar').style.display = 'inline-block';
+
+    setTimeout(() => {
+        document.getElementById('select_pilotos').value = String(carrera.id_primer_puesto);
+        document.getElementById('select_circuitos').value = String(carrera.id_circuito_asociado);
+
+    }, 10)
 }
 
 modificar_carrera = function () {
