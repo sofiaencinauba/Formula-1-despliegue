@@ -23,6 +23,26 @@ document.addEventListener('DOMContentLoaded', () => {
 	mostrar_Pilotos();
 });
 
+function asociar_piloto_con_carrera(carreras) {
+
+	let carreras_ganadas = document.createElement('p');
+
+	if (carreras.length > 0) {
+		let nombres_carreras = '';
+		carreras.forEach(carrera => {
+			if (nombres_carreras !== '') {
+				nombres_carreras += ', ';
+			}
+			nombres_carreras += carrera.nombre_carrera;
+		});
+		carreras_ganadas.textContent = `Carreras ganadas: ${nombres_carreras}.`;
+	} else {
+		carreras_ganadas.textContent = 'Carreras ganadas: Ninguna';
+	}
+
+	return carreras_ganadas;
+}
+
 mostrar_Pilotos = function() {
 	fetch('http://127.0.0.1:3000/api/v1/pilotos')
 		.then(response => response.json())
@@ -62,6 +82,8 @@ mostrar_Pilotos = function() {
 				let escuderia_nombre = document.createElement('p');
 				escuderia_nombre.textContent = `Escuderia: ${piloto.escuderia.nombre_escuderia}`;
 
+				let carreras = asociar_piloto_con_carrera(piloto.carreras);
+
 				let boton = document.createElement('button');
 				boton.className = 'boton_borrar';
 				boton.textContent = 'Borrar';
@@ -84,6 +106,7 @@ mostrar_Pilotos = function() {
 				div.appendChild(puntos);
 				div.appendChild(posicion);
 				div.appendChild(escuderia_nombre);
+				div.appendChild(carreras);
 				div.appendChild(boton);
 				div.appendChild(boton_modificar);
 
