@@ -160,6 +160,10 @@ rellenar_formulario = function (piloto) {
 
 	document.querySelector('.boton_agregar').style.display = 'none';
 	document.querySelector('.boton_modificar').style.display = 'inline-block';
+
+	setTimeout(() => {
+        document.getElementById('select_escuderias').value = String(piloto.id_escuderia);
+    }, 10)
 }
 
 modificar_piloto = function () {
