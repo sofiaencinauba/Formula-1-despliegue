@@ -301,7 +301,7 @@ app.post('/api/v1/carreras', async (req, res) => {
 	const { nombre_carrera, pais_sede, anio, id_primer_puesto, 
 			id_circuito_asociado } = req.body
 
-	if (!nombre_carrera || !pais_sede || !anio ) {
+	if (!nombre_carrera || !pais_sede || !anio || !id_primer_puesto || !id_circuito_asociado) {
 		return res.status(400).send({ 
 			error: 'Todos los campos son obligatorios.' 
 		})
@@ -313,8 +313,8 @@ app.post('/api/v1/carreras', async (req, res) => {
 				nombre_carrera, 
                 pais_sede, 
                 anio: parseInt(anio), 
-				id_primer_puesto: id_primer_puesto ? parseInt(id_primer_puesto) : null,
-				id_circuito_asociado: id_circuito_asociado ? parseInt(id_circuito_asociado) : null
+				id_primer_puesto: parseInt(id_primer_puesto),
+				id_circuito_asociado: (id_circuito_asociado)
 			}
 			
 		})
