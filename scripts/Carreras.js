@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    if (urlActual.includes('Carreras_agregar.html')) {
+    if (urlActual.includes('agregar_carrera.html')) {
         cargar_pilotos_y_circuitos()
     }
 
@@ -93,7 +93,7 @@ mostrar_carreras = function () {
                 boton_modificar.textContent = 'Modificar';
                 boton_modificar.onclick = function () {
                     const carreraId = carrera.id_carrera;
-                    window.location.href = `post/Carreras_agregar.html?id=${carreraId}`;
+                    window.location.href = `agregar_carrera.html?id=${carreraId}`;
 
                 };
                 tarjeta.appendChild(boton_modificar);
