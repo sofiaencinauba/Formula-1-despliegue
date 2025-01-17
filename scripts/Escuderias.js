@@ -114,7 +114,7 @@ mostrar_escuderias = function () {
 };
 
 eliminar_escuderia = function (id) {
-	alert(`Eliminar escudería: ${id}`);
+	alert(`Eliminar escudería: ${id}, se eliminan los pilotos asociados.`);
 	fetch('http://127.0.0.1:3000/api/v1/escuderias/' + id, {
 		method: 'DELETE'
 	})
