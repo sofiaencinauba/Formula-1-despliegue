@@ -155,7 +155,7 @@ function crearCarrera(event) {
             alert("error al crear la carrera")
         }
     })
-    window.location.href = '../Carreras.html';
+    window.location.href = 'Carreras.html';
 
 }
 
@@ -234,7 +234,7 @@ modificar_carrera = function () {
             console.log('Carrera actualizada:', updatedCarrera);
             alert('Carrera actualizada correctamente.');
             limpiarFormulario();
-            window.location.href = '../Carreras.html';
+            window.location.href = 'Carreras.html';
 
         })
         .catch(error => {
