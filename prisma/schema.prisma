@@ -16,7 +16,7 @@ model piloto {
   posicion_piloto     Int       @unique
   id_escuderia        Int
   carreras            carrera[]
-  escuderia           escuderia @relation(fields: [id_escuderia], references: [id_escuderia])
+  escuderia           escuderia @relation(fields: [id_escuderia], references: [id_escuderia], onDelete: Cascade)
 }
 
 model escuderia {
