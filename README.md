@@ -9,20 +9,22 @@ Este proyecto es una API REST con un CRUD accesible desde el frontend para cada 
 
 ## Instalación y Ejecución
 
-1. Instalar las dependencias:
-    ```sh
-    npm install
-    ```
+### Instalar las dependencias:
 
-2. Ejecutar las migraciones:
-    ```sh
-    npx prisma migrate dev
-    ```
-
+```sh
+npm install
+```
+    
 ### Levantar los servicios de Docker
 
 ```sh
 docker-compose up -d
+```
+
+### Ejecutar las migraciones
+
+```sh
+npx prisma migrate dev
 ```
 
 ### Levantar el servidor
