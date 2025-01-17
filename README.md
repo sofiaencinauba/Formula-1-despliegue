@@ -1,29 +1,35 @@
-# Formula 1 App
+# Simulador de Temporada de Fórmula 1
 
-## Requirements
+Este proyecto es una API REST con un CRUD accesible desde el frontend para cada entidad: escuderías, pilotos, carreras y circuitos. Permite crear, modificar, borrar y ver cada una de las entidades, simulando una temporada de Fórmula 1.
+
+## Requisitos
 
 - Docker
-- Node.js 
+- Node.js
 
-## Setup
+## Instalación y Ejecución
+
+1. Instalar las dependencias:
+    ```sh
+    npm install
+    ```
+
+2. Ejecutar las migraciones:
+    ```sh
+    npx prisma migrate dev
+    ```
+
+### Levantar los servicios de Docker
+
 ```sh
-npm install
-npx prisma migrate dev
+docker-compose up -d
 ```
 
-## Start
-
-```sh
-docker compose up -d
-```
-
-### Local
+### Levantar el servidor
 
 ```sh
 npm run dev
 ```
-### Production
+### Frontend
 
-```sh
-npm run start
-```
+Para abrir el frontend, simplemente abre el archivo pagina-principal.html en tu navegador.
