@@ -33,3 +33,22 @@ npm run dev
 ### Frontend
 
 Para abrir el frontend, simplemente abre el archivo pagina-principal.html en tu navegador.
+
+## Capturas de Pantalla
+![Pagina Principal](./screenshots/pagina-principal.png)
+
+![Escuderias](./screenshots/Escuderia.png)
+
+![Agregar escuderias](./screenshots/agregar-escuderia.png)
+
+![Pilotos](./screenshots/Piloto.png)
+
+![Agregar pilotos](./screenshots/agregar-piloto.png)
+
+![Ciruitos](./screenshots/Circuitos.png)
+
+![Agregar circuitos](./screenshots/agregar-circuito.png)
+
+![Carreras](./screenshots/Carreras.png)
+
+![Agregar carreras](./screenshots/Carreras-agregar.png)
