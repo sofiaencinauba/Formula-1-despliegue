@@ -114,7 +114,7 @@ mostrar_escuderias = function () {
 };
 
 eliminar_escuderia = function (id) {
-	alert(`Eliminar escudería: ${id}, se eliminan los pilotos asociados.`);
+	alert(`Eliminar escudería: ${id}, se eliminan los pilotos asociados y las carreras ganadas`);
 	fetch('http://127.0.0.1:3000/api/v1/escuderias/' + id, {
 		method: 'DELETE'
 	})
@@ -160,17 +160,14 @@ agregar_escuderia = function () {
 				alert('Escudería agregada correctamente.');
 				limpiar_formulario();
 				mostrar_escuderias();
+				window.location.href = 'Escuderia.html';
 			} else {
 				return response.json().then(error => {
-					alert('Ocurrió un error al agregar la escudería');
+					alert('Ocurrió un error al agregar la escudería, fijate que la posicion no este ya ocupada');
 				});
 			}
 		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Ocurrió un error al agregar la escudería');
-		});
-		window.location.href = 'Escuderia.html';
+		
 };
 
 limpiar_formulario = function () {
