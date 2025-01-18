@@ -155,11 +155,11 @@ agregar_piloto = function() {
                 alert('Piloto creado correctamente');
                 mostrar_Pilotos();
                 limpiar_formulario();
+				window.location.href = 'Piloto.html';
             }else{
                 alert('Error al crear el piloto');
             }
         })
-		window.location.href = '../frontend/Piloto.html';
     }
 
 
@@ -224,7 +224,7 @@ modificar_piloto = function () {
 				alert('Piloto actualizado correctamente.');
 				limpiar_formulario();
 				mostrar_Pilotos();
-				window.location.href = '../frontend/Piloto.html';
+				window.location.href = 'Piloto.html';
 			} else {
 				return response.json().then(error => {
 					alert('Ocurrió un error al actualizar el piloto');
