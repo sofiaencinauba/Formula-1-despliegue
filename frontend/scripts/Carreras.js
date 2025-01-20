@@ -1,15 +1,3 @@
-/* 
-    <div class="grid m-6 is-gap-4 is-col-min-20" id="carreras">
-        <div class="cell box has-background-warning">
-            <h2 class="subtitle has-text-black">id</h2>
-            <h2 class="subtitle has-text-black">Nombre Carrera</h2>
-            <h2 class="subtitle has-text-black">Primer Puesto</h2>
-            <h2 class="subtitle has-text-black">Pais sede</h2>
-            <h2 class="subtitle has-text-black">anio</h2>
-            <h2 class="subtitle has-text-black">circuito asociado</h2>
-        </div>
-    </div> 
-*/
 document.addEventListener('DOMContentLoaded', () => {
 	const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
   

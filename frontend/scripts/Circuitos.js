@@ -1,14 +1,3 @@
-/* 
-    <td></td>
-    model circuito{
-    id_circuito Int @id @default(autoincrement())
-    carreras carrera[]
-    nombre String
-    tipo String
-    longitud_total Int
-    cantidad_curvas Int
-}
-*/
 document.addEventListener('DOMContentLoaded', () => {
 	const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
   
