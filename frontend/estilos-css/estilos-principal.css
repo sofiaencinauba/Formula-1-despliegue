@@ -92,12 +92,24 @@
     color: white;
 }
 
+@media (prefers-color-scheme: light) {
+    .steps__text {
+        color: black;
+    }
+}
+
 .resultados{
     margin: 2rem;
     margin-top: 0;
     padding: 2rem;
     color: white;
     font-family: ui-sans-serif,system-ui,sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+    .resultados {
+        color: black;
+    }
 }
 
 .tabs{
