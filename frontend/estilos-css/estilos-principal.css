@@ -92,6 +92,12 @@
     color: white;
 }
 
+@media (prefers-color-scheme: light) {
+    .steps__text {
+        color: black;
+    }
+}
+
 .resultados{
     margin: 2rem;
     margin-top: 0;
