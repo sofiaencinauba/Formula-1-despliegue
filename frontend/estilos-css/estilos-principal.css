@@ -106,6 +106,12 @@
     font-family: ui-sans-serif,system-ui,sans-serif;
 }
 
+@media (prefers-color-scheme: light) {
+    .resultados {
+        color: black;
+    }
+}
+
 .tabs{
     font-size: 18px;
 }
