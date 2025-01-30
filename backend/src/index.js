@@ -1,10 +1,4 @@
 
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = 'https://ijawzxjcxfketjckmhqo.supabase.co'
-const supabaseKey = process.env.SUPABASE_KEY
-const supabase = createClient(supabaseUrl, supabaseKey)
-
 const { PrismaClient } = require('@prisma/client')
 const express = require('express')
 var cors = require('cors')
@@ -19,6 +13,7 @@ app.use(cors())
 app.get('/', (req, res) => {
 	res.send('Formula1 app')
 })
+  
 
 app.get('/api/v1/pilotos', async (req, res) => {
 	const pilotos = await prisma.piloto.findMany({
