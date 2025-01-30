@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" class="has-navbar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="imagenes/logo-F1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="estilos-css/escuderia.css">
+    <link rel="stylesheet" href="estilos-css/estilos-principal.css">
+    <title>Carreras</title>
+</head>
+<body>
+    <div class="contenedor__titulo">
+      <h3>Simulador de temporada de formula 1</h3>
+    </div>
+    <div class="contenedor is-fluid">
+        <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="index.html">
+                    <img src="imagenes/logo-F1.png" alt="Logo Fórmula 1">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="Escuderia.html">
+                    Escuderias
+                    </a>
+                    <a class="navbar-item" href="Piloto.html">
+                        Pilotos
+                    </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="Carreras.html">
+                        Carreras
+                    </a>
+                    <div class="navbar-dropdown">
+                    <a class="navbar-item" href="Circuitos.html">
+                        Circuitos
+                    </a>
+                    </div>
+                </div>
+            </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+    </div>
+    
+    <h1 class="titulo_escuderia">Nueva carrera
+        <div class="container is-max-desktop">
+        <form class="m-6">
+            <input type="hidden" id="id_carrera"> 
+            <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                  <input id="nombre" class="input is-warning" type="text" placeholder="Nombre de la carrera">
+                </div>
+              </div>
+            
+              <div class="field">
+                <label class="label">Sede</label>
+                <div class="control">
+                  <input id="sede" class="input is-warning" type="text" placeholder="Pais sede ">
+                </div>
+              </div>
+              
+              <div class="field">
+                <label class="label">Año</label>
+                <div class="control">
+                  <input id="anio" class="input is-warning" type="text" placeholder="Anio de realizacion">
+                </div>
+              </div>
+              
+              <div class="field">
+                <label class="label">Piloto ganador</label>
+                <div class="control">
+                  <div class="select is-warning ">
+                  <select id="select_pilotos" >
+                  </select></div>
+                </div>
+              </div>
+              
+              <div class="field">
+                <label class="label">Circuito</label>
+                <div class="control">
+                  <div class="select is-warning">
+                  <select id="select_circuitos">
+                  </select></div>
+                </div>
+              </div>
+            
+              
+              <div class="field is-grouped">
+                <div class="control">
+                  <button type="button" id="boton_crear" class="button is-link is-light" onclick="crearCarrera(event)">Guardar</button>
+                </div>
+                <div class="control">
+                  <button type="button" id="boton_modificar" class="button is-link is-light" onclick="modificar_carrera()" style="display: none;">Modificar</button>
+                </div>
+                <div class="control">
+                  <button type="button" id="boton_limpiar" class="button is-link is-dark" onclick="limpiarFormulario()">Limpiar</button> 
+                </div>
+                <div class="control">
+                  <a type="button" class="button is-link" href="Carreras.html">Cancelar</a>
+                </div>
+              </div>
+            </div>
+        </form>
+
+
+    </h1>
+</body>
+
+<script src="../frontend/scripts/Carreras.js"></script>
+</html>

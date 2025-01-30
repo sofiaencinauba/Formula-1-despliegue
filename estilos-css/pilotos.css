@@ -1,0 +1,85 @@
+.titulo_pilotos {
+	font-size: 90px;
+	color: red;
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: bold;
+	font-style: oblique;
+	margin-top: 40px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.tarjetas {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	margin: 20px;
+}
+
+.tarjeta {
+	width: 300px;
+	background-color: #ffffffc9;
+	border-radius: 10px;
+	color: #474343;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	font-family: Arial, sans-serif;
+}
+
+.tarjeta h2 {
+	font-size: 24px;
+	color: #000000;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.letras_formulario {
+	color: #000000;
+	font-weight: bold;
+}
+
+.boton_borrar {
+	display: block;
+	width: 100%;
+	padding: 3%;
+	margin-top: 1%;
+	text-align: center;
+	background-color: hsl(0, 100%, 50%);
+	color: #fff;
+	border-radius: 55px;
+}
+
+.encabezado_piloto th {
+	font-size: 20px;
+	text-align: center;
+}
+
+.agregar_piloto {
+	width: 25%;
+	margin: 1% auto;
+	padding: 2%;
+	border-radius: 30px;
+	background-color: #ffffffc9;
+}
+
+.boton_agregar {
+	width: 40%;
+	padding: 1%;
+	border-radius: 10px;
+	background-color: #000000;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.boton_modificar {
+	display: block;
+	width: 100%;
+	padding: 3%;
+	margin-top: 1%;
+	text-align: center;
+	background-color: hsl(0, 100%, 50%);
+	color: #fff;
+	border-radius: 55px;
+}

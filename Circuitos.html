@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es" class="has-navbar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="imagenes/logo-F1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="estilos-css/escuderia.css">
+    <link rel="stylesheet" href="estilos-css/estilos-principal.css">
+    <title>Circuitos</title>
+</head>
+<body>
+    <div class="contenedor__titulo">
+		<h3>Simulador de temporada de formula 1</h3>
+	</div>
+    <div class="contenedor is-fluid">
+        <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="index.html">
+                    <img src="imagenes/logo-F1.png" alt="Logo Fórmula 1">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="Escuderia.html">
+                    Escuderias
+                    </a>
+                    <a class="navbar-item" href="Piloto.html">
+                        Pilotos
+                    </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="Carreras.html">
+                        Carreras
+                    </a>
+                    <div class="navbar-dropdown">
+                    <a class="navbar-item" href="Circuitos.html">
+                        Circuitos
+                    </a>
+                    </div>
+                </div>
+            </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-dark" href="agregar_circuito.html">
+                                <strong>AÑADIR CIRCUITO</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+    <section class="section">
+
+        <h1 class="titulo_escuderia">Circuitos</h1>
+    <div class="container is-fluid">  
+        
+    
+    <section class="section is-medium is-danger">
+        <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+            <tr>
+                <th style="width: 15%"><abbr title="Circuito">Circuito</abbr></th>
+                <th style="width: 15%"><abbr title="Nombre">Nombre</abbr></th>
+                <th style="width: 15%"><abbr title="Tipo">Tipo</abbr></th>
+                <th style="width: 15%"><abbr title="Cantidad Curvas">Longitud Total</abbr></th>
+                <th style="width: 15%"><abbr title="Longitud Total">Cantidad de curvas</abbr></th>
+                <th style="width: 15%">
+                    <abbr title="Carreras">Carreras</abbr>
+                </th>
+                
+            </tr>
+            </thead>
+            <tbody id="circuitos">
+    
+            </tbody>
+        </table>
+    </section>
+    </div>
+</section>
+</div>
+
+<article class="message mx-6 is-dark">
+    <div class="message-header">
+      <p>Circuitos permanentes</p>
+    </div>
+    <div class="message-body">
+    <p>Son pistas diseñadas específicamente para deportes de motor. Estas instalaciones suelen tener amplias áreas de escape, instalaciones modernas
+    y una combinación de curvas rápidas y lentas.</p>
+    <strong>Características:</strong>
+    <ul>
+    <li>Superficies bien mantenidas.</li>
+    <li>Gran variedad de curvas y rectas.</li>
+    <li>Amplias zonas de escape que maximizan la seguridad.</li></ul>
+    <strong>Ejemplos:</strong>
+    <ul>
+    <li>Silverstone (Reino Unido): Una de las pistas más antiguas de la F1, conocida por sus curvas rápidas.</li>
+    <li>Circuit de Barcelona-Catalunya (España): Muy utilizado para pruebas, con una mezcla de curvas técnicas.</li>
+    <li>Suzuka (Japón): Famoso por su diseño en forma de "8".</li></ul>
+    </div>
+</article>
+<article class="message mx-6 is-dark">
+    <div class="message-header">
+      <p>Circuitos urbanos</p>
+    </div>
+    <div class="message-body">
+    <p>Estos circuitos se construyen utilizando calles dentro de ciudades. Son conocidos por ser estrechos y técnicos, con barreras cercanas que dejan poco margen de error.</p>
+    <strong>Características:</strong>
+    <ul>
+    <li>Calles estrechas y curvas cerradas.</li>
+    <li>Barreras y muros cerca de la pista, aumentando la dificultad y los riesgos.</li>
+    <li>Menos áreas de escape.</li>
+    <li>Grandes desafíos para los pilotos debido a las condiciones cambiantes de la pista (baches, pintura de la carretera, etc.).</li></ul>
+    <strong>Ejemplos:</strong>
+    <ul>
+    <li>Mónaco: El circuito más emblemático y técnico, conocido por su glamour y dificultad.</li>
+    <li>Singapur: El primer Gran Premio nocturno de la F1, con un trazado desafiante.</li>
+    <li>Bakú (Azerbaiyán): Combina secciones rápidas y un sector estrecho junto a la ciudad vieja.</li></ul>
+    </div>
+</article>
+<article class="message mx-6 is-dark">
+    <div class="message-header">
+      <p>Circuitos mixtos</p>
+    </div>
+    <div class="message-body">
+    <p>Estos circuitos combinan elementos de pistas permanentes y urbanas. Suelen estar diseñados alrededor de zonas urbanas o parques, pero no utilizan exclusivamente calles de la ciudad.</p>
+    <strong>Características:</strong>
+    <ul>
+    <li>Una mezcla de zonas rápidas y técnicas.</li>
+    <li>Secciones de calles urbanas combinadas con áreas especialmente construidas para carreras.</li>
+    <li>Tienen un diseño único que ofrece una experiencia variada para los pilotos.</li>
+    </ul>
+    <strong>Ejemplos:</strong>
+    <ul>
+    <li>Albert Park (Australia): Construido en torno a un parque en Melbourne.</li>
+    <li>Sochi Autodrom (Rusia): Pasa cerca de las instalaciones olímpicas de Sochi.</li>
+    <li>Montreal (Circuito Gilles Villeneuve) (Canadá): Ubicado en una isla artificial, combina rectas largas con chicanes técnicas.</li></ul>
+    </div>
+</article>
+
+
+</body>
+<script src="../frontend/scripts/Circuitos.js"></script>
+</html>
