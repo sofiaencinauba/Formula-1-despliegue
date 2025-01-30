@@ -254,6 +254,7 @@ modificar_piloto = function () {
 }
 
 cargar_escuderias = function(){
+	alert("cargando escuderias..")
     fetch('https://formula-1-despliegue.onrender.com/api/v1/escuderias')
     .then(response => response.json())
     .then(escuderias => {
