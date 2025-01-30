@@ -14,12 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install dependencies for frontend
-        run: cd frontend && npm install
-
-      - name: Build frontend
-        run: cd frontend && npm run build
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
