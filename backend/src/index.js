@@ -1,3 +1,10 @@
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://ijawzxjcxfketjckmhqo.supabase.co'
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 const { PrismaClient } = require('@prisma/client')
 const express = require('express')
 var cors = require('cors')
