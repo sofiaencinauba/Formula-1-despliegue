@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const urlActual = window.location.href;
 
     if (pilotoId) {
-        fetch(`http://127.0.0.1:3000/api/v1/pilotos/${pilotoId}`)
+        fetch(`https://formula-1-despliegue.onrender.com/api/v1/pilotos/${pilotoId}`)
             .then(response => response.json())
             .then(piloto => {
                 rellenar_formulario(piloto);
@@ -60,7 +60,7 @@ function asociar_piloto_con_carrera(carreras) {
 }
 
 mostrar_Pilotos = function() {
-	fetch('http://127.0.0.1:3000/api/v1/pilotos')
+	fetch('https://formula-1-despliegue.onrender.com/api/v1/pilotos')
 		.then(response => response.json())
 		.then(pilotos => {
 			console.log(pilotos)
@@ -134,7 +134,7 @@ mostrar_Pilotos = function() {
 
 borrar_Piloto = function(id) {
     alert(`Piloto eliminado ${id}`);
-    fetch('http://127.0.0.1:3000/api/v1/pilotos/' + id, {
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/pilotos/' + id, {
         method: 'DELETE'
     })
         .then(response => response.json())
@@ -160,7 +160,7 @@ agregar_piloto = function() {
             posicion_piloto: parseInt(posicion),
             id_escuderia: parseInt(escuderia)
         };
-        fetch("http://127.0.0.1:3000/api/v1/pilotos",{
+        fetch("https://formula-1-despliegue.onrender.com/api/v1/pilotos",{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -228,7 +228,7 @@ modificar_piloto = function () {
 		id_escuderia: parseInt(escuderia, 10),
 	};
 
-	fetch('http://127.0.0.1:3000/api/v1/pilotos/' + id, {
+	fetch('https://formula-1-despliegue.onrender.com/api/v1/pilotos/' + id, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -254,7 +254,7 @@ modificar_piloto = function () {
 }
 
 cargar_escuderias = function(){
-    fetch('http://127.0.0.1:3000/api/v1/escuderias')
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/escuderias')
     .then(response => response.json())
     .then(escuderias => {
 
