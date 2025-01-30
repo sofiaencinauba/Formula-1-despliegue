@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlActual = window.location.href;
 
     if (carreraId) {
-        fetch(`http://127.0.0.1:3000/api/v1/carreras/${carreraId}`)
+        fetch(`https://formula-1-despliegue.onrender.com/api/v1/carreras/${carreraId}`)
             .then(response => response.json())
             .then(carrera => {
                 rellenar_formulario(carrera);
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 mostrar_carreras = function () {
-    fetch('http://127.0.0.1:3000/api/v1/carreras')
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/carreras')
         .then(response => response.json())
         .then(carreras => {
             console.log(carreras)
@@ -110,7 +110,7 @@ mostrar_carreras = function () {
 
 eliminar_carrera = function (id_carrera) {
     alert("eliminando carrera " + id_carrera)
-    fetch('http://127.0.0.1:3000/api/v1/carreras/' + id_carrera, {
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/carreras/' + id_carrera, {
         method: 'DELETE'
     })
         .then(response => response.json())
@@ -145,7 +145,7 @@ function crearCarrera(event) {
 
     console.log(body)
 
-    fetch('http://127.0.0.1:3000/api/v1/carreras', {
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/carreras', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -217,7 +217,7 @@ modificar_carrera = function () {
 
     console.log(carrera)
 
-    fetch(`http://127.0.0.1:3000/api/v1/carreras/${id}`, {
+    fetch(`https://formula-1-despliegue.onrender.com/api/v1/carreras/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -247,7 +247,7 @@ modificar_carrera = function () {
 }
 
 cargar_pilotos_y_circuitos = function () {
-    fetch('http://127.0.0.1:3000/api/v1/pilotos')
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/pilotos')
         .then(response => response.json())
         .then(pilotos => {
 
@@ -268,7 +268,7 @@ cargar_pilotos_y_circuitos = function () {
 
             });
         })
-    fetch('http://127.0.0.1:3000/api/v1/circuitos')
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/circuitos')
         .then(response => response.json())
         .then(circuitos => {
 

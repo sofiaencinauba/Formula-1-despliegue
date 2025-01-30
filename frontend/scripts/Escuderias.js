@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const escuderiaId = urlParams.get('id');
 
     if (escuderiaId) {
-        fetch(`http://127.0.0.1:3000/api/v1/escuderias/${escuderiaId}`)
+        fetch(`https://formula-1-despliegue.onrender.com/api/v1/escuderias/${escuderiaId}`)
             .then(response => response.json())
             .then(escuderia => {
                 rellenar_formulario(escuderia);
@@ -58,7 +58,7 @@ function asociar_escuderia_con_piloto(pilotos) {
 
 
 mostrar_escuderias = function () {
-	fetch('http://127.0.0.1:3000/api/v1/escuderias')
+	fetch('https://formula-1-despliegue.onrender.com/api/v1/escuderias')
 		.then(response => response.json())
 		.then(escuderias => {
 			console.log(escuderias);
@@ -131,7 +131,7 @@ mostrar_escuderias = function () {
 
 eliminar_escuderia = function (id) {
 	alert(`Eliminar escudería: ${id}, se eliminan los pilotos asociados y las carreras ganadas`);
-	fetch('http://127.0.0.1:3000/api/v1/escuderias/' + id, {
+	fetch('https://formula-1-despliegue.onrender.com/api/v1/escuderias/' + id, {
 		method: 'DELETE'
 	})
 		.then(response => response.json())
@@ -164,7 +164,7 @@ agregar_escuderia = function () {
 		posicion_escuderia: parseInt(posicion, 10),
 	};
 
-	fetch('http://127.0.0.1:3000/api/v1/escuderias', {
+	fetch('https://formula-1-despliegue.onrender.com/api/v1/escuderias', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -230,7 +230,7 @@ modificar_escuderia = function () {
 		posicion_escuderia: parseInt(posicion, 10),
 	};
 
-	fetch('http://127.0.0.1:3000/api/v1/escuderias/' + id, {
+	fetch('https://formula-1-despliegue.onrender.com/api/v1/escuderias/' + id, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',

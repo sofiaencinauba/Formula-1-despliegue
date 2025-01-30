@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const circuitoId = urlParams.get('id');
 
     if (circuitoId) {
-        fetch(`http://127.0.0.1:3000/api/v1/circuitos/${circuitoId}`)
+        fetch(`https://formula-1-despliegue.onrender.com/api/v1/circuitos/${circuitoId}`)
             .then(response => response.json())
             .then(circuito => {
                 rellenar_formulario(circuito);
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 mostrar_circuitos = function() {
-    fetch('http://127.0.0.1:3000/api/v1/circuitos')
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/circuitos')
     .then(response => response.json())
     .then(circuitos => {
         console.log(circuitos)
@@ -109,7 +109,7 @@ mostrar_circuitos = function() {
 
 eliminar_circuito = function(circuitoId) {
     alert("eliminando circuito " + circuitoId)
-    fetch('http://127.0.0.1:3000/api/v1/circuitos/' + circuitoId, {
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/circuitos/' + circuitoId, {
         method: 'DELETE'
     })
     .then(response => response.json())
@@ -144,7 +144,7 @@ function crearCircuito(event) {
 
     console.log(body)
 
-    fetch('http://127.0.0.1:3000/api/v1/circuitos', {
+    fetch('https://formula-1-despliegue.onrender.com/api/v1/circuitos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -201,7 +201,7 @@ modificar_circuito = function () {
         cantidad_curvas: parseInt(cantidad_curvas, 10)
     };
 
-    fetch(`http://127.0.0.1:3000/api/v1/circuitos/${id}`, {
+    fetch(`https://formula-1-despliegue.onrender.com/api/v1/circuitos/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
