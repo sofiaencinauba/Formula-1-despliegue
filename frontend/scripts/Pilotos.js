@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 	if (urlActual.includes('agregar_piloto.html')) {
+		console.log("cargando escuderias")
         cargar_escuderias();
     }
 
