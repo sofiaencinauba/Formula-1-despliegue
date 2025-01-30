@@ -18,7 +18,7 @@ jobs:
         run: cd frontend && npm install
 
       - name: Build frontend
-        run: cd frontend && npm run dev
+        run: cd frontend && npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
