@@ -153,21 +153,21 @@ function llenar_tabla_escuderias(escuderias) {
   });
 }
 
-fetch('http://127.0.0.1:3000/api/v1/carreras')
+fetch('https://formula-1-despliegue.onrender.com/api/v1/carreras')
 .then(response => response.json())
 .then(carreras => {
     console.log(carreras);
     llenar_tabla_carreras(carreras);
 });
 
-fetch('http://127.0.0.1:3000/api/v1/pilotos')
+fetch('https://formula-1-despliegue.onrender.com/api/v1/pilotos')
   .then(response => response.json())
   .then(pilotos => {
       console.log(pilotos);
       llenar_tabla_pilotos(pilotos);
   });
 
-fetch('http://127.0.0.1:3000/api/v1/escuderias')
+fetch('https://formula-1-despliegue.onrender.com/api/v1/escuderias')
   .then(response => response.json())
   .then(escuderias => {
       console.log(escuderias);
