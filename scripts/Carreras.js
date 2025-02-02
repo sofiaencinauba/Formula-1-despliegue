@@ -176,7 +176,7 @@ function limpiarFormulario() {
 
 rellenar_formulario = function (carrera) {
 
-    cargar_pilotos_y_circuitos()
+    // cargar_pilotos_y_circuitos()
 
     document.getElementById('id_carrera').value = carrera.id_carrera;
     document.getElementById('nombre').value = carrera.nombre_carrera;
