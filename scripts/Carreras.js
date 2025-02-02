@@ -176,6 +176,8 @@ function limpiarFormulario() {
 
 rellenar_formulario = function (carrera) {
 
+    cargar_pilotos_y_circuitos()
+
     document.getElementById('id_carrera').value = carrera.id_carrera;
     document.getElementById('nombre').value = carrera.nombre_carrera;
     document.getElementById('sede').value = carrera.pais_sede;
@@ -187,15 +189,14 @@ rellenar_formulario = function (carrera) {
     document.querySelector('#boton_limpiar').style.display = 'none';
     document.querySelector('#boton_modificar').style.display = 'inline-block';
 
-    setTimeout(() => {
-        document.getElementById('select_pilotos').value = String(carrera.id_primer_puesto);
-        document.getElementById('select_circuitos').value = String(carrera.id_circuito_asociado);
+    
+    document.getElementById('select_pilotos').value = String(carrera.id_primer_puesto);
+    document.getElementById('select_circuitos').value = String(carrera.id_circuito_asociado);
 
-    }, 10)
 }
 
 modificar_carrera = function () {
-    cargar_pilotos_y_circuitos()
+    
     const id = document.getElementById('id_carrera').value.trim();
     const nombre = document.getElementById('nombre').value.trim();
     const sede = document.getElementById('sede').value.trim();
