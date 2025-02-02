@@ -195,6 +195,7 @@ rellenar_formulario = function (carrera) {
 }
 
 modificar_carrera = function () {
+    cargar_pilotos_y_circuitos()
     const id = document.getElementById('id_carrera').value.trim();
     const nombre = document.getElementById('nombre').value.trim();
     const sede = document.getElementById('sede').value.trim();
