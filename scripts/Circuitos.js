@@ -153,13 +153,15 @@ function crearCircuito(event) {
     }).then(response => {
         if(response.status === 201){
             alert("circuito creado con exito")
+		mostrar_circuitos()
             limpiarFormulario()
+	window.location.href = 'Circuitos.html';
         } else{
             alert("error al crear el circuito")
         }
     })
     
-    window.location.href = 'Circuitos.html';
+    
 }
 
 function limpiarFormulario(){
