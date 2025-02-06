@@ -465,6 +465,32 @@ app.put('/api/v1/circuitos/:id', async (req, res) => {
     }
 });
 
+app.get('/api/v1/puntajes_pilotos', async (req, res) => {
+	const pilotos = await prisma.piloto.findMany({
+		include: {
+			escuderia: true,
+			carreras: true
+		},
+		orderBy: {
+			puntos_piloto: 'desc' 
+		}
+	})
+	res.json(pilotos)
+})
+
+app.get('/api/v1/puntajes_escuderias', async (req, res) => {
+	const escuderias = await prisma.escuderia.findMany({
+		include: {
+			pilotos: true
+		},
+		orderBy: {
+			puntos_escuderia: 'desc' 
+		}
+	})
+	res.json(escuderias)
+})
+
+
 app.listen(port, () => {
 	console.log(`Formula1 app listening on port ${port}`)
 })

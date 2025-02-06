@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const urlParams = new URLSearchParams(window.location.search);
     const escuderiaId = urlParams.get('id');
 
+	const urlActual = window.location.href;
+
     if (escuderiaId) {
         fetch(`https://formula-1-despliegue.onrender.com/api/v1/escuderias/${escuderiaId}`)
             .then(response => response.json())
@@ -29,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error al obtener la escudería:', error);
             });
     }
+
+	if (urlActual.includes('puntajes_escuderias')) {
+		crear_tabla_puntajes()
+		return
+	}
 
 	mostrar_escuderias();
 });
@@ -254,3 +261,53 @@ modificar_escuderia = function () {
 			alert('Ocurrió un error al actualizar la escudería');
 		});
 }
+
+crear_tabla_puntajes = function() {
+	let tabla = document.getElementById('escuderias-data');
+	tabla.innerHTML = '';
+
+	fetch('https://formula-1-despliegue.onrender.com/api/v1/puntajes_escuderias')
+	.then(response => response.json())
+	.then(escuderias => {
+		console.log(escuderias)
+
+		  
+	if (escuderias.length === 0) { 
+		let fila = document.createElement('tr'); 
+		let mensaje = document.createElement('td'); 
+		mensaje.colSpan = 6; 
+		mensaje.textContent = 'Aún no añadiste escuderias'; 
+		mensaje.classList.add('mensaje');
+		fila.appendChild(mensaje); 
+		tabla.appendChild(fila); 
+		return; 
+	  }
+
+	  let contador = 0
+  
+		escuderias.forEach(escuderia => {
+			let fila = document.createElement('tr');
+			if (contador == 0) {
+				fila.className = 'is-selected'
+				contador ++
+			}
+
+			let posicion = document.createElement('td');
+			posicion.textContent = escuderia.posicion_escuderia;
+	  
+			let nombre = document.createElement('td');
+			nombre.textContent = escuderia.nombre_escuderia;
+	  
+			let pais = document.createElement('td');
+			pais.textContent = escuderia.pais_escuderia;
+	  
+			let puntos = document.createElement('td');
+			puntos.textContent = escuderia.puntos_escuderia;
+	  
+			fila.appendChild(posicion);
+			fila.appendChild(nombre);
+			fila.appendChild(pais);
+			fila.appendChild(puntos);
+			tabla.appendChild(fila);
+		});
+	})}
