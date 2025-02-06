@@ -37,6 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         cargar_escuderias();
     }
 
+	if (urlActual.includes('puntajes_pilotos')) {
+		crear_tabla_puntajes()
+		return
+	}
+
 	mostrar_Pilotos();
 });
 
@@ -275,3 +280,61 @@ cargar_escuderias = function(){
         });
     })
 }
+
+crear_tabla_puntajes = function() {
+	let tabla = document.getElementById('pilotos-data');
+	tabla.innerHTML = '';
+  
+
+	fetch('https://formula-1-despliegue.onrender.com/api/v1/puntajes_pilotos')
+	.then(response => response.json())
+	.then(pilotos => {
+		console.log(pilotos)
+
+		if (pilotos.length === 0) { 
+			let fila = document.createElement('tr'); 
+			let mensaje = document.createElement('td'); 
+			mensaje.colSpan = 6; 
+			mensaje.textContent = 'Aún no añadiste pilotos'; 
+			mensaje.classList.add('mensaje');
+			fila.appendChild(mensaje); 
+			tabla.appendChild(fila); 
+			return; 
+		  }
+
+		let contador = 0
+  
+		pilotos.forEach(piloto => {
+			let fila = document.createElement('tr');
+			if (contador == 0) {
+				fila.className = 'is-selected'
+				contador ++
+			}
+	
+			let posicion = document.createElement('td');
+			posicion.textContent = piloto.posicion_piloto;
+	
+			let id = document.createElement('td');
+			id.textContent = piloto.id_piloto;
+	
+			let nombre = document.createElement('td');
+			nombre.textContent = piloto.nombre_piloto;
+	
+			let nacionalidad = document.createElement('td');
+			nacionalidad.textContent = piloto.nacionalidad_piloto;
+	
+			let escuderia = document.createElement('td');
+			escuderia.textContent = piloto.escuderia.nombre_escuderia;
+	
+			let puntos = document.createElement('td');
+			puntos.textContent = piloto.puntos_piloto;
+	
+			fila.appendChild(posicion);
+			fila.appendChild(id);
+			fila.appendChild(nombre);
+			fila.appendChild(nacionalidad);
+			fila.appendChild(escuderia);
+			fila.appendChild(puntos);
+			tabla.appendChild(fila);
+		});
+	})}
